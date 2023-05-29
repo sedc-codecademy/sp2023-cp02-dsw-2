@@ -28,7 +28,7 @@
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-1 border-bottom"></div>
 				
 				<!--* Form -->
-				<form id="create-account" action="" class="pt-2 needs-validation" novalidate>
+				<form id="create-account" class="pt-2 needs-validation" novalidate>
 
 					<!--* first name -->
 				<div class="form-row">
@@ -64,6 +64,11 @@
 						<label for="password">Password</label>
 						<div class="invalid-feedback">
 							Password is required!
+						</div>
+						<div class="alert alert-info mt-3" id="passwordInfoAlert" role="alert">
+							<small id="passwordInfoAlertText">
+								Your password must be 8-20 characters long, including a letters, numbers and special characters.
+							</small>
 						</div>
 					</div>
 

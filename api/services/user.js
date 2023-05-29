@@ -1,12 +1,37 @@
-
 //* Rererences to HTML element *//
+const incorectDangerAllert = document.getElementById('incorectDangerAlert');
+const incorectDangerAlertText = document.getElementById('incorectDangerAlertText');
+
+const loginEmail = document.getElementById('login-email');
 const loginPassword = document.getElementById('login-password');
-const passwordInfo = document.getElementById('passwordInfo');
-const smallText = document.querySelector('small');
-
-
+const passwordInfoAlert = document.getElementById('passwordInfoAlert');
+const passwordInfoAlertText = document.getElementById('passwordInfoText');
 const loginBtn = document.getElementById('login');
-//* Toggle Password
+
+
+
+const signupPassword = document.getElementById('signup-password');
+
+//? Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+  //* Fetch all the forms we want to apply custom Bootstrap validation styles to
+  let forms = document.querySelectorAll('.needs-validation');
+  //* Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+})();
+
+
+//? Toggle Password - LOGIN
 (function() {
     'use strict'
 
@@ -24,66 +49,36 @@ const loginBtn = document.getElementById('login');
         }
     })
 })();
+//? Toggle Password - SIGNUP
+(function() {
+  'use strict'
 
-//* Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    let forms = document.querySelectorAll('.needs-validation');
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })();
+  const eyeToggle = document.querySelector('.js-password-show-toggle');
 
-//! ----- Function Login -----
+  eyeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
 
-//* Event Listener to password input field with callback function
-// passwordInput.addEventListener("focus", showPasswordInfo);
-
-// function showPasswordInfo() {
-//   passwordInfo.style.display = "block";
-// }
-
-// document.addEventListener('click', function(event) {
-//     //* Check if the clicked element is outside the password input or password info
-//     if (event.target !== passwordInput && event.target !== passwordInfo && event.target !== smallText) {
-//       passwordInfo.style.display = 'none';
-//     }
-//   });
-
-
-
+      if ( eyeToggle.classList.contains('active') ) {
+        signupPassword.setAttribute('type', 'password');
+          eyeToggle.classList.remove('active');
+      } else {
+        signupPassword.setAttribute('type', 'text');
+          eyeToggle.classList.add('active');
+      }
+  })
+})();
 
 //! ----- Function Create Account -----
-
-
-let createAccount = document.getElementById('createAccount');
-
-
-
-// const fs = require('fs');
-// const path = require('path');
-// const filePath = path.join(process.cwd(), 'user.json');
-
 function createUser(){
-    debugger;
     let firstName = document.getElementById('firstName').value;
     let lastName = document.getElementById('lastName').value;
     let signupEmail = document.getElementById('signup-email').value;
     let signupPassword = document.getElementById('signup-password').value;
     let user = new User(firstName, lastName, signupEmail, signupPassword, "", new Address("","","",""));
+    
     // converting user to JSON
     let users = [];
+    // let users = JSON.parse(localStorage.getItem('userData')) || [];
     const data = localStorage.getItem("userData");
     
     if(data != null) users = JSON.parse(data);
@@ -99,6 +94,27 @@ function login(){
     const data = localStorage.getItem("userData");
 
 }
+
+
+//! ----- Login Function -----
+
+
+
+
+
+
+//* Event Listener to password input field with callback function
+signupPassword.addEventListener("focus", showPasswordInfoField);
+
+function showPasswordInfoField() {
+  passwordInfoAlert.style.display = "block";
+}
+
+document.addEventListener('click', function(event) {
+    if (event.target !== signupPassword && event.target !== passwordInfoAlert && event.target !== passwordInfoAlertText) {
+      passwordInfoAlert.style.display = 'none';
+    }
+  });
 
 
 //! ----- Function Forgot Password -----

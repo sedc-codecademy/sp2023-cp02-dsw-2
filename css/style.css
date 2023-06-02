@@ -1,0 +1,47 @@
+body, html {
+    font-family: Lato, sans-serif !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nb-page{
+    margin-left: 240px;
+    margin-right: 240px;
+}
+
+.nb-navbar {
+    background: rgb(38,38,38);
+    background: linear-gradient(0deg, rgba(38,38,38,0) 0%, rgba(38,38,38,1) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.icon {
+    padding-left: 240px;
+}
+
+.nb-profile {
+    padding-right: 240px; 
+}
+
+/* .nb-navbar {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(82, 82, 82, 0) 0%, rgb(14, 13, 13) 70%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+} */
+
+/* .nav-item a {
+    color: whitesmoke;
+} */
+
+/* .navbar-brand {
+    color: whitesmoke;
+} */

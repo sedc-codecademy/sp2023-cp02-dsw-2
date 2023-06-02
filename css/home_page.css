@@ -54,3 +54,22 @@
   .shop-button:hover {
     background-color:rgba(255, 255, 255, 0.32);
   }
+
+  body{
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('/images/Image_Slide_01.jpg');
+    height: 100%; 
+    overflow: hidden;
+    max-height: fit-content;
+  }
+
+.div-inside-div{
+    width: 25vw; /* Can be in percentage also. */
+    height: auto;
+    margin: auto;
+    padding: 60px;
+    text-align: center;
+}
+
+#nav-bar{
+  margin-top: 10px;
+}

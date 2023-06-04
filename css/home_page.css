@@ -1,0 +1,56 @@
+body {
+  font-family: Lato, sans-serif !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Image_Slide_01.jpg');
+  height: 100%;
+  overflow: hidden;
+  max-height: fit-content;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+.text-activeSlide {
+  color: whitesmoke;
+  text-align: center;
+  margin-bottom: 4%;
+}
+
+#btn-Shop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10%
+  
+}
+
+.shop-button {
+  background-color: rgba(235, 232, 230, 0.2);
+  color: whitesmoke;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.8rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.shop-button:hover {
+  background-color: rgba(255, 255, 255, 0.32);
+}
+
+#nav-bar {
+  margin-top: 10px;
+}
+
+/* OVAA KLASA STOJ CHISTO DODEKA STAVIME DA IMA NESTO NA SLIDE 1 I SLIDE 3 */
+.div-inside-div {
+  width: 25vw; 
+  height: auto;
+  margin: auto;
+  padding: 60px;
+  text-align: center;
+}

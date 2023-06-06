@@ -136,7 +136,7 @@ a:hover {
 #incorectDangerAlert{
   display:none;
 }
-#passwordInfoAlert {
+#password-info-alert {
   display: none;
 }
 
@@ -211,6 +211,30 @@ input[type=checkbox]:checked + label {
   font-weight: 300;
 }
 
+#account-successfully-created{
+  display: none;
+}
 
+#email-exists {
+  display: none;
+}
 
+#incorect-email-address{
+  display: none;
+}
+#hide-email-input{
+  display: block;
+}
+#new-password-div {
+  display: none;
+}
+#password-changed-alert{
+  display: none;
+}
+#password-doesnt-match{
+  display: none;
+}
+#password-same{
+  display:none;
+}
 

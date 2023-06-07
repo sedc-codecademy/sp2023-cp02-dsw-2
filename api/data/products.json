@@ -1,0 +1,90 @@
+[
+    {
+      "Id": 1,
+      "Name": "Lavazza Gusto Forte Intenso",
+      "Description": "Intenziven vkus i aroma so poteklo od egzotichni lokacii niz celiot svet",
+      "Category": "Kafe vo zrno",
+      "Price": 900,
+      "Quantity": 7,
+      "Image": "picture1.png",
+      "Weight": 1000,
+      "Discount": 150
+    },
+    {
+      "Id": 2,
+      "Name": "ILLY Decaf",
+      "Description": "Dekafinirano i spremno so CO2 metodot za vrven kvalitet",
+      "Category": "Kafe vo zrno",
+      "Price": 517,
+      "Quantity": 15,
+      "Image": "picture2.png",
+      "Weight": 250,
+      "Discount": 85
+    },
+    {
+      "Id": 3,
+      "Name": "Gimoka Miscela Bar",
+      "Description": "Sovrsheno izbalansirana meshavina od zrna Arabika (20%) i Robusta (80%)",
+      "Category": "Meleno kafe",
+      "Price": 517,
+      "Quantity": 15,
+      "Image": "picture3.png",
+      "Weight": 500,
+      "Discount": 250
+    },
+    {
+      "Id": 4,
+      "Name": "DolceVita Intenso",
+      "Description": "Osobeno rafinirana za ljubitelite na silnoto espreso",
+      "Category": "Meleno kafe",
+      "Price": 160,
+      "Quantity": 28,
+      "Image": "picture4.png",
+      "Weight": 250,
+      "Discount": 81
+    },
+    {
+      "Id": 5,
+      "Name": "Lavazza Delicato | Nespresso",
+      "Description": "Slatka meshavina od delikatni noti i miris na planinski cvekinja",
+      "Category": "Kafe kapsuli",
+      "Price": 220,
+      "Quantity": 12,
+      "Image": "picture5.png",
+      "Weight": 250,
+      "Discount": 31
+    },
+    {
+      "Id": 6,
+      "Name": "Toffee Nut Latte | Tassimo",
+      "Description": "Krem od mleko so vkus na jatkasti plodovi",
+      "Category": "Kafe kapsuli",
+      "Price": 400,
+      "Quantity": 1,
+      "Image": "picture6.png",
+      "Weight": 300,
+      "Discount": 0
+    },
+    {
+      "Id": 7,
+      "Name": "TASSIMO HAPPY Black",
+      "Description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo",
+      "Category": "Kafemat",
+      "Price": 7200,
+      "Quantity": 4,
+      "Image": "picture7.png",
+      "Weight": 2200,
+      "Discount": 3710
+    },
+    {
+      "Id": 8,
+      "Name": "TASSIMO HAPPY Red",
+      "Description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo. Sega vo crvena boja",
+      "Category": "Kafemat",
+      "Price": 7200,
+      "Quantity": 2,
+      "Image": "picture8.png",
+      "Weight": 2200,
+      "Discount": 3710
+    }
+  ]

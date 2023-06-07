@@ -215,7 +215,10 @@ input[type=checkbox]:checked + label {
   display: none;
 }
 
-#email-exists {
+#email-exists-alert {
+  display: none;
+}
+#password-validation-alert{
   display: none;
 }
 

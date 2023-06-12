@@ -150,6 +150,7 @@ a:hover {
 
 .form-wrap .password-show-toggle span {
   font-size: 20px;
+  margin-right: 10px;
 }
 
 .form-wrap .password-show-toggle span:before {
@@ -211,6 +212,21 @@ input[type=checkbox]:checked + label {
   font-weight: 300;
 }
 
+/** ----- Create Account -----*/
+/**Password Validation*/
+#password-validation-alert{
+ display: none;
+}
+/**Email Validation*/
+#email-validation-alert{
+  display: none;
+ }
+/**Firstname Lastname Validation*/
+#firstname-lastname-validation-alert {
+  display: none;
+}
+
+
 #account-successfully-created{
   display: none;
 }
@@ -218,7 +234,7 @@ input[type=checkbox]:checked + label {
 #email-exists-alert {
   display: none;
 }
-#password-validation-alert{
+#validation-alert{
   display: none;
 }
 

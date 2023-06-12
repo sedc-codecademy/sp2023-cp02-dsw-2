@@ -40,8 +40,9 @@
 							This email is taken. Please use another one.
 						</small>
 					</div>
-					<div class="mt-2 alert alert-danger" role="alert" id="password-validation-alert">
-						<small id="password-validation-alert-text">
+					<!--* Validation -->
+					<div class="mt-2 alert alert-danger" role="alert" id="validation-alert">
+						<small id="validation-alert-text">
 							
 						</small>
 					</div>
@@ -49,7 +50,7 @@
 					<!--* first name -->
 					<div class="form-row">
 						<div class="form-floating col-md-5.6 mb-3 mt-3">
-							<input type="text" class="form-control" id="firstName" placeholder="First name" required>
+							<input type="text" class = "form-control" id="firstName" placeholder="First name" required>
 							<label for="firstName">First name</label>
 							<div class="invalid-feedback">
 								First name is required!
@@ -63,6 +64,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="mt-2 alert alert-danger" role="alert" id="firstname-lastname-validation-alert">
+						<small>
+							First name or last name is incorect.
+						</small>
+					</div>
 
 					<!--* email -->
 					<div class="form-floating">
@@ -70,6 +76,11 @@
 						<label for="signup-email">Email Address</label>
 						<div class="invalid-feedback">
 							Email is invalid!
+						</div>
+						<div class="mt-2 alert alert-danger" role="alert" id="email-validation-alert">
+							<small>
+								Incorect email address
+							</small>
 						</div>
 					</div>
 
@@ -80,6 +91,11 @@
 						<label for="signup-password">Password</label>
 						<div class="invalid-feedback">
 							Password is required!
+						</div>
+						<div class="mt-2 alert alert-danger" role="alert" id="password-validation-alert">
+							<small>
+								Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number.
+							</small>
 						</div>
 						<div class="alert alert-info mt-3" id="password-info-alert" role="alert">
 							<small id="passwordInfoAlertText">

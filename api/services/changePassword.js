@@ -11,8 +11,31 @@ const newPasswordConfirm = document.getElementById('new-password-confirm');
 const resetButtonBtn = document.getElementById('reset-password');
 const confirmNewPasswordBtn = document.getElementById('confirm-new-password');
 
+const passwordValidationAlert = document.getElementById('password-validation-alert');
 const passwordChangeAlert = document.getElementById('password-changed-alert');
 const passwordDoesntMatch = document.getElementById('password-doesnt-match');
+
+
+// //? Example starter JavaScript for disabling form submissions if there are invalid fields
+// //* function isFormEmpty
+// function isFormEmpty() {
+// 	const email = document.getElementById('email').value.trim();
+// 	const newPassword = document.getElementById('new-password').value.trim();
+//     const newPasswordConfirm = document.getElementById('new-password-confirm').trim();
+
+// 	return email === "" && newPassword === "" && newPasswordConfirm === "";
+// }
+// function triggerFormValidation(event) {
+// 	'use strict';
+// 	let forms = document.querySelectorAll('.needs-validation');
+// 	Array.prototype.slice.call(forms).forEach(function (form) {
+// 		if (!form.checkValidity()) {
+// 			event.preventDefault();
+// 			event.stopPropagation();
+// 		}
+// 		form.classList.add('was-validated');
+// 	});
+// }
 
 
 function clearInputField() {
@@ -20,10 +43,13 @@ function clearInputField() {
     newPasswordConfirm.value = '';
 }
 
-
 function passwordResetUserExists(event){
-    const email = document.getElementById('email').value;
+    // if(isFormEmpty()){
+    //     triggerFormValidation(event);
+	// 	return;
+    // } 
 
+    const email = document.getElementById('email').value;
     const data = localStorage.getItem("usersData");
 	const users = data ? JSON.parse(data) : [];
 
@@ -45,23 +71,39 @@ function passwordResetUserExists(event){
 resetButtonBtn.addEventListener('click', passwordResetUserExists, false);
 
 
-function changeNewPassword(email) {
+function validatePassword (password, event) {
+    let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+    if(!password.match(passwordRegex)) {
+        event.preventDefault();
+		passwordValidationAlert.style.display = 'block';
+	  	return false;
+	} else {
+		return true;
+	}
+}
+
+function changeNewPassword(email, event) {
     const newPassword = document.getElementById('new-password').value;
     const newPasswordConfirm = document.getElementById('new-password-confirm').value;
     
+    // if(isFormEmpty()){
+    //     triggerFormValidation(event);
+	// 	return;
+    // } 
+
     const data = localStorage.getItem("usersData");
     const users = data ? JSON.parse(data) : [];
     const selectedUser = users.find(u => u.email === email);
     
-
     const passwordChangeAlert = document.getElementById('password-changed-alert');
     const samePassword = document.getElementById('password-same');
     const passwordDoesntMatchAlert = document.getElementById('password-doesnt-match');
 
-    if (newPassword !== selectedUser.password && newPasswordConfirm !== selectedUser.password && newPassword === newPasswordConfirm && selectedUser) {
+    if (validatePassword(newPassword, event) && newPassword !== selectedUser.password && newPasswordConfirm !== selectedUser.password && newPassword === newPasswordConfirm && selectedUser) {
         
         selectedUser.password = newPassword;
-      
+        
         localStorage.setItem("usersData", JSON.stringify(users));
         clearInputField();
         //event.preventDefault();
@@ -92,12 +134,7 @@ function handlePasswordChange(event) {
     event.preventDefault();
   
     const email = document.getElementById('email').value;
-    const success = changeNewPassword(email);
-  
-    // if (success) {
-    //     // Password changed successfully
-    //     passwordChangeAlert.style.display = 'block';
-    // } 
+    changeNewPassword(email, event);
 }
 confirmNewPasswordBtn.addEventListener('click', handlePasswordChange, false);
 
@@ -136,7 +173,9 @@ confirmNewPasswordBtn.addEventListener('click', handlePasswordChange, false);
 
 //? Event Listener to password input field with callback function
 function showPasswordInfoField() {
-    passwordInfoAlert.style.display = "block";
+    if(passwordValidationAlert.style.display = 'none'){
+        passwordInfoAlert.style.display = "block";
+    } 
 }
 document.addEventListener('click', function(event) {
     if (event.target !== newPassword && event.target !== passwordInfoAlert && event.target !== passwordInfoAlertText) {

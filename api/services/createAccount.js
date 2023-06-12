@@ -1,24 +1,9 @@
-(function () {
-	
-	'use strict'
-//* Fetch all the forms we want to apply custom Bootstrap validation styles to
-	let forms = document.querySelectorAll('.needs-validation');
-//* Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-  .forEach(function (form) {
-	  form.addEventListener('submit', function (event) {
-		  if (!form.checkValidity()) {
-			  event.preventDefault()
-			  event.stopPropagation()
-		  }
-		  form.classList.add('was-validated')
-		}, false)
-  })
-})();
 //! ----- Function Create Account -----
 const emailExist = document.getElementById('email-exists-alert');
+
 const passwordValidationAlert = document.getElementById('password-validation-alert');
-const passwordValidationAlertText = document.getElementById('password-validation-alert-text');
+const emailValidationAlert = document.getElementById('email-validation-alert');
+const firstnameLastnameValidationAlert = document.getElementById('firstname-lastname-validation-alert');
 
 
 const signupEmail = document.getElementById('signup-email');
@@ -30,7 +15,26 @@ const passworInfoAlert = document.getElementById('password-info-alert');
 const accountCreated = document.getElementById('account-successfully-created');
 
 
+//? Example starter JavaScript for disabling form submissions if there are invalid fields
+function isFormEmpty() {
+	const firstName = document.getElementById('firstName').value.trim();
+	const lastName = document.getElementById('lastName').value.trim();
+	const signupEmail = document.getElementById('signup-email').value.trim();
+	const signupPassword = document.getElementById('signup-password').value.trim();
 
+	return firstName === "" && lastName === "" && signupEmail === "" && signupPassword === "";
+}
+function triggerFormValidation(event) {
+	'use strict';
+	let forms = document.querySelectorAll('.needs-validation');
+	Array.prototype.slice.call(forms).forEach(function (form) {
+		if (!form.checkValidity()) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+		form.classList.add('was-validated');
+	});
+}
 
 //* ----- clear input fields -----
 function clearInputFields() {
@@ -64,49 +68,61 @@ if (!localStorage.getItem('adminAccountCreated')) {
 	localStorage.setItem('adminAccountCreated', true);
 }
 
-//* ----- password validation -----
+//* ----- Password Validation -----
 function validatePassword(password, event) {
 	let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-
-	if (password === "") {
+	
+	if (!password.match(passwordRegex)) {
 		event.preventDefault();
 		passwordValidationAlert.style.display = 'block';
-		passwordValidationAlertText.innerHTML = "Password field must be filled out";
-	  	return false;
-	} else if (!password.match(passwordRegex)) {
-		event.preventDefault();
-		passwordValidationAlert.style.display = 'block';
-		passwordValidationAlertText.innerHTML = "Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number";
+		emailExist.style.display = 'none';
 	  	return false;
 	} else {
 		return true;
 	}
 }
+//* ----- Email Validation -----
 function validateEmail(email, event) {
-	var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	if (!emailRegex.test(email) ) {
-		passwordValidationAlert.style.display = 'block';
-		passwordValidationAlertText.innerHTML = "Invalid email address";
+	if (!emailRegex.test(email)) {
+		event.preventDefault();
+		emailValidationAlert.style.display = 'block';
+		emailExist.style.display = 'none';
+		return false;
+	} else {
+		return true;
+	}
+}
+//* ----- First Name Validation -----
+function validateFirstLastName(firstName, lastName, event) {
+	const firstNameRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%^&*(){}|~<>;:[\]]{2,}$/;
+
+	if(!firstNameRegex.test(firstName) || !firstNameRegex.test(lastName)) {
+		event.preventDefault();
+		firstnameLastnameValidationAlert.style.display = 'block';
+		emailExist.style.display = 'none';
+		emailValidationAlert.style.display = 'none';
+		passwordValidationAlert.style.display = 'none';
+		return false;
 	} else {
 		return true;
 	}
 }
 
-//* ----- create user -----
+
+//* ----- Create User -----
 function createUser(event) {
 	const firstName = document.getElementById('firstName').value;
 	const lastName = document.getElementById('lastName').value;
 	const signupEmail = document.getElementById('signup-email').value;
 	const signupPassword = document.getElementById('signup-password').value;
 	
-	// if(firstName == "" || lastName == "" || signupEmail == "" || signupPassword == "")
-	// {
-	// 	event.preventDefault();
-	// 	passwordValidationAlert.style.display = 'block';
-	// 	passwordValidationAlertText.innerHTML = "I";
-	//   	return false;
-	// }
+	// Inside the createUser function
+	if (isFormEmpty()) {
+		triggerFormValidation(event);
+		return;
+	}
 	
 	const data = localStorage.getItem("usersData");
 	const users = data ? JSON.parse(data) : [];
@@ -121,7 +137,7 @@ function createUser(event) {
 	
 	const user = new User(firstName, lastName, signupEmail, signupPassword, "", new Address("", "", "", ""));
 
-	if(validatePassword(signupPassword, event) && validateEmail(signupEmail, event)) {
+	if(validatePassword(signupPassword, event) && validateEmail(signupEmail, event) && validateFirstLastName(firstName, lastName, event)) {
 		event.preventDefault();
 		users.push(user);
 		localStorage.setItem('usersData', JSON.stringify(users));
@@ -135,28 +151,29 @@ function createUser(event) {
 createAccountBtn.addEventListener('click', createUser, false);
 
 
-
 //? Toggle Password - SIGNUP
 (function() {
-    'use strict'
-    const eyeToggle = document.querySelector('.js-password-show-toggle');
-  
-    eyeToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-  
-        if ( eyeToggle.classList.contains('active') ) {
-            signupPassword.setAttribute('type', 'password');
-            eyeToggle.classList.remove('active');
-        } else {
-            signupPassword.setAttribute('type', 'text');
-            eyeToggle.classList.add('active');
-        }
-    })
+	'use strict'
+	const eyeToggle = document.querySelector('.js-password-show-toggle');
+
+	eyeToggle.addEventListener('click', (e) => {
+		e.preventDefault();
+
+		if ( eyeToggle.classList.contains('active') ) {
+			signupPassword.setAttribute('type', 'password');
+			eyeToggle.classList.remove('active');
+		} else {
+			signupPassword.setAttribute('type', 'text');
+			eyeToggle.classList.add('active');
+		}
+	})
 })();
 
-//? Event Listener to password input field with callback function
+//? Password Input Field Alert
 function showPasswordInfoField() {
-	passworInfoAlert.style.display = "block";
+	if (passwordValidationAlert.style.display = 'none'){
+		passworInfoAlert.style.display = "block";
+	}
 }
 signupPassword.addEventListener("focus", showPasswordInfoField);
 

@@ -153,12 +153,15 @@ a {
     }
 }
 
+.logged-user{
+    margin-right: 2%;
+}
 
 #not-logged-user{
- display: none;
+ display: flex;
 }
 #logged-user {
-    display: block;
+    display: none;
 }
 
 

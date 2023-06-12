@@ -46,7 +46,6 @@ function clearInputFields() {
 
 //* ----- set user admin -----
 if (!localStorage.getItem('adminAccountCreated')) {
-	console.log("adminAccountCreated");
 	const admin = {
 		firstName: "Admin",
 		lastName: "Admin",
@@ -61,7 +60,7 @@ if (!localStorage.getItem('adminAccountCreated')) {
 		}
 	};
 
-	const data = localStorage.getItem("usersData");
+	const data = localStorage.getItem('usersData');
 	const users = data ? JSON.parse(data) : [];
 	users.push(admin);
 	localStorage.setItem('usersData', JSON.stringify(users));

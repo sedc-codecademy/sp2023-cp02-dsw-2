@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
-
 body {
   font-family: "Lato", sans-serif;
   color:#262626;
@@ -89,6 +88,21 @@ a {
     color: #262626;
 }	
 
+/* ----- Dropdown Hover -----*/
+.dropdown:hover .dropdown-menu{
+    display: block;
+    background-color: hsla(0, 0%, 100%, 0.75);
+    /* margin-top: 10px; */
+}
+.dropdown .dropdown-menu{
+    display: none;
+} 
+.dropdown:hover .dropdown-toggle::after{
+    border-top: 0;
+    border-bottom: .3em solid;
+}
+
+
 .navbar ul.nav li a.notifications, .navbar ul.nav li a.messages {
     position: relative;
     margin-right: 10px;
@@ -112,7 +126,6 @@ a {
         width: 300px;
         margin-left: 30px;
     }
-    
 }
 @media (max-width: 1199px){
     .form-inline {
@@ -188,3 +201,20 @@ a {
     border-color: #b4441f;
   }
 
+
+.navbar .megamenu{
+    padding: 2rem 20rem;
+    padding-bottom: 100px;
+}
+@media all and (min-width: 992px) {
+	
+	.navbar .has-megamenu{position:static!important;}
+	.navbar .megamenu{left:0; right:0; width:100%; margin-top:0;  }
+}
+@media(max-width: 991px){
+	.navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+		overflow-y: auto;
+	    max-height: 90vh;
+	    margin-top:10px;
+	}
+}

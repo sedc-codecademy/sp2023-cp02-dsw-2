@@ -1,6 +1,4 @@
 
-console.log('vmrooooooooooooooooooo')
-
 const notLoggedUser = document.getElementById('not-logged-user');
 const loggedUser = document.getElementById('logged-user');
 const logoutBtn = document.getElementById('logout')
@@ -16,16 +14,16 @@ if (localStorage.getItem('loggedUser')){
 // }
 
 
-const savedValue = localStorage.getItem('loggedUser');
+// const savedValue = localStorage.getItem('loggedUser');
 
-if (savedValue === null) {
-  // No value is saved, you can save a new value
-  const newValue = "New value";
-  localStorage.setItem(loggedUser, newValue);
-} else {
-  // A value is already saved, do not save another one
-  console.log("A value is already saved:", savedValue);
-}
+// if (savedValue === null) {
+//   // No value is saved, you can save a new value
+//   const newValue = "New value";
+//   localStorage.setItem(loggedUser, newValue);
+// } else {
+//   // A value is already saved, do not save another one
+//   console.log("A value is already saved:", savedValue);
+// }
 
 function logout() {
     if (localStorage.getItem('loggedUser')){

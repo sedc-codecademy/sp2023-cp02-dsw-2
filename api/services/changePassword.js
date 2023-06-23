@@ -54,7 +54,7 @@ function passwordResetUserExists(event){
 	const users = data ? JSON.parse(data) : [];
 
     const userExists = users.find(u => u.email === email)
-    console.log(userExists)
+    
     if(userExists){
         event.preventDefault();
         hideEmailInput.style.display = 'none';

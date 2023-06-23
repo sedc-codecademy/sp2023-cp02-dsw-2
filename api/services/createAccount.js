@@ -15,7 +15,7 @@ const passworInfoAlert = document.getElementById('password-info-alert');
 const accountCreated = document.getElementById('account-successfully-created');
 
 
-//? Example starter JavaScript for disabling form submissions if there are invalid fields
+//* Example starter JavaScript for disabling form submissions if there are invalid fields
 function isFormEmpty() {
 	const firstName = document.getElementById('firstName').value.trim();
 	const lastName = document.getElementById('lastName').value.trim();
@@ -109,7 +109,6 @@ function validateFirstLastName(firstName, lastName, event) {
 	}
 }
 
-
 //* ----- Create User -----
 function createUser(event) {
 	const firstName = document.getElementById('firstName').value;
@@ -150,7 +149,7 @@ function createUser(event) {
 createAccountBtn.addEventListener('click', createUser, false);
 
 
-//? Toggle Password - SIGNUP
+//* ----- Toggle Password - SIGNUP -----
 (function() {
 	'use strict'
 	const eyeToggle = document.querySelector('.js-password-show-toggle');
@@ -168,7 +167,7 @@ createAccountBtn.addEventListener('click', createUser, false);
 	})
 })();
 
-//? Password Input Field Alert
+//* ----- Password Input Field Alert -----
 function showPasswordInfoField() {
 	if (passwordValidationAlert.style.display = 'none'){
 		passworInfoAlert.style.display = "block";
@@ -180,7 +179,7 @@ document.addEventListener('click', function(event) {
     if (event.target !== signupPassword && event.target !== passworInfoAlert && event.target !== passwordInfoAlertText) {
 		passworInfoAlert.style.display = 'none';
     }
-  });
+});
 
 
 

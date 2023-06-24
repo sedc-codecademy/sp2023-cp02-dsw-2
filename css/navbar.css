@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+body {
+  font-family: "Lato", sans-serif;
+  color:#262626;
+  font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.form-inline {
+    display: inline-block;
+    
+}
+.navbar {		
+    background: #fff;  
+}
+
+.nav img {
+    width: 36px;
+    height: 36px;
+    margin: -8px 0;
+    float: left;
+    margin-right: 10px;
+}
+.navbar .navbar-brand {
+    color: #262626;
+    margin-left: 2%;
+    padding-right: s;
+}
+
+.search-box {
+    position: relative;
+    /* margin-left: 100px; */
+}	
+.search-box input {
+    border-radius: 10px;
+    box-shadow: none;
+    padding-left: 30px;
+    padding-right: 30px;
+} 
+
+
+.form-control:focus {
+    border-radius: 10px;;
+    border: 2px solid #DD592D;
+    border-color: #DD592D;
+    box-shadow: none;
+  }
+.search-box .input-group-addon {
+    min-width: 35px;
+    border: none;
+    background: transparent;
+    position: absolute;
+    z-index: 9;
+    margin-right: 20px;
+    padding: 7px;
+    height: 100%;
+}
+.search-box i {
+    color: #262626;
+    font-size: 18px;
+}
+
+.navbar ul li i {
+    font-size: 18px;
+}
+.navbar .dropdown-menu i {
+    font-size: 16px;
+    min-width: 22px;
+}
+.navbar .dropdown.open > a {
+    background: none !important;
+}
+.navbar .dropdown-menu {
+    border-radius: 5px;
+    border-color: #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.navbar .dropdown-menu li a {
+    color: #262626;
+    padding: 8px 20px;
+    line-height: normal;
+}
+.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
+    color: #262626;
+}	
+
+/* ----- Dropdown Hover -----*/
+.dropdown:hover .dropdown-menu{
+    display: block;
+    background-color: hsla(0, 0%, 100%, 0.75);
+    /* margin-top: 10px; */
+}
+.dropdown .dropdown-menu{
+    display: none;
+} 
+.dropdown:hover .dropdown-toggle::after{
+    border-top: 0;
+    border-bottom: .3em solid;
+}
+
+
+.navbar ul.nav li a.notifications, .navbar ul.nav li a.messages {
+    position: relative;
+    margin-right: 10px;
+}
+.navbar ul.nav li a.messages {
+    margin-right: 20px;
+}
+.navbar a.notifications .badge {
+    margin-left: -8px;
+}
+.navbar a.messages .badge {
+    margin-left: -4px;
+}	
+.navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
+    background: transparent !important;
+}
+
+
+@media (min-width: 1200px){
+    .form-inline .input-group {
+        width: 300px;
+        margin-left: 30px;
+    }
+}
+@media (max-width: 1199px){
+    .form-inline {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .input-group {
+        width: 100%;
+    }
+    
+} 
+
+@media (max-width: 768px){
+	.navbar .dropdown-menu.action-form {
+		width: 100%;
+		padding: 10px 15px;
+		background: transparent;
+		border: none;
+	}
+	/* .navbar .form-inline {
+		display: none;
+	} */
+	.navbar .input-group {
+		width: 100%;
+	}
+    .navbar-form{
+        margin-left: 15%;
+    }
+}
+
+@media (min-width: 500px) {
+    .collapse {
+        display: inline-flex!important;
+    }
+    
+    .navbar-nav{
+        display: -webkit-box;
+    }
+}
+
+.logged-user{
+    margin-right: 2%;
+}
+
+#not-logged-user{
+ display: flex;
+}
+#logged-user {
+    display: none;
+}
+
+
+.login{
+    margin-left: 50px;
+    margin-right: 20px;
+    color: #DD592D;
+}
+.login:hover {
+    color: #b4441f;
+  }
+
+.navbar .sign-up-btn {
+    margin-right: 160px;
+    background-color: #DD592D;
+	min-width: 110px;
+	max-height: 36px;
+    box-shadow: none;
+    border-radius: 10px;
+	border-color: #DD592D;
+}
+.navbar .sign-up-btn:hover {
+    background-color: #b4441f;
+    border-color: #b4441f;
+  }
+
+
+.navbar .megamenu{
+    padding: 2rem 20rem;
+    padding-bottom: 100px;
+}
+@media all and (min-width: 992px) {
+	
+	.navbar .has-megamenu{position:static!important;}
+	.navbar .megamenu{left:0; right:0; width:100%; margin-top:0;  }
+}
+@media(max-width: 991px){
+	.navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+		overflow-y: auto;
+	    max-height: 90vh;
+	    margin-top:10px;
+	}
+}

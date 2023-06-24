@@ -2,9 +2,9 @@
     position: relative;
 }
 
-.image-container {
+/* .image-container {
     height: 100vh;
-}
+} */
   
 .background-image {
     width: 100%;
@@ -56,7 +56,7 @@
   }
 
   body{
-    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('/images/Image_Slide_01.jpg');
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/Image_Slide_01.jpg');
     height: 100%; 
     overflow: hidden;
     max-height: fit-content;
@@ -70,6 +70,6 @@
     text-align: center;
 }
 
-#nav-bar{
+/* #nav-bar{
   margin-top: 10px;
-}
+} */

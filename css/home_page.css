@@ -2,19 +2,54 @@ body {
   font-family: Lato, sans-serif !important;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Image_Slide_01.jpg');
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   max-height: fit-content;
+  margin: 0px;
+  padding: 0px;
 }
 
+/* #left-slide {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Image_Slide_02.jpg');
+}
+
+#mid-slide {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Image_Slide_01.jpg');
+}
+
+#right-slide {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/Image_Slide_03.jpg');
+} */
+
+.page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#nav-bar {
+  margin-top: 10px;
+}
+
+/* ACTIVE SLIDE (MIDDLE) */
 .logo-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 2%;
+}
+
+#text-logo {
+  text-align: center;
+  color: whitesmoke;
+  font-size: 80px;
+}
+
+.centerd-lines {
+  display: flex;
+  justify-content: center;
 }
 
 .text-activeSlide {
   color: whitesmoke;
   text-align: center;
+  margin-top: 2%;
   margin-bottom: 4%;
 }
 
@@ -22,7 +57,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10%
+  margin-bottom: 5%
   
 }
 
@@ -41,16 +76,36 @@ body {
 .shop-button:hover {
   background-color: rgba(255, 255, 255, 0.32);
 }
+/* ACTIVE SLIDE (MIDDLE) */
 
-#nav-bar {
-  margin-top: 10px;
-}
 
-/* OVAA KLASA STOJ CHISTO DODEKA STAVIME DA IMA NESTO NA SLIDE 1 I SLIDE 3 */
-.div-inside-div {
+.div-inside-div { /* OVAA KLASA STOJ CHISTO DODEKA STAVIME DA IMA NESTO NA SLIDE 1 I SLIDE 3 */
   width: 25vw; 
   height: auto;
   margin: auto;
   padding: 60px;
   text-align: center;
+} /* OVAA KLASA STOJ CHISTO DODEKA STAVIME DA IMA NESTO NA SLIDE 1 I SLIDE 3 */
+
+
+.service-row {
+	display: flex;
+	margin-bottom: 40px;
+	justify-content: space-between;
 }
+
+.service-row > div {
+	position: relative;
+	width: 300px;
+	height: 150px;
+	border: 1px solid #fff;
+}
+
+.service-row > div > img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+

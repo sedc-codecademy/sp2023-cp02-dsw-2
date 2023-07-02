@@ -9,16 +9,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="./../../css/style.css">
   <link rel="stylesheet" href="./../../css/contact-us.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>Contact form</title>
 </head>
 
 <body>
-
   <!--! nb-navbar = class for new css changes for the navbar(out of bootstrap)-->
   <nav class="navbar nb-navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand icon" href="#">
-        <img classs="img-responsive" width="130px" height="" src="./../../images/logo/logo.png">
+        <img class="img-responsive" width="130px" height="" src="./../../images/logo/logo.png">
       </a>
       <a class="navbar-brand" href="#">COFFEE HOUSE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -60,18 +61,18 @@
             <a class="nav-link text-white" href="#"><i class="fas fa-envelope mx-1"></i> Wishlist</a>
           </li>
           <li>
-            <img classs="img-responsive" width="" height="" src="./../../images/icons/Wishlist_Heart.png">
+            <img class="img-responsive" width="" height="" src="./../../images/icons/Wishlist_Heart.png">
           </li>
           <li class="nav-item me-3 me-lg-0">
             <a class="nav-link text-white" href="#"><i class="fas fa-cog mx-1"></i> Cart</a>
           </li>
           <li>
-            <img classs="img-responsive" width="" height="" src="./../../images/icons/Cart_Bag.png">
+            <img class="img-responsive" width="" height="" src="./../../images/icons/Cart_Bag.png">
           </li>
 
           <!--! nb-profile class for new css changes for the Profile (out of bootstrap)-->
           <li>
-            <img classs="img-responsive" width="" height="" src="./../../images/icons/Account_Image.png">
+            <img class="img-responsive" width="" height="" src="./../../images/icons/Account_Image.png">
           </li>
           <li class="nav-item dropdown nb-profile">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
@@ -89,95 +90,205 @@
           </li>
         </ul>
       </div>
+    </div>
   </nav>
-  <!--! nb-page = class for new css changes for the navbar(out of bootstrap)-->
-  <div class="container">
-    <h5 class="text-center mt-3">Contact us</h5>
-    <h1 class="text-center mt-3">We`d loved to hear from you</h1>
-    <h4 class="text-center mt-3">Chat to our friendly team</h4>
 
-    <div class="last_row text-white">
-      <div class="row row-cols-1 row-cols-md-3 p-3">
-        <div class="col">
-          <i class="fas fa-envelope"></i>
-          <h4>Chat to sales</h4>
-          <p>Speak to our friendly team.</p>
-          <a href="#contact-form">sales@coffeehouse.com</a>
+  <div class="header-contactus">
+    <h2 class="text-center mt-3">Contact us</h2>
+    <h1 class="text-center mt-3">We`d loved to hear from you</h1>
+    <h3 class="text-center mt-3">Chat to our friendly team</h3>
+  </div>
+  <div class="container-body">
+    <!-- cards for information -->
+    <div class="container-cards-info">
+      <div class="row">
+        <div class="col-md-4 Services-tab  item">
+          <div class="folded-corner service_tab_1">
+            <div class="text">
+              <i class="fa fa-envelope fa-5x"></i>
+              <p class="item-title">
+              <h3>Chat to sales</h3>
+              </p>
+              <p>
+                Speak to our friendly team.
+              </p>
+              <p>
+                <a href="mailto:sales@coffeehouse.com">sales@coffeehouse.com</a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <i class="fas fa-map-marker-alt"></i>
-          <h4>Visit us</h4>
-          <p>Visit our store.</p>
-          <p>MK, 11th October St. 46, Skopje 1000</p>
+        <div class="col-md-4 Services-tab item">
+          <div class="folded-corner service_tab_1">
+            <div class="text">
+              <i class="fa fa-map fa-5x"></i>
+              <p class="item-title">
+              <h3>Visit us</h3>
+              </p>
+              <p>
+                Visit our office
+              </p>
+              <p><a href="#firstName"> MK, 11th October St. 46, Skopje 1000</a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <i class="fas fa-phone"></i>
-          <h4>Call us</h4>
-          <p>Mon-Fri from 8am to 5pm.</p>
-          <p>+389 70 123 456</p>
+        <div class="col-md-4 Services-tab item">
+          <div class="folded-corner service_tab_1">
+            <div class="text">
+              <i class="fa fa-phone fa-5x"></i>
+              <p class="item-title">
+              <h3>Call us</h3>
+              </p>
+              <p>
+                Mon-Fri from 8am to 5pm.
+              </p>
+              <p><a href="tel:++389 70 123 456">++389 70 123 456</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="row py-5 g-3">
-      <div class="col-md-6 first_col">
-        <h1 class="text-center mt-3">Contact Us</h1>
-        <h5 class="text-center mt-3">Our friendly team would love to hear from you!</h5>
-        <form class="p-4 mt-5" id="contact-form">
-          <div class="mb-3">
+    <!-- form for contact us and iframe for map -->
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Contact Us</h2>
+        <p>Our friendly team would love to hear from you!</p>
+        <form action="#" method="POST">
+          <div class="form-group">
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                <label for="firstName"><i class="fas fa-user fa-2x"></i></label>
+                <input type="text" class="form-control" id="firstName" name="firstName"
+                  placeholder="Enter your first name" required>
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                <label for="lastName"><i class="fas fa-user fa-2x"></i></label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name"
+                  required>
               </div>
             </div>
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope fa-2x"></i>
+            </label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
           </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="form-group">
+            <label for="phone"><i class="fas fa-phone fa-2x"></i>
+            </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <select class="form-control" id="countryCode" name="countryCode" required>
+                  <option value="">Select county</option>
+                </select>
+              </div>
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number"
+                required>
+            </div>
           </div>
-          <div class="mb-3">
-            <button class="btn btn-primary">Send now</button>
+          <div class="form-group">
+            <label for="message"><i class="fas fa-comment fa-2x"></i>
+            </label>
+            <textarea class="form-control" id="message" name="message" placeholder="Enter your message" rows="5"
+              required></textarea>
           </div>
+          <div class="captcha">
+            <div class="spinner">
+              <label>
+                <input type="checkbox" onclick="$(this).attr('disabled','disabled');">
+                <span class="checkmark"><span>&nbsp;</span></span>
+              </label>
+            </div>
+            <div class="text-reCAPTCHA">
+              I'm not a robot
+            </div>
+            <div class="logo">
+              <img src="https://forum.nox.tv/core/index.php?media/9-recaptcha-png/" />
+              <p>reCAPTCHA</p>
+              <small>Privacy - Terms</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="background-color: #DD592D;">Send message</button>
         </form>
       </div>
-      <div class="col-md-6">
-        <img src="./../../images/Image_Slide_03.jpg" alt="" class="img-fluid">
-      </div>
-      <div class="col-md-6">
-        <img src="./../../images/Image_Slide_01.jpg" alt="" class="img-fluid">
-      </div>
-    </div>
-
-    <div class="row d-flex justify-content-center align-items-center rows">
-      <iframe class="img-fluid"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23724.34226348361!2d21.397831774316412!3d41.988625400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415d4a97c4287%3A0x629233c31d63b5b2!2sCoffee%20%26%20Friends!5e0!3m2!1sen!2smk!4v1684628614669!5m2!1sen!2smk"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="text-center">
-            <img src="https://i.imgur.com/Dh7U4bp.png" width="200">
-            <span class="d-block mt-3">Subscribe to our newsletter in order not to miss new arrivals <br> promotions and
-              discounts of our store</span>
-            <div class="mx-5">
-              <div class="input-group mb-3 mt-4">
-                <input type="text" class="form-control" placeholder="Enter email" aria-label="Recipient's username"
-                  aria-describedby="button-addon2">
-                <button class="btn btn-success border-rad" type="button" id="button-addon2">Subscribe</button>
-              </div>
-            </div>
-          </div>
+      <div class=" col-md-6">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2965.5427842757053!2d21.433365675829467!3d41.988625371229894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135415d4a97c4287%3A0x629233c31d63b5b2!2sCoffee%20%26%20Friends!5e0!3m2!1sen!2sus!4v1685730082407!5m2!1sen!2sus"
+            referrerpolicy="no-referrer-when-downgrade" width="600" height="800"></iframe>
         </div>
       </div>
     </div>
   </div>
-
+  <!-- footer -->
+  <footer id="footer">
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h4>Our Newsletter</h4>
+            <p>Subscribe in order not to miss new arrivals promotions and discounts of our store</p>
+          </div>
+          <div class="col-lg-6">
+            <form action="#" method="post">
+              <input type="email" name="email">
+              <input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Contact us</a></li>
+              <li><a href="#">Terms of service</a></li>
+              <li><a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Team</h4>
+            <P>We face many challenges as a team. But I am honored to have a group where we can tackle it head-on and
+              achieve success in doing so. The credit goes to everyone on the team.</P>
+            <p>Individual talent is special, but a compatible team and good teamwork ensure victory!</p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>11th October St. 46<br>Skopje 1000<br>North Macedonia<br><br> <strong>Phone:</strong> ++389 70 123
+              456<br><strong>Email:</strong>info@example.com<br> </p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>About COFFEE HOUSE</h3>
+            <p>This coffee shop runs on love, laughter, and a whole lot of strong coffee.</p>
+            <p>What goes best with a cup of coffee? Another cup.</p>
+            <p>Coffee, then the world.</p>
+            <br>
+            <div class="social-links mt-3">
+              <a href="https://github.com/sedc-codecademy/sp2023-cp02-dsw-2" class="github"><i
+                  class="fab fa-github"></i></a>
+              <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright"> &copy; Copyright <strong><span>COFFE HOUSE</span></strong>. All Rights Reserved </div>
+      <div class="credits"> Designed by <a href="https://www.linkedin.com/in/eleonora-todorovska-a2854148/">Eleonora
+          Gjorgjieva</a></div>
+    </div>
+  </footer>
+  <script src="../../api/services/contact-us.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
     integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
     crossorigin="anonymous"></script>

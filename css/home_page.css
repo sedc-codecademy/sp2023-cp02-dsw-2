@@ -1,0 +1,75 @@
+#conteinter {
+    position: relative;
+}
+
+/* .image-container {
+    height: 100vh;
+} */
+  
+.background-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+  
+.logo-container {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
+.logo {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-container {
+    position: absolute;
+    margin-top: 20px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+  }
+
+  .text-container p {
+    font-size: 1.5rem;
+  }
+
+  .shop-button {
+    background-color: rgba(235, 232, 230, 0.2);
+    color: whitesmoke;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.8rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+  }
+  
+  .shop-button:hover {
+    background-color:rgba(255, 255, 255, 0.32);
+  }
+
+  body{
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/Image_Slide_01.jpg');
+    height: 100%; 
+    overflow: hidden;
+    max-height: fit-content;
+  }
+
+.div-inside-div{
+    width: 25vw; /* Can be in percentage also. */
+    height: auto;
+    margin: auto;
+    padding: 60px;
+    text-align: center;
+}
+
+/* #nav-bar{
+  margin-top: 10px;
+} */

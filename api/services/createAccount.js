@@ -52,6 +52,8 @@ if (!localStorage.getItem('adminAccountCreated')) {
 		email: "admin@admin.com",
 		password: "admin12345",
 		dateOfBirth: "",
+		phoneNumber: "",
+		profilePicture: "",
 		address: {
 			streetAddress: "",
 			city: "",
@@ -133,7 +135,7 @@ function createUser(event) {
 	    return;
 	}
 	
-	const user = new User(firstName, lastName, signupEmail, signupPassword, "", new Address("", "", "", ""));
+	const user = new User(firstName, lastName, signupEmail, signupPassword,"", "", "", new Address("", "", "", ""));
 
 	if(validatePassword(signupPassword, event) && validateEmail(signupEmail, event) && validateFirstLastName(firstName, lastName, event)) {
 		event.preventDefault();

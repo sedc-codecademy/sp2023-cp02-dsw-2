@@ -1,15 +1,22 @@
 
 import {createProductCard} from './createProductCard.mjs'
-let wishIcon
+
 
 
 const elements = {
     cardContainer: document.getElementById("card-contaier"),
-    filterButton: document.getElementById("filterButton"),
-    filterDefault: document.getElementById("filter-Default"),
-    filterAlphabetically: document.getElementById("filter-Alphabetically"),
-    filterPriceLowToHigh: document.getElementById("filter-PriceLowToHigh"),
-    filterPriceHighToLow: document.getElementById("filter-PriceHighToLow")
+    sortButton: document.getElementById("sort-Button"),
+    sortDefault: document.getElementById("sort-Default"),
+    sortAlphabetically: document.getElementById("sort-Alphabetically"),
+    sortPriceLowToHigh: document.getElementById("sort-PriceLowToHigh"),
+    sortPriceHighToLow: document.getElementById("sort-PriceHighToLow"),
+    filterButton : document.getElementById("filter-button"),
+    filterCoffeeCategory : document.getElementById("coffee-category"),
+    filterAccessoriesCategory : document.getElementById("Accessories-category"),
+    filterCoffeeMachinesCategory : document.getElementById("coffeeMachines-category"),
+    closeButton: document.getElementById("closebtn")
+
+    
 }
 
 
@@ -24,6 +31,8 @@ const elements = {
 console.log("Hello there")
 
 let products = null;
+let displayedProducts = null;
+
 fetch('../../api/data/products.json')
 .then(res => res.json())
 .then(data => {
@@ -31,6 +40,7 @@ fetch('../../api/data/products.json')
         elements.cardContainer.innerHTML += createProductCard(product)
     });
     products =data;
+    displayedProducts = data;
     if (data!=0){
         
         console.log("Data fetced!")
@@ -45,8 +55,8 @@ fetch('../../api/data/products.json')
     });
 
 
-elements.filterDefault.addEventListener('click', ()=>{
-    let defaultSortedProducts = products.sort(dynamicSort("Id"))
+elements.sortDefault.addEventListener('click', ()=>{
+    let defaultSortedProducts = displayedProducts.sort(dynamicSort("Id"))
     elements.cardContainer.innerHTML ='';
     
     defaultSortedProducts.forEach(product => {
@@ -55,8 +65,8 @@ elements.filterDefault.addEventListener('click', ()=>{
 })
 
 
-elements.filterAlphabetically.addEventListener('click', ()=>{
-    let alphabeticallySortedProducts = products.sort(dynamicSort("Name"))
+elements.sortAlphabetically.addEventListener('click', ()=>{
+    let alphabeticallySortedProducts = displayedProducts.sort(dynamicSort("Name"))
     elements.cardContainer.innerHTML ='';
     
     alphabeticallySortedProducts.forEach(product => {
@@ -64,8 +74,8 @@ elements.filterAlphabetically.addEventListener('click', ()=>{
     })
 })
 
-elements.filterPriceLowToHigh.addEventListener('click', ()=>{
-    let priceLowToHighSortedProducts = products.sort(dynamicSort("Price"))
+elements.sortPriceLowToHigh.addEventListener('click', ()=>{
+    let priceLowToHighSortedProducts = displayedProducts.sort(dynamicSort("Price"))
     elements.cardContainer.innerHTML ='';
     
     priceLowToHighSortedProducts.forEach(product => {
@@ -73,8 +83,8 @@ elements.filterPriceLowToHigh.addEventListener('click', ()=>{
     })
 })
 
-elements.filterPriceHighToLow.addEventListener('click', ()=>{
-    let priceHighToLowSortedProducts = products.sort(dynamicSort("-Price"))
+elements.sortPriceHighToLow.addEventListener('click', ()=>{
+    let priceHighToLowSortedProducts = displayedProducts.sort(dynamicSort("-Price"))
     elements.cardContainer.innerHTML ='';
     
     priceHighToLowSortedProducts.forEach(product => {
@@ -83,6 +93,58 @@ elements.filterPriceHighToLow.addEventListener('click', ()=>{
 })
 
 
+elements.filterCoffeeCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let coffeeProducts = products.filter(x=>x.Category ==='Kafe vo zrno' || x.Category ==='Meleno kafe' || x.Category === 'Kafe kapsuli');
+    elements.cardContainer.innerHTML ='';
+    coffeeProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = coffeeProducts;
+})
+
+elements.filterAccessoriesCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let accessoriesProducts = products.filter(x=>x.Category ==='casi i fildzani');
+    elements.cardContainer.innerHTML ='';
+    accessoriesProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = accessoriesProducts;
+})
+
+elements.filterCoffeeMachinesCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let coffeeMachineProducts = products.filter(x=>x.Category ==='Kafemat');
+    elements.cardContainer.innerHTML ='';
+    coffeeMachineProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = coffeeMachineProducts;
+})
+
+elements.closeButton.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    elements.cardContainer.innerHTML ='';
+    products.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    });
+    displayedProducts = products;
+
+})
+
+elements.filterButton.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    elements.cardContainer.innerHTML ='';
+    products.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    });
+    displayedProducts = products;
+
+})
+
+
+let addedToWishlist = false;
 
 document.addEventListener('click', function(e) {
     
@@ -90,22 +152,62 @@ document.addEventListener('click', function(e) {
     
     if (!el.matches('.wish-icon i')) {
         return;
-    }   
+    } 
+
+    if(addedToWishlist){
+        showNotification('Item removed from wishlist');
+        addedToWishlist = false;
+    }
+    else{
+
+        showNotification('Item added to wishlist');
+        addedToWishlist = true;
+    }
 
     el.classList.toggle("fa-heart");
     el.classList.toggle("fa-heart-o");
-})
+});
 
 document.addEventListener('click', function(e) {
     
     var el = e.target; 
     
-    if (!el.matches("#filterDropdown .dropdown-item")) {
+    if (!el.matches("#sortDropdown .dropdown-item")) {
     return;
 }   
 
-elements.filterButton.innerHTML = el.innerHTML
-})
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' '+ el.innerHTML
+});
+
+
+
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches('.redirect-to-productCard')) {
+        return;
+    }   
+
+    document.location.href = `../product-card/productCard.html?id=${el.id}`
+    console.log(el.id)
+});
+
+
+
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches('.addToCardBtn')) {
+        return;
+    }   
+
+    showNotification('Item added to cart');
+});
+
 
 
 function dynamicSort(property) {
@@ -120,3 +222,15 @@ function dynamicSort(property) {
         return result * sortOrder;
     }
 }
+
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 2000);
+  }
+
+

@@ -2,11 +2,12 @@
 
 *{
     font-family: lato;
-    color: #262626;
+    /* color: #262626; */
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 16px;
+    
 }
 
 hr {
@@ -14,7 +15,7 @@ hr {
 }
 
 #main-div {
-margin: 48px 12.5%;
+margin: 100px 12.5%;
 }
 
 #my-orders {

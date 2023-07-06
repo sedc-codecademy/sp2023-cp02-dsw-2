@@ -1,0 +1,34 @@
+.search-box {
+    position: relative;  
+}	
+
+.search-box input {
+    border-radius: 10px;
+    box-shadow: none;
+    padding-left: 30px;
+    padding-right: 30px;
+} 
+
+.form-control:focus {
+    border-radius: 10px !important;
+    border: 2px solid #DD592D !important;
+    border-color: #DD592D !important;
+    box-shadow: none !important;
+}
+
+.search-box .input-group-addon {
+    min-width: 35px;
+    border: none;
+    background: transparent;
+    position: absolute;
+    z-index: 9;
+    margin-right: 20px;
+    padding: 7px;
+    height: 100%;
+}
+
+.search-box i {
+    color: #262626;
+    font-size: 18px;
+}
+

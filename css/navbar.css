@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
 body {
-  font-family: "Lato", sans-serif;
-  color:#262626;
-  font-size: 16px;
+    font-family: "Lato", sans-serif;
+    color:#262626;
+    font-size: 16px;
 }
 
 a {
@@ -11,8 +11,7 @@ a {
 }
 
 .form-inline {
-    display: inline-block;
-    
+    display: inline-block;  
 }
 .navbar {		
     background: #fff;  
@@ -28,7 +27,7 @@ a {
 .navbar .navbar-brand {
     color: #262626;
     margin-left: 2%;
-    padding-right: s;
+    /* padding-right: s; */
 }
 
 .search-box {

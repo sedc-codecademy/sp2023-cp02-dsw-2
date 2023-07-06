@@ -93,7 +93,7 @@ function populateWishList(wishListProduct){
             </div>
 
             <div class="col-md-3 col-lg-2 col-xl-1">
-                <h5 class="mb-0">499</h5>
+                <h5 class="mb-0">  ${wishListProduct.Price}</h5>
             </div>
 
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">

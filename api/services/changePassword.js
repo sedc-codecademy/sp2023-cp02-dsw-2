@@ -18,25 +18,6 @@ const passwordDoesntMatch = document.getElementById('password-doesnt-match');
 
 // //? Example starter JavaScript for disabling form submissions if there are invalid fields
 // //* function isFormEmpty
-// function isFormEmpty() {
-// 	const email = document.getElementById('email').value.trim();
-// 	const newPassword = document.getElementById('new-password').value.trim();
-//     const newPasswordConfirm = document.getElementById('new-password-confirm').trim();
-
-// 	return email === "" && newPassword === "" && newPasswordConfirm === "";
-// }
-// function triggerFormValidation(event) {
-// 	'use strict';
-// 	let forms = document.querySelectorAll('.needs-validation');
-// 	Array.prototype.slice.call(forms).forEach(function (form) {
-// 		if (!form.checkValidity()) {
-// 			event.preventDefault();
-// 			event.stopPropagation();
-// 		}
-// 		form.classList.add('was-validated');
-// 	});
-// }
-
 
 function clearInputField() {
     newPassword.value = '';
@@ -44,11 +25,6 @@ function clearInputField() {
 }
 
 function passwordResetUserExists(event){
-    // if(isFormEmpty()){
-    //     triggerFormValidation(event);
-	// 	return;
-    // } 
-
     const email = document.getElementById('email').value;
     const data = localStorage.getItem("usersData");
 	const users = data ? JSON.parse(data) : [];
@@ -86,11 +62,6 @@ function validatePassword (password, event) {
 function changeNewPassword(email, event) {
     const newPassword = document.getElementById('new-password').value;
     const newPasswordConfirm = document.getElementById('new-password-confirm').value;
-    
-    // if(isFormEmpty()){
-    //     triggerFormValidation(event);
-	// 	return;
-    // } 
 
     const data = localStorage.getItem("usersData");
     const users = data ? JSON.parse(data) : [];

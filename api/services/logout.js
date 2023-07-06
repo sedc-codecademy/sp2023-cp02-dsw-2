@@ -4,7 +4,7 @@ function logout(event) {
     if (localStorage.getItem('loggedUser')){
         event.preventDefault();
         localStorage.removeItem('loggedUser');
-        window.location.href = "/pages/home_page/home_page_index.html";
+        window.location.href = "/pages/home-page/home-page.html";
     }
     notLoggedUser.style.display = 'flex';
     loggedUser.style.display = 'none';

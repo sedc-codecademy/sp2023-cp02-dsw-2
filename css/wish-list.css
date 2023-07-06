@@ -107,3 +107,24 @@ margin: 100px 12.5%;
     background-color: #DD5224!important;
     color: #fff!important;
   }
+
+  .notification {
+    position: fixed;
+    top: 20px;
+    margin-top: 50px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    
+  }

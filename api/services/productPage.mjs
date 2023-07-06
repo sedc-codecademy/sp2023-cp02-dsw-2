@@ -32,7 +32,7 @@ const elements = {
 
 
 
-console.log("Hello there")
+// console.log("Hello there")
 
 let products = null;
 let displayedProducts = null;

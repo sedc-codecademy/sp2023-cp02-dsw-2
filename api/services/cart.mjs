@@ -2,6 +2,7 @@ import {removeFromCart} from './removeFromCart.mjs'
 
 let cartContainer = document.getElementById("cart-container")
 let totalPriceContainer = document.getElementById("totalPriceContainer")
+let subTotalPriceContainer = document.getElementById("subtotal-price")
 
 
 
@@ -21,14 +22,17 @@ if(loggedUser[0].cart === undefined){
 cartContainer.innerHTML = '';
 if(loggedUser[0].cart.length !=0){
     let totalPrice = 0;
+
     loggedUser[0].cart.forEach(cartProduct => {
         totalPrice += cartProduct.Price
 
         cartContainer.innerHTML += populateCart(cartProduct);
     });
+    subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
     totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)
 }
 else{
+    subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
     totalPriceContainer.innerHTML = populateTotalPrice(0)
     cartContainer.innerHTML = 'No items Added to Cart'
 }
@@ -55,9 +59,11 @@ document.addEventListener('click', function(e) {
         totalPrice += cartProduct.Price
         cartContainer.innerHTML += populateCart(cartProduct);
     });
+        subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
         totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)  
     }
     else{
+        subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
         totalPriceContainer.innerHTML = populateTotalPrice(0)
         cartContainer.innerHTML = 'No items Added to Cart'
     }
@@ -88,6 +94,8 @@ function populateCart(cartProduct){
     </div>`
 }
 
+
+
 function populateTotalPrice(totalPrice){
     return`<div class="col-sm pt-5 total">
     Total
@@ -95,4 +103,10 @@ function populateTotalPrice(totalPrice){
 <div class="col-sm text-end class total pt-5">
     ${totalPrice} <span lang = "mk">МКД</span>
 </div>`
+}
+
+function populateSubTotalPrice(totalPrice){
+    return`<div class="col-sm text-end class">
+        ${totalPrice} <span lang = "mk">МКД</span>
+    </div>`
 }

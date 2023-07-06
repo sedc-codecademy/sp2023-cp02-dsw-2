@@ -17,13 +17,17 @@ hr {
     margin: 100px 12.5%;
 }
 
+#my-account {
+    font-size: 1.25rem;
+}
+
 #cart {
     background-color: #DD592D;
     color: #FFFFFF;
   }
 #cart-icon {
     color: #FFFFFF;
-  }
+}
 
 .wrapper-1{
   border-radius: 10px;

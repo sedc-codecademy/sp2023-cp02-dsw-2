@@ -15,11 +15,11 @@ if (localStorage.getItem('loggedUser')){
 function logout() {
     if (localStorage.getItem('loggedUser')){
         localStorage.removeItem('loggedUser');
+        window.location.href = "/pages/home-page/home-page.html";
     }
     notLoggedUser.style.display = 'flex';
     loggedUser.style.display = 'none';
 }
-
 logoutBtn.addEventListener('click', logout);
 
 

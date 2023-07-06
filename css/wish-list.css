@@ -17,6 +17,10 @@ hr {
 margin: 100px 12.5%;
 }
 
+#my-account {
+  font-size: 1.25rem;
+}
+
 #wishlist {
     background-color: #DD592D;
     color: #FFFFFF;

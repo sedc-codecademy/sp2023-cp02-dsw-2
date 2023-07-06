@@ -1,11 +1,15 @@
 class User{
-    constructor(firstName, lastName, email, password, dateOfBirth, address){
+    constructor(firstName, lastName, email, password, dateOfBirth, phoneNumber, profilePicture, address, cart, wishList){
         this.firstName = firstName;
         this.lastName = lastName; 
         this.email = email;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.profilePicture = profilePicture;
         this.address = address;
+        this.cart= cart;
+        this.wishList = wishList;
     }
 }
 
@@ -17,3 +21,5 @@ class Address{
         this.postalCode = postalCode;
     }
 }
+
+List []

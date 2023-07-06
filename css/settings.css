@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+*{
+    font-family: "Lato", sans-serif;
+    color: #262626;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+body{
+    margin-top: 1%;
+    margin-bottom: 5%;
+    margin-left: 1%;
+    margin-right: 10%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    /* background-color: aliceblue; */
+}
+
+a {
+    -webkit-transition: .1.5s all ease;
+    transition: .1.5s all ease;
+    color: #DD592D;
+    font-weight: 300;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: #DD5224;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+b {
+    color:#262626;
+}
+
+h1 {
+    margin-top: 5%;
+    margin-left: 20%;
+    font-weight: bold;
+}
+
+.input-group-append {
+    cursor: pointer;
+}
+
+.wrapper{
+    display: flex;
+    width:15%;
+    height: 20%;
+    margin-top: 1%;
+    margin-left: 20%;
+    padding: 2%;
+    background-color: #fff;
+    /* border: 1px solid #ddd; */
+    border-radius: 10px;
+}
+.form{
+    width: 40%;
+    margin-top: 1%;
+    margin-left: 5%;
+    padding: 2% ;
+    background-color: #fff;
+    /* border: 1px solid #ddd; */
+    border-radius: 10px;
+}
+
+h4{
+    color: #DD592D;
+    font-weight: 300;
+    
+}
+.img{
+    width: 120px;
+    height: 120px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+#img-section p,#deactivate p{
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+#img-section b,#img-section button,#deactivate b{
+    font-size: 18px; 
+}
+
+label{
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: #262626;
+    padding-left: 3px;
+    letter-spacing: 0.5px;
+}
+.form-control {
+    height: 50px !important;
+    border-radius: 10px !important;
+}
+
+.form-control{
+    border-radius: 10px;
+}
+
+
+.form-control:active, 
+.form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 2px solid #DD592D;
+}
+
+select{
+    display: block;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 10px;
+    /* -webkit-appearance: none; */
+}
+
+select:focus{
+    outline: none;
+}
+
+.button{
+    /* margin-left: 66.6%; */
+    margin-right: 3%;
+    background-color: #fff;
+    color: #DD592D;
+    border-radius: 10px;
+    height: 50px;
+    font-weight: 300;
+    font-size: 16px;
+}
+.button:hover{
+    color: #DD5224;
+}
+
+
+.btn-save{
+    border-radius: 10px;
+    background-color: #DD592D;
+    border-color: #DD592D;
+    height: 50px;
+    font-weight: 300;
+    transition: .3s all ease;
+    font-size: 16px;
+    color: white;
+}
+.btn-save:hover{
+    background-color: #DD5224;
+    color: #fff;
+}
+
+.danger{
+    border-radius: 10px;
+    height: 50px;
+    font-weight: 300;
+    transition: .3s all ease;
+    font-size: 16px;
+    background-color: #fff;
+    color: #e20404;
+    border: 1px solid #ddd;
+}
+.danger:hover{
+    background-color: #e20404;
+    color: #fff;
+    border: none;
+}
+
+#back-btn {
+    height: 45px;
+    background-color: #fff;
+    color: #DD592D;
+    font-size: 18px;
+}
+
+  
+@media (min-width: 768px) {
+    .form-wrap {
+        position: absolute;
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .form-wrap {
+        position: absolute;
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .form-wrap {
+        position: absolute;
+        width: 40%;
+    }
+}
+
+/** ----- email form ----- */
+#email-change-form {
+    display: none;
+}
+#change-email {
+    color:#DD5224;
+    cursor: pointer;
+}
+
+#incorect-email-alert {
+    display: none;
+}
+#email-successfully-changes {
+    display: none;
+}
+
+/** ----- password form ----- */
+#password-change-form {
+    display: none;
+}
+#change-password {
+    color:#DD5224;
+    cursor: pointer;
+}
+
+#password-successfully-changes {
+    display: none;
+}
+#password-info-alert {
+    display: none;
+}
+#password-validation-alert {
+    display: none;
+}
+
+
+/** ----- My Profile / My Account ----- */
+
+.upload-div{
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    top: 27px;
+}
+.text {
+    position: relative;
+    color:#DD592D;
+    font-size: 18px;
+}
+.upload-btn {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;        
+}
+
+
+
+.form-wrap .form-floating {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.form-wrap .form-floating .form-control {
+    height: 60px !important;
+    border-radius: 10px !important;
+}
+
+.form-wrap .form-floating .form-control:active, 
+.form-wrap .form-floating .form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border: 2px solid #DD592D;
+}
+
+
+.form-wrap .password-show-toggle {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 9;
+}
+
+.form-wrap .password-show-toggle span {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.form-wrap .password-show-toggle span:before {
+    font-family: 'unicons-line';
+    content: "\ebf8";
+}
+
+.form-wrap .password-show-toggle.active span:before {
+    content: "\ebaf";
+}
+
+#incorect-first-last-name-alert {
+    display: none;
+}
+#changes-successfully-saved{
+    display: none;
+}
+
+.form-wrap .btn-primary {
+    border-radius: 10px;
+    background-color: #DD592D;
+    border-color: #DD592D;
+    height: 60px;
+    font-weight: 500;
+    -webkit-box-shadow: 0 15px 30px -7px #DD5224;
+            box-shadow: 0 15px 30px -7px #DD5224;
+    -webkit-transition: .3s all ease;
+    transition: .3s all ease;
+    font-size: 18px;
+  }
+  
+  .form-wrap .btn-primary:hover {
+    background-color: #DD5224;
+    border-color: #DD5224;
+  }
+
+button#save-changes-btn:active
+{
+    background:#DD592D;
+}

@@ -12,12 +12,11 @@
     </head>
 <body>
 
-    <!--! nb-navbar = class for new css changes for the navbar(out of bootstrap)-->
-    <nav class="navbar nb-navbar navbar-expand-lg">
+    <nav class="navbar nb-navbar navbar-expand-lg fixed-top">
         <div class="container-fluid navbar-header">
-            <a class="navbar-brand" href="#">COFFEE HOUSE</a>
+            <a class="navbar-brand" href="../home_page/home_page_index.html">COFFEE HOUSE</a>
 
-            <div class="collapse navbar-collapse" id="">
+            <div class="collapse navbar-collapse" >
 
                 <!--*-->   
                 <ul class="navbar-nav  me-auto mb-2 mb-lg-0">
@@ -26,7 +25,7 @@
                     </li>
                     
                     <li class="nav-item dropdown has-megamenu">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Products</a>
+                        <a class="nav-link dropdown-toggle" href="../Product Page/Product_Page.html">Products</a>
                         <div class="dropdown-menu megamenu" role="menu">
                             <div class="row g-3">
                                 <div class="col-lg-3 col-6">
@@ -95,24 +94,23 @@
                         <a href="../../pages/login-signup/login.html" data-toggle="dropdown" class="nav-link login" id="login-btn">Login</a>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="../../pages/login-signup/signup.html" data-toggle="dropdown" class="btn btn-primary sign-up-btn" id="sign-up-btn">Sign up</a>
+                        <a href="../../pages/login-signup/signup.html" data-toggle="dropdown" class="btn  sign-up-btn" id="sign-up-btn">Sign up</a>
                     </div>
                 </div>
                     <!--* Logged User -->
                 <div class="logged-user" id="logged-user">
                     <ul class="navbar-nav d-flex flex-row ">
                         <li class="nav-item me-3 me-lg-0">
-                            <a class="nav-link" href="#"><i class="uil uil-heart mx-1"></i>Wishlist</a>
+                            <a class="nav-link" href="../wish-list/wish-list.html"><i class="uil uil-heart mx-1"></i>Wishlist</a>
                         </li>
 
                         <li class="nav-item me-3 me-lg-0">
-                            <a class="nav-link" href="#"><i class=" uil uil-shopping-bag mx-1"></i>Cart</a>
+                            <a class="nav-link" href="../cart/cart.html"><i class="uil uil-shopping-bag mx-1"></i>Cart</a>
                         </li>
 
                         <!--* Profile -->
-                        <li>
-                            <a href="#"><img classs="img-responsive"  src="/images/icons/Account_Image.png"></a>
-                            
+                        <li class="nav-item me-3 me-lg-0" id="img-responsive-list">
+                            <a href="../settings/settings-my-profile.html"><img class="img-responsive" id="navbar-image" ></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="display-logged-user" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -123,11 +121,15 @@
 
                                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-1 border-bottom"></div>
 
-                                <li><a href="#" class="dropdown-item"><i class="uil uil-shopping-basket mx-1"></i> My Orders</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="uil uil-shopping-bag mx-1"></i> Cart</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="uil uil-heart mx-1"></i> Wishlist</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="uil uil-credit-card-search mx-1"></i> Payment</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="uil uil-setting mx-1"></i> My Coupons</a></li>
+                                <li><a href="../my-orders/my-orders.html" class="dropdown-item"><i class="uil uil-shopping-basket mx-1"></i> My Orders</a></li>
+
+                                <li><a href="../cart/cart.html" class="dropdown-item"><i class="uil uil-shopping-bag mx-1"></i> Cart</a></li>
+
+                                <li><a href="../wish-list/wish-list.html" class="dropdown-item"><i class="uil uil-heart mx-1"></i> Wishlist</a></li>
+
+                                <li><a href="../payment/payment.html" class="dropdown-item"><i class="uil uil-credit-card-search mx-1"></i> Payment</a></li>
+
+                                <li><a href="" class="dropdown-item"><i class="uil uil-credit-card mx-1"></i> My Coupons</a></li>
 
                                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-1 border-bottom"></div>
 

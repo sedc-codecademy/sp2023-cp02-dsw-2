@@ -1,5 +1,5 @@
 [
-    {
+  {
       "Id": 1,
       "Name": "Lavazza Gusto Forte Intenso",
       "Description": "Intenziven vkus i aroma so poteklo od egzotichni lokacii niz celiot svet",
@@ -8,9 +8,35 @@
       "Quantity": 7,
       "Image": "picture1.png",
       "Weight": 1000,
-      "Discount": 150
-    },
-    {
+      "Discount": 150,
+      "Reviews": [
+          {
+              "Name": "John Doe",
+              "Email": "johndoe@example.com",
+              "Rating": 4,
+              "Text": "Great flavor and aroma. Highly recommended!"
+          },
+          {
+              "Name": "Jane Smith",
+              "Email": "janesmith@example.com",
+              "Rating": 5,
+              "Text": "Absolutely love this coffee! The taste is rich and satisfying."
+          },
+          {
+              "Name": "Mark Johnson",
+              "Email": "markjohnson@example.com",
+              "Rating": 4,
+              "Text": "Excellent coffee with a strong kick. Will buy again."
+          },
+          {
+              "Name": "Samantha Williams",
+              "Email": "samanthawilliams@example.com",
+              "Rating": 5,
+              "Text": "My favorite coffee! Bold and flavorful."
+          }
+      ]
+  },
+  {
       "Id": 2,
       "Name": "ILLY Decaf",
       "Description": "Dekafinirano i spremno so CO2 metodot za vrven kvalitet",
@@ -19,9 +45,23 @@
       "Quantity": 15,
       "Image": "picture2.png",
       "Weight": 250,
-      "Discount": 85
-    },
-    {
+      "Discount": 85,
+      "Reviews": [
+          {
+              "Name": "David Johnson",
+              "Email": "davidjohnson@example.com",
+              "Rating": 5,
+              "Text": "Best decaf coffee I've ever tasted. The quality is exceptional."
+          },
+          {
+              "Name": "Sarah Wilson",
+              "Email": "sarahwilson@example.com",
+              "Rating": 4,
+              "Text": "Great choice for decaf lovers. Smooth and delicious."
+          }
+      ]
+  },
+  {
       "Id": 3,
       "Name": "Gimoka Miscela Bar",
       "Description": "Sovrsheno izbalansirana meshavina od zrna Arabika (20%) i Robusta (80%)",
@@ -30,9 +70,23 @@
       "Quantity": 15,
       "Image": "picture3.png",
       "Weight": 500,
-      "Discount": 250
-    },
-    {
+      "Discount": 250,
+      "Reviews": [
+          {
+              "Name": "Emily Davis",
+              "Email": "emilydavis@example.com",
+              "Rating": 5,
+              "Text": "Nice blend of Arabica and Robusta. Gives a good kick!"
+          },
+          {
+              "Name": "Michael Thompson",
+              "Email": "michaelthompson@example.com",
+              "Rating": 5,
+              "Text": "Decent coffee, but I expected more from the flavor."
+          }
+      ]
+  },
+  {
       "Id": 4,
       "Name": "DolceVita Intenso",
       "Description": "Osobeno rafinirana za ljubitelite na silnoto espreso",
@@ -41,9 +95,35 @@
       "Quantity": 28,
       "Image": "picture4.png",
       "Weight": 250,
-      "Discount": 81
-    },
-    {
+      "Discount": 81,
+      "Reviews": [
+          {
+              "Name": "Alexandra Brown",
+              "Email": "alexandrabrown@example.com",
+              "Rating": 5,
+              "Text": "Bold and intense flavor. Perfect for espresso lovers!"
+          },
+          {
+              "Name": "Daniel Clark",
+              "Email": "danielclark@example.com",
+              "Rating": 4,
+              "Text": "Very good coffee with a strong kick. Enjoying it every morning."
+          },
+          {
+              "Name": "Sophia Davis",
+              "Email": "sophiadavis@example.com",
+              "Rating": 5,
+              "Text": "This coffee exceeded my expectations. Rich and satisfying."
+          },
+          {
+              "Name": "Robert Johnson",
+              "Email": "robertjohnson@example.com",
+              "Rating": 5,
+              "Text": "One of the best coffees I've tasted. Highly recommended!"
+          }
+      ]
+  },
+  {
       "Id": 5,
       "Name": "Lavazza Delicato | Nespresso",
       "Description": "Slatka meshavina od delikatni noti i miris na planinski cvekinja",
@@ -52,9 +132,23 @@
       "Quantity": 12,
       "Image": "picture5.png",
       "Weight": 250,
-      "Discount": 31
-    },
-    {
+      "Discount": 31,
+      "Reviews": [
+          {
+              "Name": "Jessica Wilson",
+              "Email": "jessicawilson@example.com",
+              "Rating": 4,
+              "Text": "Delicate and flavorful. Perfect for a smooth cup of coffee."
+          },
+          {
+              "Name": "Robert Davis",
+              "Email": "robertdavis@example.com",
+              "Rating": 3,
+              "Text": "Decent taste, but not as strong as I prefer."
+          }
+      ]
+  },
+  {
       "Id": 6,
       "Name": "Toffee Nut Latte | Tassimo",
       "Description": "Krem od mleko so vkus na jatkasti plodovi",
@@ -63,9 +157,23 @@
       "Quantity": 1,
       "Image": "picture6.png",
       "Weight": 300,
-      "Discount": 0
-    },
-    {
+      "Discount": 0,
+      "Reviews": [
+          {
+              "Name": "Sophia Johnson",
+              "Email": "sophiajohnson@example.com",
+              "Rating": 5,
+              "Text": "Delicious flavor with a hint of toffee. Perfect for a sweet treat."
+          },
+          {
+              "Name": "William Brown",
+              "Email": "williambrown@example.com",
+              "Rating": 4,
+              "Text": "Enjoyable and creamy. A nice change from regular coffee."
+          }
+      ]
+  },
+  {
       "Id": 7,
       "Name": "TASSIMO HAPPY Black",
       "Description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo",
@@ -74,9 +182,41 @@
       "Quantity": 4,
       "Image": "picture7.png",
       "Weight": 2200,
-      "Discount": 3710
-    },
-    {
+      "Discount": 3710,
+      "Reviews": [
+          {
+              "Name": "Christopher Wilson",
+              "Email": "christopherwilson@example.com",
+              "Rating": 5,
+              "Text": "Very convenient and user-friendly. Makes great coffee!"
+          },
+          {
+              "Name": "Elizabeth Taylor",
+              "Email": "elizabethtaylor@example.com",
+              "Rating": 4,
+              "Text": "Happy with the purchase. Easy to use and clean."
+          },
+          {
+              "Name": "Michael Davis",
+              "Email": "michaeldavis@example.com",
+              "Rating": 4,
+              "Text": "The Tassimo Happy Black is a fantastic coffee machine. Highly recommended!"
+          },
+          {
+              "Name": "Sophia Anderson",
+              "Email": "sophiaanderson@example.com",
+              "Rating": 5,
+              "Text": "Love the Tassimo Happy Black. It's so easy to use and the coffee tastes great!"
+          },
+          {
+              "Name": "Oliver Clark",
+              "Email": "oliverclark@example.com",
+              "Rating": 5,
+              "Text": "The Tassimo Happy Black exceeded my expectations. I love the variety of drinks it can make."
+          }
+      ]
+  },
+  {
       "Id": 8,
       "Name": "TASSIMO HAPPY Red",
       "Description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo. Sega vo crvena boja",
@@ -85,6 +225,38 @@
       "Quantity": 2,
       "Image": "picture8.png",
       "Weight": 2200,
-      "Discount": 3710
-    }
-  ]
+      "Discount": 3710,
+      "Reviews": [
+          {
+              "Name": "Matthew Anderson",
+              "Email": "matthewanderson@example.com",
+              "Rating": 5,
+              "Text": "Love the new red color. Works just as great as the black one."
+          },
+          {
+              "Name": "Olivia Thompson",
+              "Email": "oliviathompson@example.com",
+              "Rating": 4,
+              "Text": "Very satisfied with the product. Makes delicious coffee."
+          },
+          {
+              "Name": "Emma Johnson",
+              "Email": "emmajohnson@example.com",
+              "Rating": 5,
+              "Text": "The Tassimo Happy Red is amazing! It makes brewing coffee so easy and the taste is fantastic."
+          },
+          {
+              "Name": "Joshua Wilson",
+              "Email": "joshuawilson@example.com",
+              "Rating": 4,
+              "Text": "I'm happy with my purchase of the Tassimo Happy Red. It's a great addition to my kitchen."
+          },
+          {
+              "Name": "Emily Clark",
+              "Email": "emilyclark@example.com",
+              "Rating": 5,
+              "Text": "The red color looks stylish, and the coffee tastes delicious. Highly recommend it!"
+          }
+      ]
+  }
+]

@@ -1,0 +1,266 @@
+
+
+body{
+  /* background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/Image_Slide_01.jpg'); */
+  height: 100%; 
+  /* overflow: hidden; */
+  max-height: fit-content;
+}
+
+.breadcrumb-nav{
+    /* background-color:whitesmoke; */
+    margin-top: 80px;
+    padding-top: 1rem;
+    font-family: "Lato", sans-serif;
+    color:#12263a;
+    font-size: 16px;
+    /* background-color:  rgba(235, 232, 230, 0.15); */
+    /* background-color: #11111180; */
+    background-color: white;
+    
+    /* Insert breadcrumb background picture here */
+}
+
+#home-link:hover {
+  font-size: large;
+  transition: all .4s ease;
+}
+
+.redirect-to-productCard:hover{
+  
+  font-size: 20px;
+  font-weight: bold;
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color:#12263a !important;
+}
+
+
+.card-group .custom-card:hover{
+  transform: translate3D(0,0,0) scale(1.06);
+  /* box-shadow: 8px 28px 50px rgba(39,44,49,.07), 1px 6px 12px rgba(39,44,49,.04); */
+  
+  z-index: 9;
+}
+
+.custom-card{
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  /* box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(39,44,49,.03); */
+  transition: all .3s ease;
+}
+
+
+.nb-page{
+  margin: auto 240px;
+}
+
+
+
+
+
+a{
+    text-decoration: none;
+    color: #12263a;
+}
+
+
+
+/* ================Star rating ================= */
+.starrating > input {display: none;}  /*Remove radio buttons*/
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 150%;
+  font-family: FontAwesome;
+  display: inline-block; 
+  
+}
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ;
+  cursor: pointer; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;
+cursor: pointer;  }  /*Set yellow color when star hover*/
+
+/* ===================Star rating END================= */
+
+/*=================== Wish Icon=============== */
+.fa-heart{
+color: red;
+}
+
+
+.fa-heart:hover{
+  cursor: pointer;
+  }
+
+  .fa-heart-o:hover{
+    cursor: pointer;
+    }
+
+.wish-icon{
+    font-size: 2rem;
+    padding: 1.3rem 1.3rem;
+}
+
+/*=================== Wish Icon END=============== */
+
+
+.item-price{
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.card-title{
+  /* font-size: 18px; */
+  text-align: center;
+  
+}
+
+
+/* ==============Sidebar============ */
+
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position:fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  /* top: 100; */
+  left: 0;
+  background-color: rgba(211, 212, 213, 0.5); /* Black*/
+  border-radius: 10px;
+  color: #12263a;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+#categoriesTitle{
+  color: #12263a !important;
+
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  
+  font-size: 18px;
+  color: #12263a;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #858484;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+
+
+.openbtn:hover {
+  background-color: #444;
+
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  position: absolute;
+  transition: margin-left .5s; /* If you want a transition effect */
+  
+  padding: 20px 60px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+/* ============== sidebar END================ */
+
+.filter-icon{
+  background-color: #e7ebee00;
+  height: 18px;
+  width: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.sort-icon{
+  background-color: #e7ebee00;
+  height: 18px;
+  width: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#sortDropdown{
+  padding-top: 20px;
+}
+
+#categoriesTitle{
+  font-family: "Lato", sans-serif;
+  color:whitesmoke;
+  padding-left: 20px;
+  
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  margin-top: 50px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+  
+}
+
+.btn-light{
+  border: 1px solid #12263a !important;
+  border-radius: 10px !important;
+  
+}
+
+
+
+/* ======================================================= */
+
+
+
+

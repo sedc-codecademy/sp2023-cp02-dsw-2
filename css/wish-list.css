@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+*{
+    font-family: "Lato", sans-serif;
+    /* color: #262626; */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+hr {
+  color: #262626;
+}
+
+#main-div {
+margin: 100px 12.5%;
+}
+
+#wishlist {
+    background-color: #DD592D;
+    color: #FFFFFF;
+  }
+#wishlist-icon {
+    color: #FFFFFF;
+}
+
+.wrapper-1{
+  border-radius: 10px;
+  width: 20%;
+  height: 800px;
+  margin-right: 5%;
+  padding: 16px;
+  background-color: #fff;
+}
+.wrapper-2{
+  margin-left: 5%;
+  padding: 16px;
+  height: 800px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.left-menu {
+  margin-left: 10px;
+}
+.menu-padding{
+  padding-top: .25rem!important;
+  padding-bottom: .25rem!important;
+}
+.settings-logout {
+  margin-top: 485px;
+}
+
+.my-account {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.text-secondary-d1 {
+    color: #818181!important;
+}
+.page-header {
+    margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    padding-top: .5rem;
+    border-bottom: 1px solid #dce9f0 ;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.page-title {
+    padding-bottom: 2px;
+    margin: 0;
+    /* margin-top: 60px; */
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* --------------------------------------------- */
+/* */
+.trash{
+    font-size: 24px;
+}
+
+.btn-save{
+    border-radius: 10px;
+    background-color: #DD592D !important;
+    border-color: #DD592D !important;
+    height: 50px !important;
+    font-weight: 300;
+    transition: .3s all ease;
+    font-size: 16px;
+    color: white!important;
+    height: 40px;
+  }
+  .btn-save:hover{
+    background-color: #DD5224!important;
+    color: #fff!important;
+  }
+
+  .notification {
+    position: fixed;
+    top: 20px;
+    margin-top: 50px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .notification.show {
+    opacity: 1;
+    transform: translateY(0);
+    
+  }

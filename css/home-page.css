@@ -27,3 +27,49 @@ body, html {
   object-fit: cover;
   filter: brightness(40%);
 }
+
+.carousel .carousel-item {
+  height: 900px;
+}
+
+.carousel-item img {
+    position: absolute;
+}
+
+.carousel-caption{
+  top: 40%
+}
+
+.carouselImg1{
+  bottom: 100%;
+  left: 43%;
+}
+
+.carouselImg2{
+  left: 40%;
+}
+
+.button-carousel {
+  position: relative;
+  margin-top: 8%;
+  
+    left: 0.5%;
+}
+
+.btn-save{
+  display: flex;
+  border-radius: 10px;
+  background-color: #DD592D !important;
+  border-color: #DD592D !important;
+  height: 40px !important;
+  font-weight: 300;
+  transition: .3s all ease;
+  font-size: 16px;
+  color: white!important;
+  height: 40px;
+  text-align: center;
+}
+.btn-save:hover{
+  background-color: #DD5224!important;
+  color: #fff!important;
+}

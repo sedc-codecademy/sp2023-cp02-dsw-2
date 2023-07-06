@@ -1,14 +1,18 @@
+import {addToCart} from './addToCart.mjs';
+
 // Get product ID from URL
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get('id');
 }
 
+let productsFromJson = null;
 // Fetch product data from JSON file
 function loadProductData(productId) {
   fetch('../../api/data/products.json')
     .then(response => response.json())
     .then(data => {
+      productsFromJson = data;
       const product = data.find(product => product.Id === parseInt(productId));
       if (product) {
         populateProduct(product);
@@ -72,30 +76,48 @@ function populateProduct(product) {
 }
 
 // Load product data on page load
+let productIdforCart;
 window.addEventListener('DOMContentLoaded', () => {
   const productId = getProductIdFromURL();
   if (productId) {
     loadProductData(productId);
+    productIdforCart = productId;
   } else {
     console.error('Product ID not found in URL');
   }
 });
 
 // Show notification
-function showNotification(message) {
-  const notification = document.getElementById('notification');
-  notification.textContent = message;
-  notification.classList.add('show');
+// function showNotification(message) {
+//   const notification = document.getElementById('notification');
+//   notification.textContent = message;
+//   notification.classList.add('show');
   
-  setTimeout(() => {
-    notification.classList.remove('show');
-  }, 2000);
-}
+//   setTimeout(() => {
+//     notification.classList.remove('show');
+//   }, 2000);
+// }
+
+
+document.addEventListener('click', function(e) {
+    
+  var el = e.target; 
+  
+  if (!el.matches('#addToCartBtn')) {
+      return;
+  }   
+ console.log(productIdforCart);
+ console.log(productsFromJson);
+  // let productId = el.id.slice(9);
+
+  addToCart(productIdforCart,productsFromJson);
+
+});
 
 // Add to Cart button click event
-document.getElementById('addToCartBtn').addEventListener('click', function() {
-  showNotification('Item added to cart');
-});
+// document.getElementById('addToCartBtn').addEventListener('click', function() {
+//   showNotification('Item added to cart');
+// });
 
 // Open review form
 document.getElementById("writeReviewBtn").addEventListener("click", function() {

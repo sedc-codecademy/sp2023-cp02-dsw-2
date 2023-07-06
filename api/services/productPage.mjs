@@ -1,5 +1,9 @@
 
 import {createProductCard} from './createProductCard.mjs'
+import { showNotification } from './showNotification.mjs';
+import {addToCart} from './addToCart.mjs';
+import { addToWishlist } from './addToWishlist.mjs';
+import { removeFromWishlist } from './removeFromWishlist.mjs';
 
 
 
@@ -48,7 +52,6 @@ fetch('../../api/data/products.json')
     else{
             console.log("Could not fetch from Json")
         }
-    
     })
     .catch(function(err) {
         console.log(err);
@@ -144,7 +147,7 @@ elements.filterButton.addEventListener('click', ()=>{
 })
 
 
-let addedToWishlist = false;
+// let addedToWishlist = false;
 
 document.addEventListener('click', function(e) {
     
@@ -153,19 +156,23 @@ document.addEventListener('click', function(e) {
     if (!el.matches('.wish-icon i')) {
         return;
     } 
+    let productId = el.id.slice(8);
+    
 
-    if(addedToWishlist){
-        showNotification('Item removed from wishlist');
-        addedToWishlist = false;
+    if (el.classList.contains('fa-heart-o')){
+        console.log("im here")
+        addToWishlist(productId,displayedProducts)
     }
     else{
-
-        showNotification('Item added to wishlist');
-        addedToWishlist = true;
+        console.log("you are here")
+        removeFromWishlist(productId);
     }
-
+    
     el.classList.toggle("fa-heart");
     el.classList.toggle("fa-heart-o");
+    
+    
+
 });
 
 document.addEventListener('click', function(e) {
@@ -191,7 +198,6 @@ document.addEventListener('click', function(e) {
     }   
 
     document.location.href = `../product-card/productCard.html?id=${el.id}`
-    console.log(el.id)
 });
 
 
@@ -205,9 +211,11 @@ document.addEventListener('click', function(e) {
         return;
     }   
 
-    showNotification('Item added to cart');
-});
+    let productId = el.id.slice(9);
 
+    addToCart(productId,displayedProducts);
+
+});
 
 
 function dynamicSort(property) {
@@ -223,14 +231,5 @@ function dynamicSort(property) {
     }
 }
 
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.classList.add('show');
-    
-    setTimeout(() => {
-      notification.classList.remove('show');
-    }, 2000);
-  }
 
 

@@ -9,6 +9,7 @@ body{
 
 .breadcrumb-nav{
     /* background-color:whitesmoke; */
+    margin-top: 80px;
     padding-top: 1rem;
     font-family: "Lato", sans-serif;
     color:#12263a;
@@ -100,6 +101,7 @@ cursor: pointer;  }  /*Set yellow color when star hover*/
 color: red;
 }
 
+
 .fa-heart:hover{
   cursor: pointer;
   }
@@ -155,7 +157,7 @@ color: red;
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   
-  font-size: 25px;
+  font-size: 18px;
   color: #12263a;
   display: block;
   transition: 0.3s;

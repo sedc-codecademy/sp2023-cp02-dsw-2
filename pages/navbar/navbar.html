@@ -75,9 +75,16 @@
                     <div class="search-box">
                         <span class="input-group-addon"><i class="uil uil-search"></i></span>								
                         <input type="text" id="search" class="form-control" placeholder="Search for products...">
+                        <div id="search-bar">
+                            <script>
+                              $(function () {
+                                $("#search-bar").load("../searchbar/search-bar.html");
+                              });
+                            </script>
+                          </div>
                     </div>
                 </form>
-
+               
                     <!--* Unloged User -->
                 <div class="navbar-nav ml-auto action-buttons" id="not-logged-user">
                     <div class="nav-item dropdown">

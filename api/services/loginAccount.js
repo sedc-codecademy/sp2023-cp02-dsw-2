@@ -49,7 +49,7 @@ function loginAccount(event){
 
   	if (userExists) {
         event.preventDefault();
-        window.location.href = "/pages/home_page/home_page_index.html";
+        window.location.href = "/pages/home-page/home-page.html";
         const loggedUser = localStorage.getItem("loggedUser")
         const logUser = loggedUser ? JSON.parse(loggedUser) : [];
         logUser.push(userExists);

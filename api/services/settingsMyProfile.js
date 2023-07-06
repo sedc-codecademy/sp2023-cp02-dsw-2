@@ -196,7 +196,7 @@ deactivateAccount.addEventListener('click', function(event){
     data.splice(data.findIndex(v => v.email === loggedUser.email), 1);
     localStorage.setItem('usersData', JSON.stringify(data));
     localStorage.removeItem('loggedUser');
-    window.location.href = "/pages/home_page/home_page_index.html";
+    window.location.href = "/pages/home-page/home-page.html";
     console.log(data)
     
 })

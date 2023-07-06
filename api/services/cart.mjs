@@ -2,6 +2,7 @@ import {removeFromCart} from './removeFromCart.mjs'
 
 let cartContainer = document.getElementById("cart-container")
 let totalPriceContainer = document.getElementById("totalPriceContainer")
+let subTotalContainer = document.getElementById("Subtotal-container")
 
 
 
@@ -27,9 +28,11 @@ if(loggedUser[0].cart.length !=0){
         cartContainer.innerHTML += populateCart(cartProduct);
     });
     totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)
+    subTotalContainer.innerHTML = populateSubTotal(totalPrice)
 }
 else{
     totalPriceContainer.innerHTML = populateTotalPrice(0)
+    subTotalContainer.innerHTML = populateSubTotal(0)
     cartContainer.innerHTML = 'No items Added to Cart'
 }
 
@@ -56,9 +59,11 @@ document.addEventListener('click', function(e) {
         cartContainer.innerHTML += populateCart(cartProduct);
     });
         totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)  
+        subTotalContainer.innerHTML = populateSubTotal(totalPrice)
     }
     else{
         totalPriceContainer.innerHTML = populateTotalPrice(0)
+        subTotalContainer.innerHTML = populateSubTotal(0)
         cartContainer.innerHTML = 'No items Added to Cart'
     }
     
@@ -94,5 +99,14 @@ function populateTotalPrice(totalPrice){
 </div>
 <div class="col-sm text-end class total pt-5">
     ${totalPrice} <span lang = "mk">МКД</span>
+</div>`
+}
+
+function populateSubTotal (subTotalPrice){
+    return`<div class="col-sm">
+    Subtotal
+</div>
+<div class="col-sm text-end class">
+${subTotalPrice} <span lang = "mk">МКД</span>
 </div>`
 }

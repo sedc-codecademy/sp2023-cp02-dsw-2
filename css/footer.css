@@ -22,6 +22,11 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    color: #fff;
+}
+
+
 #footer .col-md-6 {
     flex-basis: 50%;
     box-sizing: border-box;

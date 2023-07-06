@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 *{
-    font-family: lato;
+    font-family: "Lato", sans-serif;
     /* color: #262626; */
     padding: 0;
     margin: 0;
@@ -16,6 +16,10 @@ hr {
 
 #main-div {
 margin: 100px 12.5%;
+}
+
+#my-account {
+  font-size: 1.25rem;
 }
 
 #my-orders {
@@ -82,3 +86,18 @@ margin: 100px 12.5%;
 }
 
 /* --------------------------------------------- */
+.btn-save{
+  border-radius: 10px;
+  background-color: #DD592D !important;
+  border-color: #DD592D !important;
+  height: 50px !important;
+  font-weight: 300;
+  transition: .3s all ease;
+  font-size: 16px;
+  color: white!important;
+  height: 40px;
+}
+.btn-save:hover{
+  background-color: #DD5224!important;
+  color: #fff!important;
+}

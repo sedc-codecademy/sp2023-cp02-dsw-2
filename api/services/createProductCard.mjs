@@ -26,7 +26,7 @@ const createProductCard = (Product) => {
                             </div>
                         </div>
                         <p class="item-price  d-flex justify-content-center"><b>${Product.Price} <span lang = "mk">МКД</span></b></p>
-                        <a href="javascript:void()" class="btn btn-primary  d-flex justify-content-center addToCardBtn shadow-lg" id = "addToCard${Product.Id}" style = "background-color:#DD592D !important;border-radius:10px; border-color:#DD592D; height:50px; padding-top:12px">Add to Cart <i class = "fa fa-shopping-cart pt-1" style="padding-left: 5px;"></i></a>
+                        <a href="javascript:void()" class="btn btn-primary  d-flex justify-content-center addToCardBtn shadow-lg" id = "addToCard${Product.Id}" style = "background-color:#DD592D !important;border-radius:10px; border-color:#DD592D; height:50px; padding-top:12px">Add to Cart <i class = "fa fa-shopping-cart pt-1" style="padding-left: 5px; color: #FFFFFF;"></i></a>
                         
 
 

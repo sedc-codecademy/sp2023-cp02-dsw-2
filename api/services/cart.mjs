@@ -22,15 +22,18 @@ if(loggedUser[0].cart === undefined){
 cartContainer.innerHTML = '';
 if(loggedUser[0].cart.length !=0){
     let totalPrice = 0;
+
     loggedUser[0].cart.forEach(cartProduct => {
         totalPrice += cartProduct.Price
 
         cartContainer.innerHTML += populateCart(cartProduct);
     });
+    // subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
     totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)
     subTotalContainer.innerHTML = populateSubTotal(totalPrice)
 }
 else{
+    // subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
     totalPriceContainer.innerHTML = populateTotalPrice(0)
     subTotalContainer.innerHTML = populateSubTotal(0)
     cartContainer.innerHTML = 'No items Added to Cart'
@@ -58,10 +61,12 @@ document.addEventListener('click', function(e) {
         totalPrice += cartProduct.Price
         cartContainer.innerHTML += populateCart(cartProduct);
     });
+        // subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
         totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)  
         subTotalContainer.innerHTML = populateSubTotal(totalPrice)
     }
     else{
+        // subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
         totalPriceContainer.innerHTML = populateTotalPrice(0)
         subTotalContainer.innerHTML = populateSubTotal(0)
         cartContainer.innerHTML = 'No items Added to Cart'
@@ -92,6 +97,8 @@ function populateCart(cartProduct){
     </div>
     </div>`
 }
+
+
 
 function populateTotalPrice(totalPrice){
     return`<div class="col-sm pt-5 total">

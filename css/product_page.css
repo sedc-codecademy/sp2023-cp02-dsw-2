@@ -1,5 +1,12 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+*{
+  font-family: "Lato", sans-serif;
+  color: #262626;
+}
+
 body{
   /* background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url('../images/Image_Slide_01.jpg'); */
   height: 100%; 
@@ -36,7 +43,7 @@ body{
 
 
 .breadcrumb-item + .breadcrumb-item::before {
-  color:#12263a !important;
+  color:#262626 !important;
 }
 
 

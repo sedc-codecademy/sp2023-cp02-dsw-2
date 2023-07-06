@@ -14,18 +14,23 @@ hr {
 }
 
 #main-div {
-margin: 100px 12.5%;
+    margin: 100px 12.5%;
 }
 
-#my-account {
-  font-size: 1.25rem;
+#my-account-menu {
+    font-size: 1.25rem;
 }
 
-#wishlist {
-    background-color: #DD592D;
+#wishlist-button-icon {
     color: #FFFFFF;
-  }
-#wishlist-icon {
+}
+#cart-button-icon {
+    color: #FFFFFF;
+}
+#payment-button-icon {
+    color: #FFFFFF;
+}
+#coupons-button-icon {
     color: #FFFFFF;
 }
 
@@ -39,8 +44,8 @@ margin: 100px 12.5%;
 }
 .wrapper-2{
   margin-left: 5%;
-  padding: 16px;
   height: 800px;
+  padding: 16px;
   background-color: #fff;
   border-radius: 10px;
   overflow-y: auto;
@@ -87,44 +92,74 @@ margin: 100px 12.5%;
 }
 
 /* --------------------------------------------- */
-/* */
-.trash{
-    font-size: 24px;
+#img-responsive {
+    width: 80px;
+}
+
+#display-logged-user-name {
+    font-size: 1.25rem;
+    font-weight: 400;
 }
 
 .btn-save{
+    display: flex;
     border-radius: 10px;
     background-color: #DD592D !important;
     border-color: #DD592D !important;
-    height: 50px !important;
+    height: 40px !important;
     font-weight: 300;
     transition: .3s all ease;
     font-size: 16px;
     color: white!important;
     height: 40px;
-  }
-  .btn-save:hover{
+    text-align: center;
+}
+.btn-save:hover{
     background-color: #DD5224!important;
     color: #fff!important;
-  }
+}
 
-  .notification {
-    position: fixed;
-    top: 20px;
-    margin-top: 50px;
-    right: 20px;
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    font-size: 1.4rem;
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+#wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+.wrapper {
+    padding: 0 20px;
+}
+.wrapper-content {
+    padding: 20px 10px 40px;
+}
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    position: relative !important;
+}
+@media (min-width: 768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 240px;
+        min-height: 2002px;
+    }
+}
+
+.cardHolder-name{
+  width: 57%;
+}
+
+/* -------------------------------------------- */
+/* Carousel */
+
+/* .carousel {
+    height: 100px;
   }
   
-  .notification.show {
-    opacity: 1;
-    transform: translateY(0);
-    
-  }
+.item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-height: 300px;
+  } */
+
+
+
+

@@ -1,0 +1,17 @@
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.DataAccess.deps.json
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.DataAccess.runtimeconfig.json
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.DataAccess.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.DataAccess.pdb
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.Domain.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\bin\Debug\net6.0\CoffeeHouse_App.Domain.pdb
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.AssemblyInfo.cs
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.csproj.CopyComplete
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\refint\CoffeeHouse_App.DataAccess.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.pdb
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\CoffeeHouse_App.DataAccess.genruntimeconfig.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DataAccess\obj\Debug\net6.0\ref\CoffeeHouse_App.DataAccess.dll

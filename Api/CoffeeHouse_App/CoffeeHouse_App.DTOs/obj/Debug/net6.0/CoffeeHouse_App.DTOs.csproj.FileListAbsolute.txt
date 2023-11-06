@@ -1,0 +1,14 @@
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\bin\Debug\net6.0\CoffeeHouse_App.DTOs.deps.json
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\bin\Debug\net6.0\CoffeeHouse_App.DTOs.runtimeconfig.json
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\bin\Debug\net6.0\CoffeeHouse_App.DTOs.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\bin\Debug\net6.0\CoffeeHouse_App.DTOs.pdb
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.csproj.AssemblyReference.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.AssemblyInfo.cs
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\refint\CoffeeHouse_App.DTOs.dll
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.pdb
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\CoffeeHouse_App.DTOs.genruntimeconfig.cache
+C:\Users\Dell\Desktop\Dropshipping Store Server\CoffeeHouse_App\CoffeeHouse_App.DTOs\obj\Debug\net6.0\ref\CoffeeHouse_App.DTOs.dll

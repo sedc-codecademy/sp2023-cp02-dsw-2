@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.Domain.Entities
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

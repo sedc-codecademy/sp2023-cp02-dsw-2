@@ -27,6 +27,7 @@ namespace CoffeeHouse_App.DataAccess.DbContext
         public DbSet<Product> Products { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<WishItem> WishItems { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -98,6 +99,58 @@ namespace CoffeeHouse_App.DataAccess.DbContext
                 .HasOne(x => x.Product)
                 .WithMany(x => x.WishItems)
                 .HasForeignKey(x => x.ProductId);
+
+
+            //Seeding data
+            builder.Entity<Category>()
+                .HasData(new Category
+                    {
+                        Id = 1,
+                        Name = "Kafe vo zrno",
+                        CreatedAt = DateTime.Now,
+                        IsDeleted = false
+                    },
+                    new Category
+                    {
+                        Id = 2,
+                        Name = "Meleno kafe",
+                        CreatedAt = DateTime.Now,
+                        IsDeleted = false
+                    },
+                    new Category
+                    {
+                        Id = 3,
+                        Name = "Kafe kapsuli",
+                        CreatedAt = DateTime.Now,
+                        IsDeleted = false
+                    },
+                    new Category
+                    {
+                        Id = 4,
+                        Name = "Kafemat",
+                        CreatedAt = DateTime.Now,
+                        IsDeleted = false
+                    }
+                );
+            builder.Entity<Discount>()
+                .HasData(new Discount
+                {
+                    Id = 1,
+                    Name = "Black Friday",
+                    DiscountPercent = 15,
+                    Description = "Black Friday Discount",
+                    CreatedAt = DateTime.Now
+
+                },
+                new Discount
+                {
+                    Id = 2,
+                    Name = "Easter Discount",
+                    DiscountPercent = 10,
+                    Description = "Easter Holiday Discount",
+                    CreatedAt = DateTime.Now
+                }
+                );
 
 
         }

@@ -19,4 +19,11 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeHouse_App.DataAccess\CoffeeHouse_App.DataAccess.csproj" />
+    <ProjectReference Include="..\CoffeeHouse_App.DTOs\CoffeeHouse_App.DTOs.csproj" />
+    <ProjectReference Include="..\CoffeeHouse_App.Mappers\CoffeeHouse_App.Mappers.csproj" />
+    <ProjectReference Include="..\CoffeeHouse_App.Shared\CoffeeHouse_App.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

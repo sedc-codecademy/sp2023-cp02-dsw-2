@@ -9,5 +9,7 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Abstractions
 {
     public interface IProductRepository :IBaseRepository<Product>
     {
+        Task<List<Product>> GetAllProducts();
+        Task<Product> GetProductById(int id);
     }
 }

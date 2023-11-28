@@ -64,15 +64,15 @@ function populateWishList(wishListProduct){
         <div class="row d-flex justify-content-between align-items-center">
 
             <div class="col-md-2 col-lg-2 col-xl-2">
-                <img src="../../images/products-images/${wishListProduct.Image}"
+                <img src="data:image/png;base64, ${wishListProduct.photo.imageBase64}"
                 class="img-fluid rounded-3" alt="product-image">
             </div>
             
             <div class="col-md-3 col-lg-3 col-xl-3">
-            <p class="lead fw-normal mb-2">${wishListProduct.Name}</p>
+            <p class="lead fw-normal mb-2">${wishListProduct.name}</p>
             <p>
                 <span class="text-muted">Category: </span>
-                ${wishListProduct.Category}
+                ${wishListProduct.category.name}
             </p>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -93,15 +93,15 @@ function populateWishList(wishListProduct){
             </div>
 
             <div class="col-md-3 col-lg-2 col-xl-1">
-                <h5 class="mb-0">  ${wishListProduct.Price}</h5>
+                <h5 class="mb-0">  ${wishListProduct.price}</h5>
             </div>
 
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button type="button" class="btn btn-save btn-m" id = "addToCart${wishListProduct.Id}">Add to cart</button>
+                <button type="button" class="btn btn-save btn-m" id = "addToCart${wishListProduct.id}">Add to cart</button>
             </div>
 
             <div class="col-md-1 col-lg-1 col-xl-1 ">
-                <a href="#!" class="text-danger"><i class="uil uil-trash-alt trash" id = "${wishListProduct.Id}"></i></a>
+                <a href="#!" class="text-danger"><i class="uil uil-trash-alt trash" id = "${wishListProduct.id}"></i></a>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ const addToCart = (productId,displayedProducts)=>{
 
     let isAddedtoCart;
 
-    if(loggedUser[0].cart.find(x=>x.Id == productId) != undefined){
+    if(loggedUser[0].cart.find(x=>x.id == productId) != undefined){
         isAddedtoCart = true;
         showNotification("Item already added to Cart!");
         return;

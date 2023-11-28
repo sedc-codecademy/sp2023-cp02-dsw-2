@@ -24,42 +24,53 @@ const elements = {
 }
 
 
-
-
-
-
-
-
-
-
-// console.log("Hello there")
+document.addEventListener('DOMContentLoaded', ()=>{
+    fetchProductData();
+})
 
 let products = null;
 let displayedProducts = null;
 
-fetch('../../api/data/products.json')
-.then(res => res.json())
-.then(data => {
-    data.forEach(product => {
-        elements.cardContainer.innerHTML += createProductCard(product)
-    });
-    products =data;
-    displayedProducts = data;
-    if (data!=0){
-        
-        console.log("Data fetced!")
+async function fetchProductData() {
+    try{
+        const response = await fetch('http://localhost:5116/api/Product');
+        const productsData = await response.json();
+        console.log(productsData);
+        productsData.forEach(product => {
+            elements.cardContainer.innerHTML += createProductCard(product)
+        });
+        products = productsData;
+        displayedProducts = productsData;
     }
-    else{
-            console.log("Could not fetch from Json")
-        }
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
+    catch(error){
+        console.error('Error fetching product details:', error);
+    }
+}
+
+
+// fetch('http://localhost:5116/api/Product')
+// .then(res => res.json())
+// .then(data => {
+//     data.forEach(product => {
+//         elements.cardContainer.innerHTML += createProductCard(product)
+//     });
+//     products = data;
+//     displayedProducts = data;
+//     if (data!=0){
+        
+//         console.log("Data fetced!")
+//     }
+//     else{
+//             console.log("Could not fetch from Json")
+//         }
+//     })
+//     .catch(function(err) {
+//         console.log(err);
+//     });
 
 
 elements.sortDefault.addEventListener('click', ()=>{
-    let defaultSortedProducts = displayedProducts.sort(dynamicSort("Id"))
+    let defaultSortedProducts = displayedProducts.sort(dynamicSort("id"))
     elements.cardContainer.innerHTML ='';
     
     defaultSortedProducts.forEach(product => {
@@ -69,7 +80,7 @@ elements.sortDefault.addEventListener('click', ()=>{
 
 
 elements.sortAlphabetically.addEventListener('click', ()=>{
-    let alphabeticallySortedProducts = displayedProducts.sort(dynamicSort("Name"))
+    let alphabeticallySortedProducts = displayedProducts.sort(dynamicSort("name"))
     elements.cardContainer.innerHTML ='';
     
     alphabeticallySortedProducts.forEach(product => {
@@ -78,7 +89,7 @@ elements.sortAlphabetically.addEventListener('click', ()=>{
 })
 
 elements.sortPriceLowToHigh.addEventListener('click', ()=>{
-    let priceLowToHighSortedProducts = displayedProducts.sort(dynamicSort("Price"))
+    let priceLowToHighSortedProducts = displayedProducts.sort(dynamicSort("price"))
     elements.cardContainer.innerHTML ='';
     
     priceLowToHighSortedProducts.forEach(product => {
@@ -87,7 +98,7 @@ elements.sortPriceLowToHigh.addEventListener('click', ()=>{
 })
 
 elements.sortPriceHighToLow.addEventListener('click', ()=>{
-    let priceHighToLowSortedProducts = displayedProducts.sort(dynamicSort("-Price"))
+    let priceHighToLowSortedProducts = displayedProducts.sort(dynamicSort("-price"))
     elements.cardContainer.innerHTML ='';
     
     priceHighToLowSortedProducts.forEach(product => {
@@ -98,7 +109,7 @@ elements.sortPriceHighToLow.addEventListener('click', ()=>{
 
 elements.filterCoffeeCategory.addEventListener('click', ()=>{
     elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
-    let coffeeProducts = products.filter(x=>x.Category ==='Kafe vo zrno' || x.Category ==='Meleno kafe' || x.Category === 'Kafe kapsuli');
+    let coffeeProducts = products.filter(x=>x.category.name ==='Kafe vo zrno' || x.category.name ==='Meleno kafe' || x.category.name === 'Kafe kapsuli');
     elements.cardContainer.innerHTML ='';
     coffeeProducts.forEach(product => {
         elements.cardContainer.innerHTML += createProductCard(product)
@@ -108,7 +119,7 @@ elements.filterCoffeeCategory.addEventListener('click', ()=>{
 
 elements.filterAccessoriesCategory.addEventListener('click', ()=>{
     elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
-    let accessoriesProducts = products.filter(x=>x.Category ==='casi i fildzani');
+    let accessoriesProducts = products.filter(x=>x.category.name ==='casi i fildzani');
     elements.cardContainer.innerHTML ='';
     accessoriesProducts.forEach(product => {
         elements.cardContainer.innerHTML += createProductCard(product)
@@ -118,7 +129,7 @@ elements.filterAccessoriesCategory.addEventListener('click', ()=>{
 
 elements.filterCoffeeMachinesCategory.addEventListener('click', ()=>{
     elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
-    let coffeeMachineProducts = products.filter(x=>x.Category ==='Kafemat');
+    let coffeeMachineProducts = products.filter(x=>x.category.name ==='Kafemat');
     elements.cardContainer.innerHTML ='';
     coffeeMachineProducts.forEach(product => {
         elements.cardContainer.innerHTML += createProductCard(product)
@@ -212,7 +223,7 @@ document.addEventListener('click', function(e) {
     }   
 
     let productId = el.id.slice(9);
-
+    console.log(productId);
     addToCart(productId,displayedProducts);
 
 });

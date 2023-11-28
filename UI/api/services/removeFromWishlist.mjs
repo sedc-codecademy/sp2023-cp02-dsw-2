@@ -20,7 +20,7 @@ const removeFromWishlist = (productId)=>{
 
     let isAddedToWishlist;
 
-    if(loggedUser[0].wishList.find(x=>x.Id == productId) != undefined){
+    if(loggedUser[0].wishList.find(x=>x.id == productId) != undefined){
         isAddedToWishlist = true;
         
     }
@@ -31,7 +31,7 @@ const removeFromWishlist = (productId)=>{
 
 
     if(isAddedToWishlist){
-        loggedUser[0].wishList.splice(loggedUser[0].wishList.findIndex(x=>x.Id == productId),1)
+        loggedUser[0].wishList.splice(loggedUser[0].wishList.findIndex(x=>x.id == productId),1)
         
     
         localStorage.removeItem('loggedUser');

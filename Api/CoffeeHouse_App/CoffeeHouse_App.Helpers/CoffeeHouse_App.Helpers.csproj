@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoffeeHouse_App.DataAccess\CoffeeHouse_App.DataAccess.csproj" />
+    <ProjectReference Include="..\CoffeeHouse_App.Services\CoffeeHouse_App.Services.csproj" />
   </ItemGroup>
 
 </Project>

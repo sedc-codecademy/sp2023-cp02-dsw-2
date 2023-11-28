@@ -1,5 +1,6 @@
 ﻿using CoffeeHouse_App.DataAccess.DbContext;
 using CoffeeHouse_App.DataAccess.Repositories.Abstractions;
+using CoffeeHouse_App.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         private readonly CoffeeHouseDbContext _coffeeHouseDbContext;
 
@@ -38,7 +39,10 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
         {
             try
             {
-                List<T> allEntities = await _coffeeHouseDbContext.Set<T>().ToListAsync();
+                List<T> allEntities = await _coffeeHouseDbContext
+                    .Set<T>()
+                    .Where(e=>e.IsDeleted == false)
+                    .ToListAsync();
                 return allEntities;
             }
             catch (Exception)
@@ -48,29 +52,29 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<T> GetById(string id)
+
+        public async Task<T> GetByIdInt(int id)
         {
             try
             {
-                return  await _coffeeHouseDbContext.Set<T>().FindAsync(id);
+                return await _coffeeHouseDbContext
+                .Set<T>()
+                .FirstOrDefaultAsync(e => e.IsDeleted == false && e.Id == id);
             }
             catch (Exception)
             {
 
                 throw;
             }
-        }
-
-        public async Task<T> GetByIdInt(int id)
-        {
-            return await _coffeeHouseDbContext.Set<T>().FindAsync(id);
+            
         }
 
         public async Task Remove(T entity)
         {
             try
             {
-                _coffeeHouseDbContext.Set<T>().Remove(entity);
+                entity.IsDeleted= true;
+                _coffeeHouseDbContext.Set<T>().Update(entity);
                 await _coffeeHouseDbContext.SaveChangesAsync();
             }
             catch (Exception)

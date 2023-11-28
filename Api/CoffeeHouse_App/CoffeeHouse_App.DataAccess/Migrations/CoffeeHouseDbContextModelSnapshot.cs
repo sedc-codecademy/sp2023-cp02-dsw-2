@@ -79,6 +79,36 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1876),
+                            IsDeleted = false,
+                            Name = "Kafe vo zrno"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1882),
+                            IsDeleted = false,
+                            Name = "Meleno kafe"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1886),
+                            IsDeleted = false,
+                            Name = "Kafe kapsuli"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1890),
+                            IsDeleted = false,
+                            Name = "Kafemat"
+                        });
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Discount", b =>
@@ -111,6 +141,26 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Discounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(2123),
+                            Description = "Black Friday Discount",
+                            DiscountPercent = 15,
+                            IsDeleted = false,
+                            Name = "Black Friday"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(2128),
+                            Description = "Easter Holiday Discount",
+                            DiscountPercent = 10,
+                            IsDeleted = false,
+                            Name = "Easter Discount"
+                        });
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderDetails", b =>
@@ -269,6 +319,33 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Photo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<byte[]>("Bytes")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Size")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -299,6 +376,9 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PhotoId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -313,6 +393,8 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("DiscountId");
+
+                    b.HasIndex("PhotoId");
 
                     b.ToTable("Products");
                 });
@@ -681,9 +763,17 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                         .WithMany("DiscountProducts")
                         .HasForeignKey("DiscountId");
 
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Photo", "Photo")
+                        .WithMany()
+                        .HasForeignKey("PhotoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
                     b.Navigation("Discount");
+
+                    b.Navigation("Photo");
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Review", b =>

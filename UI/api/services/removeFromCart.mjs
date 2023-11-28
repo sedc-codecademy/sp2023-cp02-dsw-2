@@ -20,7 +20,7 @@ const removeFromCart = (productId)=>{
 
     let isAddedToCart;
 
-    if(loggedUser[0].cart.find(x=>x.Id == productId) != undefined){
+    if(loggedUser[0].cart.find(x=>x.id == productId) != undefined){
         isAddedToCart = true;
         
     }
@@ -31,7 +31,7 @@ const removeFromCart = (productId)=>{
 
 
     if(isAddedToCart){
-        loggedUser[0].cart.splice(loggedUser[0].cart.findIndex(x=>x.Id == productId),1)
+        loggedUser[0].cart.splice(loggedUser[0].cart.findIndex(x=>x.id == productId),1)
         
     
         localStorage.removeItem('loggedUser');

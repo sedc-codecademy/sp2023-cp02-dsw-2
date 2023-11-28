@@ -15,6 +15,8 @@ namespace CoffeeHouse_App.Domain.Entities
         public double Price { get; set; }
         public int Weight { get; set; }
         public  int Stock { get; set; }
+        public Photo Photo { get; set; }
+        public int PhotoId { get; set; }
         public Discount? Discount { get; set; }
         public int? DiscountId { get; set; }
         public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();

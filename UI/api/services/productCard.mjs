@@ -9,11 +9,11 @@ function getProductIdFromURL() {
 let productsFromJson = null;
 // Fetch product data from JSON file
 function loadProductData(productId) {
-  fetch('../../api/data/products.json')
+  fetch(`http://localhost:5116/api/Product/${productId}`)
     .then(response => response.json())
     .then(data => {
       productsFromJson = data;
-      const product = data.find(product => product.Id === parseInt(productId));
+      const product = data
       if (product) {
         populateProduct(product);
       } else {
@@ -26,16 +26,16 @@ function loadProductData(productId) {
 }
 
 function populateProduct(product) {
-  document.getElementById('product-name').textContent = product.Name;
-  document.getElementById('product-description').textContent = product.Description;
-  document.getElementById('product-category').textContent = product.Category;
-  document.getElementById('product-price').textContent = `${product.Price.toFixed(2)} МКД`;
-  document.getElementById('product-quantity').textContent = product.Quantity;
-  document.getElementById('product-weight').textContent = product.Weight;
-  document.getElementById('product-image').src = `../../images/products-images/${product.Image}`;
+  document.getElementById('product-name').textContent = product.name;
+  document.getElementById('product-description').textContent = product.description;
+  document.getElementById('product-category').textContent = product.category.name;
+  document.getElementById('product-price').textContent = `${product.price.toFixed(2)} МКД`;
+  document.getElementById('product-quantity').textContent = product.stock;
+  document.getElementById('product-weight').textContent = product.weight;
+  document.getElementById('product-image').src = 'data:image/png;base64,' + product.photo.imageBase64;
 
-  if (product.Discount > 0) {
-    document.getElementById('product-discount').textContent = `-${product.Discount} МКД`;
+  if (product.discount.discountPercent > 0) {
+    document.getElementById('product-discount').textContent = `-${product.discount.discountPercent/100 * product.price} МКД`;
   } else {
     document.getElementById('product-discount').textContent = '';
   }
@@ -46,14 +46,14 @@ function populateProduct(product) {
   let totalRating = 0;
   let reviewCount = 0;
 
-  product.Reviews.forEach(review => {
+  product.reviews.forEach(review => {
     const reviewElement = document.createElement('div');
     reviewElement.classList.add('review');
     reviewElement.innerHTML = `
-      <h3 class="card-title">${review.Name}</h3>
-      <p>${review.Text}</p>
-      <p><em>${review.Email}</em></p>
-      <div class="rating">${getStarRating(review.Rating)}</div>
+      <h3 class="card-title">${review.name}</h3>
+      <p>${review.text}</p>
+      <p><em>${review.email}</em></p>
+      <div class="rating">${getStarRating(review.rating)}</div>
     `;
     reviewsContainer.appendChild(reviewElement);
 

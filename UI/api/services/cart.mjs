@@ -24,7 +24,7 @@ if(loggedUser[0].cart.length !=0){
     let totalPrice = 0;
 
     loggedUser[0].cart.forEach(cartProduct => {
-        totalPrice += cartProduct.Price
+        totalPrice += cartProduct.price
 
         cartContainer.innerHTML += populateCart(cartProduct);
     });
@@ -58,7 +58,7 @@ document.addEventListener('click', function(e) {
     if(loggedUser[0].cart.length !=0){
         let totalPrice = 0;
         loggedUser[0].cart.forEach(cartProduct => {
-        totalPrice += cartProduct.Price
+        totalPrice += cartProduct.price
         cartContainer.innerHTML += populateCart(cartProduct);
     });
         // subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
@@ -79,12 +79,12 @@ document.addEventListener('click', function(e) {
 function populateCart(cartProduct){
     return `<div class="d-sm-flex justify-content-between my-4 pb-4 border-bottom">
     <div class="media d-block d-sm-flex text-center">
-        <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="../../images/products-images/${cartProduct.Image}" alt="Product"></a>
+        <a class="cart-item-thumb mx-auto mr-sm-4" href="#"><img src="data:image/png;base64, ${cartProduct.photo.imageBase64} " alt="Product"></a>
         
         <div class="media-body ms-3">
-            <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="">${cartProduct.Name}</a></h3>
-            <div class="font-size-sm"><span class="text-muted mr-2">Description: </span>${cartProduct.Description} </div>
-            <div class="pt-2">Price: ${cartProduct.Price} <span lang = "mk">МКД</span></div>
+            <h3 class="product-card-title font-weight-semibold border-0 pb-0"><a href="">${cartProduct.name}</a></h3>
+            <div class="font-size-sm"><span class="text-muted mr-2">Description: </span>${cartProduct.description} </div>
+            <div class="pt-2">Price: ${cartProduct.price} <span lang = "mk">МКД</span></div>
         </div>
     </div>
     
@@ -93,7 +93,7 @@ function populateCart(cartProduct){
             <label for="quantity1">Quantity</label>
             <input class="form-control form-control-sm" type="number" id="quantity1" value="1">
         </div>
-        <i class="uil uil-trash-alt trash" id = "${cartProduct.Id}"></i>
+        <i class="uil uil-trash-alt trash" id = "${cartProduct.id}"></i>
     </div>
     </div>`
 }

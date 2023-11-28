@@ -20,7 +20,7 @@ const addToWishlist = (productId,displayedProducts)=>{
 
     let isAddedToWishlist;
 
-        if(loggedUser[0].wishList.find(x=>x.Id == productId) != undefined){
+        if(loggedUser[0].wishList.find(x=>x.id == productId) != undefined){
             isAddedToWishlist = true;
             showNotification("Item already added to Wishlist!");
             return;

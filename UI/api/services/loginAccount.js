@@ -42,24 +42,52 @@ function loginAccount(event){
         return;
     }
 
-	const data = localStorage.getItem("usersData");
-	const users = data ? JSON.parse(data) : [];
+	// const data = localStorage.getItem("usersData");
+	// const users = data ? JSON.parse(data) : [];
+debugger;
+    fetch("http://localhost:5116/api/User/Login", {
+		method: 'POST',
+		headers: {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+            email: loginEmail,
+            password: loginPassword,
+          }),
+	  })
+      .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+		.then(data => {
+            console.log(data);
 
-	const userExists = users.find(u => u.email === loginEmail && u.password === loginPassword);
+            const token = data.token;
+            const loggedUser = data.loggedUser;
+            localStorage.setItem('token', token);
+            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+            window.location.href = "/pages/home-page/home-page.html";
+		})
+		.catch(error => console.error('Unable to add item.', error));
 
-  	if (userExists) {
-        event.preventDefault();
-        window.location.href = "/pages/home-page/home-page.html";
-        const loggedUser = localStorage.getItem("loggedUser")
-        const logUser = loggedUser ? JSON.parse(loggedUser) : [];
-        logUser.push(userExists);
-        localStorage.setItem('loggedUser', JSON.stringify(logUser));
-        return false;
-  	} else {
-        event.preventDefault();
-    	incorectDangerAllert.style.display = "block";
-        return false;
- 	}
+	// const userExists = users.find(u => u.email === loginEmail && u.password === loginPassword);
+
+  	// if (userExists) {
+    //     event.preventDefault();
+    //     window.location.href = "/pages/home-page/home-page.html";
+    //     const loggedUser = localStorage.getItem("loggedUser")
+    //     const logUser = loggedUser ? JSON.parse(loggedUser) : [];
+    //     logUser.push(userExists);
+    //     localStorage.setItem('loggedUser', JSON.stringify(logUser));
+    //     return false;
+  	// } else {
+    //     event.preventDefault();
+    // 	incorectDangerAllert.style.display = "block";
+    //     return false;
+ 	// }
 }
 loginBtn.addEventListener('click', loginAccount);
 

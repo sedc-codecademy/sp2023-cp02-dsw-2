@@ -102,11 +102,11 @@ function setInputsValue() {
   
     firstName.value = loggedUser.firstName;
     lastName.value = loggedUser.lastName;
-    birthDate.value = loggedUser.dateOfBirth;
+    birthDate.value = loggedUser.birthDate;
     phoneNumber.value = loggedUser.phoneNumber;
-    address.value = loggedUser.address.streetAddress;
+    address.value = loggedUser.address.street;
     city.value = loggedUser.address.city;
-    postalCode.value = loggedUser.address.postalCode;
+    postalCode.value = loggedUser.address.zip;
     if(loggedUser.profilePicture == "") profileImage.src = defaultImage;
     else profileImage.src = loggedUser.profilePicture;
     

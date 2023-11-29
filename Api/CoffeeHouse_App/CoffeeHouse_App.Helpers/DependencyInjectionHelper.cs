@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoffeeHouse_App.DataAccess.DbContext;
+using CoffeeHouse_App.DataAccess.Repositories.Abstractions;
+using CoffeeHouse_App.DataAccess.Repositories.Implementations;
+using CoffeeHouse_App.Services.Abstraction;
+using CoffeeHouse_App.Services.Implementation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoffeeHouse_App.DataAccess;
-using CoffeeHouse_App.DataAccess.DbContext;
 using CoffeeHouse_App.DataAccess.Repositories.Abstractions;
 using CoffeeHouse_App.DataAccess.Repositories.Implementations;
 using CoffeeHouse_App.Services.Abstractions;
@@ -29,11 +27,13 @@ namespace CoffeeHouse_App.Helpers
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
             services.AddTransient<ICartRepository,CartRepository>();
+			services.AddTransient<IUserAddressRepository, UserAddressRepository>();
         }
 
         public static void InjectServices (IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
+ 			services.AddTransient<IAddressService, AddressService>();
         }
     }
 }

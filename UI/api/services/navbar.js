@@ -17,6 +17,9 @@ function logout() {
         localStorage.removeItem('loggedUser');
         window.location.href = "/pages/home-page/home-page.html";
     }
+    if (localStorage.getItem('token')){
+        localStorage.removeItem('token');
+    }
     notLoggedUser.style.display = 'flex';
     loggedUser.style.display = 'none';
 }

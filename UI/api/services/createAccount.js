@@ -123,30 +123,51 @@ function createUser(event) {
 		triggerFormValidation(event);
 		return;
 	}
+
+	const user = {
+		email: signupEmail,
+		password: signupPassword,
+		firstName: firstName,
+		lastName: lastName,
+	  };
+debugger;
+	fetch("http://localhost:5116/api/User/Create", {
+		method: 'POST',
+		headers: {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(user)
+	  })
+		.then(response => response.json())
+		.then(() => {
+		  console.log(response);
+		})
+		.catch(error => console.error('Unable to add item.', error));
 	
-	const data = localStorage.getItem("usersData");
-	const users = data ? JSON.parse(data) : [];
+	// const data = localStorage.getItem("usersData");
+	// const users = data ? JSON.parse(data) : [];
   
-	const existingUser = users.find(x => x.email === signupEmail);
-	if (existingUser) {
-		event.preventDefault();
-	    emailExist.style.display = 'block';
-		accountCreated.style.display = 'none';
-	    return;
-	}
+	// const existingUser = users.find(x => x.email === signupEmail);
+	// if (existingUser) {
+	// 	event.preventDefault();
+	//     emailExist.style.display = 'block';
+	// 	accountCreated.style.display = 'none';
+	//     return;
+	// }
 	
-	const user = new User(firstName, lastName, signupEmail, signupPassword,"", "", "", new Address("", "", "", ""));
+	// const user = new User(firstName, lastName, signupEmail, signupPassword,"", "", "", new Address("", "", "", ""));
 
-	if(validatePassword(signupPassword, event) && validateEmail(signupEmail, event) && validateFirstLastName(firstName, lastName, event)) {
-		event.preventDefault();
-		users.push(user);
-		localStorage.setItem('usersData', JSON.stringify(users));
+	// if(validatePassword(signupPassword, event) && validateEmail(signupEmail, event) && validateFirstLastName(firstName, lastName, event)) {
+	// 	event.preventDefault();
+	// 	users.push(user);
+	// 	localStorage.setItem('usersData', JSON.stringify(users));
 
-		clearInputFields()
+	// 	clearInputFields()
 
-		accountCreated.style.display = 'block';
-		return false;
-	} 
+	// 	accountCreated.style.display = 'block';
+	// 	return false;
+	// } 
 }
 createAccountBtn.addEventListener('click', createUser, false);
 

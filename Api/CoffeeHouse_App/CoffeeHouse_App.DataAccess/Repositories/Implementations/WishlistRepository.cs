@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
 {
-    public class CartRepository : ICartRepository
+    public class WishlistRepository : IWishlistRepository
     {
         private readonly CoffeeHouseDbContext _dbContext;
 
-        public CartRepository(CoffeeHouseDbContext dbContext)
+        public WishlistRepository(CoffeeHouseDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
 
-        public async Task Add(CartItem cartItem)
+        public async Task Add(WishItem wishItem)
         {
             try
             {
-                _dbContext.CartItems.Add(cartItem);
+                _dbContext.WishItems.Add(wishItem);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception)
@@ -32,14 +32,13 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
 
                 throw;
             }
-            
         }
 
-        public async Task<List<CartItem>> GetAllUserCartItems(string userId)
+        public async Task<List<WishItem>> GetUserWishlistItems(string userId)
         {
             try
             {
-                return await _dbContext.CartItems
+                return await _dbContext.WishItems
                 .Include(x => x.Product)
                 .ThenInclude(x => x.Category)
                 .Include(x => x.Product)
@@ -56,11 +55,11 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task<CartItem> GetCartItemById(int cartId)
+        public async Task<WishItem> GetWishlistItemById(int id)
         {
             try
             {
-                return await _dbContext.CartItems.FirstOrDefaultAsync(x => x.Id == cartId);
+                return await _dbContext.WishItems.FirstOrDefaultAsync(x => x.Id == id);
             }
             catch (Exception)
             {
@@ -70,11 +69,11 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
         }
 
 
-        public async Task<CartItem> GetCartItemByProductId(int productId, string userId)
+        public async Task<WishItem> GetWishlistItemByProductId(int productId, string userId)
         {
             try
             {
-                return await _dbContext.CartItems.FirstOrDefaultAsync(x => x.ProductId == productId && x.UserId == userId);
+                return await _dbContext.WishItems.FirstOrDefaultAsync(x => x.ProductId == productId && x.UserId == userId);
             }
             catch (Exception)
             {
@@ -83,11 +82,11 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task Remove(CartItem cartItem)
+        public async Task Remove(WishItem wishItem)
         {
             try
             {
-                _dbContext.CartItems.Remove(cartItem);
+                _dbContext.WishItems.Remove(wishItem);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception)
@@ -97,11 +96,12 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
         }
 
-        public async Task Update(CartItem cartItem)
+        public async Task Update(WishItem wishItem)
         {
+
             try
             {
-                _dbContext.CartItems.Update(cartItem);
+                _dbContext.WishItems.Update(wishItem);
                 await _dbContext.SaveChangesAsync();
             }
             catch (Exception)

@@ -16,8 +16,11 @@ namespace CoffeeHouse_App.Services.Abstractions
         Task<ProductDto> GetProductById(int id);
         Task<List<ProductDto>> GetProductsByCategory(string category);
         Task<List<ProductDto>> GetWishlistProducts(string userId);
+        Task AddToWishlist(int productId, string userId);
+        Task RemoveFromWishlist(int productId, string userId);
         Task<List<ProductDto>> GetCartProducts(string userId);
         Task AddToCart(int productId, string userId);
         Task RemoveFromCart(int productId,string userId);
+        Task DeleteProduct (int productId);
     }
 }

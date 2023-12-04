@@ -3,6 +3,7 @@ using CoffeeHouse_App.Domain.Entities;
 using CoffeeHouse_App.DTOs.ProductDtos;
 using CoffeeHouse_App.Services.Abstractions;
 using CoffeeHouse_App.Shared.CustomExceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -20,7 +21,7 @@ namespace CoffeeHouse_App.Controllers
         }
 
 
-        [HttpPost ("AddProduct")]
+        [HttpPost("AddProduct")]
         public async Task<IActionResult> AddProduct([FromForm] AddProductDto product)
         {
             try
@@ -48,7 +49,7 @@ namespace CoffeeHouse_App.Controllers
         {
             try
             {
-                return await _productService.GetAllProducts(); 
+                return await _productService.GetAllProducts();
             }
             catch (ProductDataException ex)
             {
@@ -81,16 +82,20 @@ namespace CoffeeHouse_App.Controllers
             }
         }
 
-
+        [Authorize]
         [HttpGet("CartProducts")]
         public async Task<ActionResult<List<ProductDto>>> GetCartProducts()
         {
-            
+
             try
             {
-                string userId = "2";
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 List<ProductDto> cartProducts = await _productService.GetCartProducts(userId);
                 return cartProducts;
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (ProductDataException ex)
             {
@@ -104,6 +109,152 @@ namespace CoffeeHouse_App.Controllers
             }
         }
 
+        [Authorize]
+        [HttpPost("addToCart{productId}")]
+        public async Task<IActionResult> AddToCart(int productId)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await _productService.AddToCart(productId, userId);
+                return Ok("Product Added to cart!");
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ProductDataException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteProduct{productId}")]
+        public async Task<IActionResult> DeleteProduct (int productId)
+        {
+            try
+            {
+                await _productService.DeleteProduct(productId);
+                return Ok("Product deleted!");
+            }
+            catch (ProductDataException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("RemoveFromCart{productId}")]
+        public async Task<IActionResult> RemoveFromCart(int productId)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await _productService.RemoveFromCart(productId, userId);
+                return Ok("Product removed from cart!");
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ProductDataException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPost("addToWishlist{productId}")]
+        public async Task<IActionResult> AddToWishlist (int productId)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await _productService.AddToWishlist(productId, userId);
+                return Ok("Product Added to Wishlist!");
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ProductDataException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("Wishlist")]
+        public async Task<ActionResult<List<ProductDto>>> GetWishlistProducts()
+        {
+
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                List<ProductDto> wishlistProducts = await _productService.GetWishlistProducts(userId);
+                return wishlistProducts;
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ProductDataException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("RemoveFromWishlist{productId}")]
+        public async Task<IActionResult> RemoveFromWishlist(int productId)
+        {
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                await _productService.RemoveFromWishlist(productId, userId);
+                return Ok("Product removed from Wishlist!");
+            }
+            catch (UserNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ProductDataException ex)
+            {
+
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+
 
 
         private byte[] ReadImageFile(IFormFile imageFile)
@@ -115,5 +266,7 @@ namespace CoffeeHouse_App.Controllers
                 return memoryStream.ToArray();
             }
         }
+
+       
     }
 }

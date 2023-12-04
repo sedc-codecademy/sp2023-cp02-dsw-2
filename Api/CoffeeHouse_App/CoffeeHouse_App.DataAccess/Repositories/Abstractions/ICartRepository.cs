@@ -14,6 +14,8 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Abstractions
         Task Remove(CartItem cartItem);
         Task<CartItem> GetCartItemById(int id);
         Task<List<CartItem>> GetAllUserCartItems(string userId);
-        
+        Task<CartItem> GetCartItemByProductId(int productId, string userId);
+
+
     }
 }

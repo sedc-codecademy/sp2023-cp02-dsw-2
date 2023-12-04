@@ -27,6 +27,7 @@ namespace CoffeeHouse_App.Helpers
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IDiscountRepository, DiscountRepository>();
             services.AddTransient<ICartRepository,CartRepository>();
+            services.AddTransient<IWishlistRepository, WishlistRepository>();
 			services.AddTransient<IUserAddressRepository, UserAddressRepository>();
         }
 

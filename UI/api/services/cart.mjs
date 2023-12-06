@@ -1,4 +1,4 @@
-import {removeFromCart} from './removeFromCart.mjs'
+
 
 let cartContainer = document.getElementById("cart-container")
 let totalPriceContainer = document.getElementById("totalPriceContainer")
@@ -6,38 +6,77 @@ let subTotalContainer = document.getElementById("Subtotal-container")
 
 
 
-const usersData = localStorage.getItem("usersData");
-const users = usersData ? JSON.parse(usersData) : [];
-
-const loggedUserData = localStorage.getItem("loggedUser");
-const loggedUser = loggedUserData ? JSON.parse(loggedUserData) : [];
 
 
+document.addEventListener('DOMContentLoaded', ()=>{
+    fetchCartProductData();
+})
 
-if(loggedUser[0].cart === undefined){
-    loggedUser[0].cart = [];
+
+async function fetchCartProductData() {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        let totalPrice = 0;
+        cartContainer.innerHTML = '';
+        const response = await fetch('http://localhost:5116/api/Product/CartProducts',{ headers: {Authorization: `Bearer ${userToken}`}});
+        console.log(response)
+        if(response.ok){
+            if(response.status == 200){
+                const cartData = await response.json();
+                if(cartData.length !=0){
+                    
+                    cartData.forEach(cartProduct => {
+                        totalPrice += cartProduct.price
+                        
+                        cartContainer.innerHTML += populateCart(cartProduct);
+                    });
+                    totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)
+                    subTotalContainer.innerHTML = populateSubTotal(totalPrice)
+                }
+
+            }
+        }
+        if(response.status === 404){
+            
+            totalPriceContainer.innerHTML = populateTotalPrice(0)
+            subTotalContainer.innerHTML = populateSubTotal(0)
+            cartContainer.innerHTML = 'No items Added to Cart'
+        }
+        else if (response.status === 500 || response.status === 400){
+            totalPriceContainer.innerHTML = populateTotalPrice(0)
+            subTotalContainer.innerHTML = populateSubTotal(0)
+            cartContainer.innerHTML = 'Could not retrieve cart products'
+        }
+        
+        
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+    }
 }
 
 
-cartContainer.innerHTML = '';
-if(loggedUser[0].cart.length !=0){
-    let totalPrice = 0;
 
-    loggedUser[0].cart.forEach(cartProduct => {
-        totalPrice += cartProduct.price
+async function fetchRemoveCartItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/RemoveFromCart${productId}`,{method: 'DELETE', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            fetchCartProductData()
+        }
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+}
 
-        cartContainer.innerHTML += populateCart(cartProduct);
-    });
-    // subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
-    totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)
-    subTotalContainer.innerHTML = populateSubTotal(totalPrice)
-}
-else{
-    // subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
-    totalPriceContainer.innerHTML = populateTotalPrice(0)
-    subTotalContainer.innerHTML = populateSubTotal(0)
-    cartContainer.innerHTML = 'No items Added to Cart'
-}
+
 
 
 document.addEventListener('click', function(e) {
@@ -48,29 +87,7 @@ document.addEventListener('click', function(e) {
         return;
     }   
 
-    removeFromCart(el.id)
-
-    const loggedUserData = localStorage.getItem("loggedUser");
-    const loggedUser = loggedUserData ? JSON.parse(loggedUserData) : [];
-
-    cartContainer.innerHTML = ''; 
-
-    if(loggedUser[0].cart.length !=0){
-        let totalPrice = 0;
-        loggedUser[0].cart.forEach(cartProduct => {
-        totalPrice += cartProduct.price
-        cartContainer.innerHTML += populateCart(cartProduct);
-    });
-        // subTotalPriceContainer.innterHTML = populateSubTotalPrice(totalPrice);
-        totalPriceContainer.innerHTML = populateTotalPrice(totalPrice)  
-        subTotalContainer.innerHTML = populateSubTotal(totalPrice)
-    }
-    else{
-        // subTotalPriceContainer.innterHTML = populateSubTotalPrice(0);
-        totalPriceContainer.innerHTML = populateTotalPrice(0)
-        subTotalContainer.innerHTML = populateSubTotal(0)
-        cartContainer.innerHTML = 'No items Added to Cart'
-    }
+    fetchRemoveCartItem(el.id)
     
 
 });

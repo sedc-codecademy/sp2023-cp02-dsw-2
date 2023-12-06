@@ -1,5 +1,6 @@
 import {addToCart} from './addToCart.mjs';
 
+
 // Get product ID from URL
 function getProductIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -24,6 +25,7 @@ function loadProductData(productId) {
       console.error('Error loading product data:', error);
     });
 }
+
 
 function populateProduct(product) {
   document.getElementById('product-name').textContent = product.name;

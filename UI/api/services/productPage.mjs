@@ -47,6 +47,27 @@ async function fetchProductData() {
     }
 }
 
+//GET THE TOKEN FROM LOCAL STORAGE
+// const userToken = localStorage.getItem("Token");
+async function fetchAddToCartItem(productId) {
+    try{
+        
+        const response = await fetch(`http://localhost:5116/api/Product/addToCart${productId}`,{method: 'POST', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Added To Cart")
+        }
+        if(response.status == 404){
+            showNotification("Product Already Added To Cart")
+        }
+
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
 
 // fetch('http://localhost:5116/api/Product')
 // .then(res => res.json())
@@ -224,7 +245,8 @@ document.addEventListener('click', function(e) {
 
     let productId = el.id.slice(9);
     console.log(productId);
-    addToCart(productId,displayedProducts);
+    fetchAddToCartItem(productId);
+    // addToCart(productId,displayedProducts);
 
 });
 

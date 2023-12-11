@@ -69,25 +69,51 @@ async function fetchAddToCartItem(productId) {
     }
   }
 
-// fetch('http://localhost:5116/api/Product')
-// .then(res => res.json())
-// .then(data => {
-//     data.forEach(product => {
-//         elements.cardContainer.innerHTML += createProductCard(product)
-//     });
-//     products = data;
-//     displayedProducts = data;
-//     if (data!=0){
+  async function fetchAddToWishListItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/addToWishlist${productId}`,{method: 'POST', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Added To Wishlist")
+        }
+        if(response.status == 404){
+            showNotification("Product Already Added To Wishlist")
+        }
+
         
-//         console.log("Data fetced!")
-//     }
-//     else{
-//             console.log("Could not fetch from Json")
-//         }
-//     })
-//     .catch(function(err) {
-//         console.log(err);
-//     });
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
+
+  async function fetchRemoveFromWishListItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/RemoveFromWishlist${productId}`,{method: 'DELETE', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Removed From Wishlist")
+        }
+        if(response.status == 404){
+            showNotification("Product is not found in Wishlist")
+        }
+
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
+
+
+
+  
 
 
 elements.sortDefault.addEventListener('click', ()=>{
@@ -193,11 +219,11 @@ document.addEventListener('click', function(e) {
 
     if (el.classList.contains('fa-heart-o')){
         console.log("im here")
-        addToWishlist(productId,displayedProducts)
+        fetchAddToWishListItem(productId)
     }
     else{
         console.log("you are here")
-        removeFromWishlist(productId);
+        fetchRemoveFromWishListItem(productId);
     }
     
     el.classList.toggle("fa-heart");

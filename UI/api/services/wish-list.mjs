@@ -3,29 +3,66 @@ import {removeFromWishlist} from './removeFromWishlist.mjs'
 let wishListContainer = document.getElementById("wishlist-container")
 
 
-
-const usersData = localStorage.getItem("usersData");
-const users = usersData ? JSON.parse(usersData) : [];
-
-const loggedUserData = localStorage.getItem("loggedUser");
-const loggedUser = loggedUserData ? JSON.parse(loggedUserData) : [];
+document.addEventListener('DOMContentLoaded', ()=>{
+    fetchWishListProductData();
+})
 
 
+async function fetchWishListProductData() {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        wishListContainer.innerHTML = '';
+        const response = await fetch('http://localhost:5116/api/Product/Wishlist',{ headers: {Authorization: `Bearer ${userToken}`}});
+        console.log(response)
+        if(response.ok){
+            if(response.status == 200){
+                const wishListData = await response.json();
+                if(wishListData.length !=0){
+                    
+                    wishListData.forEach(wishlistProduct => {
+                        wishListContainer.innerHTML += populateWishList(wishlistProduct);
+                    });
+                }
 
-if(loggedUser[0].wishList === undefined){
-    loggedUser[0].wishList = [];
+            }
+        }
+        if(response.status === 404){
+            
+            wishListContainer.innerHTML = 'No items Added to Wishlist'
+        }
+        else if (response.status === 500 || response.status === 400){
+            wishListContainer.innerHTML = 'Could not retrieve Wishlist products'
+        }
+        
+        
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+    }
 }
 
 
-wishListContainer.innerHTML = '';
-if(loggedUser[0].wishList.length !=0){
-loggedUser[0].wishList.forEach(wishListProduct => {
-    wishListContainer.innerHTML += populateWishList(wishListProduct);
-});
+
+async function fetchRemoveWishlistItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/RemoveFromWishlist${productId}`,{method: 'DELETE', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            fetchWishListProductData()
+        }
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
 }
-else{
-    wishListContainer.innerHTML = 'No items Added to Wishlist'
-}
+
+
 
 
 document.addEventListener('click', function(e) {
@@ -35,26 +72,12 @@ document.addEventListener('click', function(e) {
     if (!el.matches('.trash')) {
         return;
     }   
-    
 
-    removeFromWishlist(el.id)
-
-    const loggedUserData = localStorage.getItem("loggedUser");
-    const loggedUser = loggedUserData ? JSON.parse(loggedUserData) : [];
-
-    wishListContainer.innerHTML = ''; 
-
-    if(loggedUser[0].wishList.length !=0){
-    loggedUser[0].wishList.forEach(wishListProduct => {
-        wishListContainer.innerHTML += populateWishList(wishListProduct);
-    });
-    }
-    else{
-        wishListContainer.innerHTML = 'No items Added to Wishlist'
-    }
+    fetchRemoveWishlistItem(el.id)
     
 
 });
+
 
 
 function populateWishList(wishListProduct){

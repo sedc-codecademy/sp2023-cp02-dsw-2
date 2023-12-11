@@ -14,6 +14,12 @@ const passworInfoAlert = document.getElementById('password-info-alert');
 
 const accountCreated = document.getElementById('account-successfully-created');
 
+const validationAllert = document.getElementById('validation-alert');
+const validationAlertText = document.getElementById('validation-alert-text');
+
+const createUserAlert = document.getElementById('create-user-successfully-alert');
+const createUserAlertText = document.getElementById('create-user-successfully-alert-text');
+
 
 //* Example starter JavaScript for disabling form submissions if there are invalid fields
 function isFormEmpty() {
@@ -45,29 +51,29 @@ function clearInputFields() {
 }
 
 //* ----- set user admin -----
-if (!localStorage.getItem('adminAccountCreated')) {
-	const admin = {
-		firstName: "Admin",
-		lastName: "Admin",
-		email: "admin@admin.com",
-		password: "admin12345",
-		dateOfBirth: "",
-		phoneNumber: "",
-		profilePicture: "",
-		address: {
-			streetAddress: "",
-			city: "",
-			country: "",
-			postalCode: "",
-		}
-	};
+// if (!localStorage.getItem('adminAccountCreated')) {
+// 	const admin = {
+// 		firstName: "Admin",
+// 		lastName: "Admin",
+// 		email: "admin@admin.com",
+// 		password: "admin12345",
+// 		dateOfBirth: "",
+// 		phoneNumber: "",
+// 		profilePicture: "",
+// 		address: {
+// 			streetAddress: "",
+// 			city: "",
+// 			country: "",
+// 			postalCode: "",
+// 		}
+// 	};
 
-	const data = localStorage.getItem('usersData');
-	const users = data ? JSON.parse(data) : [];
-	users.push(admin);
-	localStorage.setItem('usersData', JSON.stringify(users));
-	localStorage.setItem('adminAccountCreated', true);
-}
+// 	const data = localStorage.getItem('usersData');
+// 	const users = data ? JSON.parse(data) : [];
+// 	users.push(admin);
+// 	localStorage.setItem('usersData', JSON.stringify(users));
+// 	localStorage.setItem('adminAccountCreated', true);
+// }
 
 //* ----- Password Validation -----
 function validatePassword(password, event) {
@@ -112,7 +118,8 @@ function validateFirstLastName(firstName, lastName, event) {
 }
 
 //* ----- Create User -----
-function createUser(event) {
+async function createUser(event) {
+	debugger;
 	const firstName = document.getElementById('firstName').value;
 	const lastName = document.getElementById('lastName').value;
 	const signupEmail = document.getElementById('signup-email').value;
@@ -130,20 +137,45 @@ function createUser(event) {
 		firstName: firstName,
 		lastName: lastName,
 	  };
-debugger;
-	fetch("http://localhost:5116/api/User/Create", {
-		method: 'POST',
-		headers: {
-		  'Accept': 'application/json',
-		  'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(user)
-	  })
-		.then(response => response.json())
-		.then(() => {
-		  console.log(response);
-		})
-		.catch(error => console.error('Unable to add item.', error));
+
+	  try{
+		event.preventDefault();
+		const response = await fetch("http://localhost:5116/api/User/Create", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+			body: JSON.stringify(user)
+        });
+
+		if (!response.ok) {
+            
+			const errorData = await response.json();
+            console.error('Error:', errorData);
+			validationAllert.style.display = "block";
+			if(errorData.errors){
+				validationAlertText.innerText =  errorData.errors.join('\n');
+				return;
+			}
+			validationAlertText.innerText = errorData.errorMessage;
+			return;
+        }else{
+			event.preventDefault();
+			clearInputFields();
+			validationAllert.style.display = "none";
+            const msg = await response.json();
+            createUserAlert.style.display = "block";
+            createUserAlertText.innerText = msg;
+			return false;
+		}
+	  }catch(error) {
+        validationAllert.style.display = "none";
+        validationAllert.style.display = "block";
+        validationAlertText.innerText = "Network Error!"
+    }
+
+	
 	
 	// const data = localStorage.getItem("usersData");
 	// const users = data ? JSON.parse(data) : [];
@@ -203,9 +235,3 @@ document.addEventListener('click', function(event) {
 		passworInfoAlert.style.display = 'none';
     }
 });
-
-
-
-
-
-  

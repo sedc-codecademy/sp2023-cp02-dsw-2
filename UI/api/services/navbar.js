@@ -26,16 +26,47 @@ function logout() {
 logoutBtn.addEventListener('click', logout);
 
 
-function displayLoggedUser() {
-    const data = localStorage.getItem("loggedUser");
-    const loggedUser = data ? JSON.parse(data) : [];
-    let defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXlZntj19KqLp6PixOo-THMk5SHclqG-eHg5Ubds1lk2kbfKth5o4QYZixHdOjeT9fnJ4&usqp=CAU";
+async function displayLoggedUser() {
+    const token = localStorage.getItem('token');
+    try{
+        const response = await fetch("http://localhost:5116/api/User/Get", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+			const errorData = await response.json();
+            console.error('Error:', errorData);
+			validationAllert.style.display = "block";
+			if(errorData.errors){
+                if(errorData.errors.ConfirmPassword){
+                    validationAlertText.innerText =  errorData.errors.ConfirmPassword.join('\n');
+                }
+                else{
+                    validationAlertText.innerText =  errorData.errors.join('\n');
+                }
+				
+				return;
+			}
+			validationAlertText.innerText = errorData.errorMessage;
+			return;
+        }else{
+            const loggedUser = await response.json();
+            let defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXlZntj19KqLp6PixOo-THMk5SHclqG-eHg5Ubds1lk2kbfKth5o4QYZixHdOjeT9fnJ4&usqp=CAU";
 
-    let loggedUsername = `${loggedUser[0].firstName} ${loggedUser[0].lastName}`;
-
-    displayLoggedUsername.innerHTML = loggedUsername;
-    if(loggedUser[0].profilePicture == "") navbarImage.src = defaultImage;
-    else navbarImage.src = loggedUser[0].profilePicture;
-
+            let loggedUsername = `${loggedUser.user.firstName} ${loggedUser.user.lastName}`;
+        
+            displayLoggedUsername.innerHTML = loggedUsername;
+            if(loggedUser.profileImage == "" || loggedUser.user.profileImage == undefined) navbarImage.src = defaultImage;
+            else navbarImage.src = loggedUser.user.profileImage;
+		}
+    }
+    catch(error) {
+        validationAllert.style.display = "block";
+        validationAlertText.innerText =  'Network Error';
+    }
 }
 displayLoggedUser();

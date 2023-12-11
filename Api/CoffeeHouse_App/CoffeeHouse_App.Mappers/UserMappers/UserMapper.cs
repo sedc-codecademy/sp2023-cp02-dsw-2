@@ -1,23 +1,23 @@
 ﻿using CoffeeHouse_App.Domain.Entities;
 using CoffeeHouse_App.DTOs;
 
-namespace CoffeeHouse_App.Mappers
+namespace CoffeeHouse_App.Mappers.UserMappers
 {
     public static class UserMapper
     {
-        public static User ToUser (CreateUserModel user)
+        public static User ToUser(CreateUserModel user)
         {
             return new User
             {
                 Email = user.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = user.Email,
-                FirstName = user.FirstName, 
+                FirstName = user.FirstName,
                 LastName = user.LastName,
             };
         }
 
-        public static UserModel ToUserModel(User user)
+        public static UserModel ToUserModel(this User user, Photo? photo)
         {
             return new UserModel
             {
@@ -27,7 +27,11 @@ namespace CoffeeHouse_App.Mappers
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Birthdate = user.Birthdate,
-                Address = new AddressModel{}
+                Address = new AddressModel
+                {
+                   // City = user.UserAddresses.First().Address.City
+                },
+                ProfileImage = photo?.Bytes == null ? string.Empty : "data:image/jpeg;base64," + Convert.ToBase64String(photo.Bytes)
             };
         }
 
@@ -56,11 +60,6 @@ namespace CoffeeHouse_App.Mappers
                 User = user
             };
             return newUserAddress;
-        }
-
-        public static Address ToChangesAddress(AddressModel address)
-        {
-            throw new NotImplementedException();
         }
     }
 }

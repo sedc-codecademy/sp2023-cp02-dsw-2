@@ -27,11 +27,17 @@ const newEmail = document.getElementById('new-email');
 const cancelEmailChangeBtn = document.getElementById('cancel-email-change-btn');
 const saveEmailChangeBtn = document.getElementById('save-email-change-btn');
 
+const validationAllert = document.getElementById('validation-alert');
+const validationAlertText = document.getElementById('validation-alert-text');
+
+const changePassAllert = document.getElementById('change-pass-successfully-created-alert');
+const changePassAlertText = document.getElementById('change-pass-successfully-created-alert-text');
+
 //* Display logged user email address
 function handleLoggedUser(){
     const data = localStorage.getItem("loggedUser");
 	const loggedUser = data ? JSON.parse(data) : [];
-    let loggedEmail = loggedUser[0].email;
+    let loggedEmail = loggedUser.email;
     
     currentEmail.innerHTML = loggedEmail;
 };
@@ -166,34 +172,83 @@ function validatePassword (password, event) {
 
 
 //* New password validate and change
+function clearInputField() {
+    document.getElementById('current-password').value = '';
+    document.getElementById('new-password').value = '';
+}
 
-function newPasswordChange(event) {
-    const loggedUser = getLoggedUser();
-    
+async function newPasswordChange(event) {
+    const token = localStorage.getItem('token');
+    const currentPassword = document.getElementById('current-password').value;
     const newPassword = document.getElementById('new-password').value;
-    const newPasswordConfirm = document.getElementById('new-password-confirm').value;
     
-    const data = localStorage.getItem("loggedUser");
-	const user = data ? JSON.parse(data) : [];
+    const changePassword = {
+        OldPassword: currentPassword,
+        NewPassword: newPassword,
+	  };
 
-    if(validatePassword(newPassword, event) && newPassword === newPasswordConfirm) {
-        event.preventDefault();
-        user[0].password = newPassword;
-        passwordSuccessfullyChanged.style.display = 'block';
+      try{
+		event.preventDefault();
+		const response = await fetch("http://localhost:5116/api/User/ChangePassword", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+			body: JSON.stringify(changePassword)
+        });
 
-        //* update loggedUser
-        localStorage.removeItem('loggedUser');
-        localStorage.setItem('loggedUser', JSON.stringify(user));
-
-        //* update usersData
-        let usersData = localStorage.getItem("usersData");
-        let parsedUsers = JSON.parse(usersData);
-        parsedUsers.splice(parsedUsers.findIndex(v => v.email === loggedUser.email), 1);
-        parsedUsers.push(user[0]);
-        localStorage.setItem('usersData', JSON.stringify(parsedUsers));
-
-        return;
+		if (!response.ok) {
+            
+			const errorData = await response.json();
+            console.error('Error:', errorData);
+			validationAllert.style.display = "block";
+			if(errorData.errors){
+                if(errorData.errors.ConfirmPassword){
+                    validationAlertText.innerText =  errorData.errors.ConfirmPassword.join('\n');
+                }
+                else{
+                    validationAlertText.innerText =  errorData.errors.join('\n');
+                }
+				
+				return;
+			}
+			validationAlertText.innerText = errorData.errorMessage;
+			return;
+        }else{
+			event.preventDefault();
+			clearInputField();
+            validationAllert.style.display = "none";
+            const msg = await response.json();
+            changePassAllert.style.display = "block";
+            changePassAlertText.innerText = msg;
+			return false;
+		}
+    }catch(error) {
+        changeUserAllert.style.display = "none";
+        validationAllert.style.display = "block";
+        validationAlertText.innerText = "Network Error!"
     }
+
+    // if(validatePassword(newPassword, event) && newPassword === newPasswordConfirm) {
+    //     event.preventDefault();
+    //     user[0].password = newPassword;
+    //     passwordSuccessfullyChanged.style.display = 'block';
+
+    //     //* update loggedUser
+    //     localStorage.removeItem('loggedUser');
+    //     localStorage.setItem('loggedUser', JSON.stringify(user));
+
+    //     //* update usersData
+    //     let usersData = localStorage.getItem("usersData");
+    //     let parsedUsers = JSON.parse(usersData);
+    //     parsedUsers.splice(parsedUsers.findIndex(v => v.email === loggedUser.email), 1);
+    //     parsedUsers.push(user[0]);
+    //     localStorage.setItem('usersData', JSON.stringify(parsedUsers));
+
+    //     return;
+    // }
 }
 savePasswordChangesBtn.addEventListener('click', newPasswordChange, false);
 

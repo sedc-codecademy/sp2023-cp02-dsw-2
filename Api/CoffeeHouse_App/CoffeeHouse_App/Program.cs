@@ -3,16 +3,16 @@ using CoffeeHouse_App.DataAccess.DbContext;
 using CoffeeHouse_App.Domain.Entities;
 using CoffeeHouse_App.DTOs;
 using CoffeeHouse_App.Helpers;
-using CoffeeHouse_App.Services.Abstraction;
-using CoffeeHouse_App.Services.Implementation;
+using CoffeeHouse_App.Services.Abstractions;
+using CoffeeHouse_App.Services.Implmentations;
 using CoffeeHouse_App.Shared.Settings;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +24,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 var appSettings = builder.Configuration.GetSection("AppSettings");
 var clientUrl = builder.Configuration.GetValue<string>("CoffeeHouseClient:url");
 var originsPolicy = "OriginsPolicy";
+
+var emailConfig = builder.Configuration.GetSection("EmailConfiguration");
+
 
 builder.Services.Configure<AppSettings>(appSettings);
 AppSettings appSettingsObject = appSettings.Get<AppSettings>();
@@ -42,8 +45,19 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
+    options.SignIn.RequireConfirmedEmail = true;
 
 });
+
+
+// Add Email Configs
+var emailConfiguration = emailConfig.Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfiguration);
+
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options => options.TokenLifespan = TimeSpan.FromMinutes(30));
+
 
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
@@ -52,7 +66,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
@@ -69,7 +82,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddScoped<Microsoft.AspNetCore.Identity.UserManager<User>>();
+builder.Services.AddScoped<UserManager<User>>();
 
 builder.Services.AddCors(options =>
 {
@@ -114,9 +127,7 @@ builder.Services.AddSwaggerGen(setup =>
 //builder.Services.AddDbContext<CoffeeHouseDbContext>(options => 
 //    options.UseSqlServer(connectionString));
 
-builder.Services.AddDbContext<CoffeeHouseDbContext>(options =>
-                       options.UseSqlServer(connectionString),
-            ServiceLifetime.Transient);
+builder.Services.AddDbContext<CoffeeHouseDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
 builder.Services.AddAuthentication();
 

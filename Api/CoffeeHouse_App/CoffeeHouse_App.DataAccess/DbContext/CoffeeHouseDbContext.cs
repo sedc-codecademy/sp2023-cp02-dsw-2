@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.DataAccess.DbContext
 {
@@ -111,59 +106,8 @@ namespace CoffeeHouse_App.DataAccess.DbContext
                 .WithOne(u => u.User)
                 .HasForeignKey(u => u.UserId)
                 .IsRequired();
+                user.Property(c => c.PhotoId).IsRequired(false);
             });
-
-            //Seeding data
-            builder.Entity<Category>()
-                .HasData(new Category
-                    {
-                        Id = 1,
-                        Name = "Kafe vo zrno",
-                        CreatedAt = DateTime.Now,
-                        IsDeleted = false
-                    },
-                    new Category
-                    {
-                        Id = 2,
-                        Name = "Meleno kafe",
-                        CreatedAt = DateTime.Now,
-                        IsDeleted = false
-                    },
-                    new Category
-                    {
-                        Id = 3,
-                        Name = "Kafe kapsuli",
-                        CreatedAt = DateTime.Now,
-                        IsDeleted = false
-                    },
-                    new Category
-                    {
-                        Id = 4,
-                        Name = "Kafemat",
-                        CreatedAt = DateTime.Now,
-                        IsDeleted = false
-                    }
-                );
-            builder.Entity<Discount>()
-                .HasData(new Discount
-                {
-                    Id = 1,
-                    Name = "Black Friday",
-                    DiscountPercent = 15,
-                    Description = "Black Friday Discount",
-                    CreatedAt = DateTime.Now
-
-                },
-                new Discount
-                {
-                    Id = 2,
-                    Name = "Easter Discount",
-                    DiscountPercent = 10,
-                    Description = "Easter Holiday Discount",
-                    CreatedAt = DateTime.Now
-                }
-                );
-
 
             builder.Entity<Role>(role =>
             {
@@ -174,7 +118,7 @@ namespace CoffeeHouse_App.DataAccess.DbContext
             {
                 address.HasOne(a => a.Country)
                 .WithMany()
-                .HasForeignKey(a => a.CountryId);
+                .HasForeignKey(a => a.CountryId).IsRequired(false);
                 address.Property(a => a.IsDeleted).HasDefaultValue(false);
                 address.HasQueryFilter(a => !a.IsDeleted);
             });

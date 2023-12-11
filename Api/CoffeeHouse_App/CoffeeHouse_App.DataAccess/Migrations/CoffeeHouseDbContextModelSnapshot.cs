@@ -15,6 +15,7 @@ namespace CoffeeHouse_App.DataAccess.Migrations
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
+#pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
@@ -22,371 +23,321 @@ namespace CoffeeHouse_App.DataAccess.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Address", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<string>("City")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<int>("CountryId")
-                    .HasColumnType("int");
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bit")
-                    .HasDefaultValue(false);
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Street")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("Zip")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("CountryId");
+                    b.HasIndex("CountryId");
 
-                b.ToTable("Addresses", (string)null);
-            });
+                    b.ToTable("Addresses");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.CartItem", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("ProductId")
-                    .HasColumnType("int");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("ProductId");
+                    b.HasIndex("ProductId");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("CartItems", (string)null);
-            });
+                    b.ToTable("CartItems");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Category", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1876),
-                            IsDeleted = false,
-                            Name = "Kafe vo zrno"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1882),
-                            IsDeleted = false,
-                            Name = "Meleno kafe"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1886),
-                            IsDeleted = false,
-                            Name = "Kafe kapsuli"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(1890),
-                            IsDeleted = false,
-                            Name = "Kafemat"
-                        });
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Country", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<string>("CountryCode")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("CountryName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bit")
-                    .HasDefaultValue(false);
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("Countries", (string)null);
-            });
+                    b.ToTable("Countries");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Discount", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Description")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<int>("DiscountPercent")
-                    .HasColumnType("int");
+                    b.Property<int>("DiscountPercent")
+                        .HasColumnType("int");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
                     b.ToTable("Discounts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(2123),
-                            Description = "Black Friday Discount",
-                            DiscountPercent = 15,
-                            IsDeleted = false,
-                            Name = "Black Friday"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 11, 28, 11, 43, 40, 923, DateTimeKind.Local).AddTicks(2128),
-                            Description = "Easter Holiday Discount",
-                            DiscountPercent = 10,
-                            IsDeleted = false,
-                            Name = "Easter Discount"
-                        });
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderDetails", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("OrderStatusId")
-                    .HasColumnType("int");
+                    b.Property<int>("OrderStatusId")
+                        .HasColumnType("int");
 
-                b.Property<int>("PaymentDetailsId")
-                    .HasColumnType("int");
+                    b.Property<int>("PaymentDetailsId")
+                        .HasColumnType("int");
 
-                b.Property<double>("TotalPrice")
-                    .HasColumnType("float");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("OrderStatusId");
+                    b.HasIndex("OrderStatusId");
 
-                b.HasIndex("PaymentDetailsId")
-                    .IsUnique();
+                    b.HasIndex("PaymentDetailsId")
+                        .IsUnique();
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("Orders", (string)null);
-            });
+                    b.ToTable("Orders");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderItem", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("OrderDetailsId")
-                    .HasColumnType("int");
+                    b.Property<int>("OrderDetailsId")
+                        .HasColumnType("int");
 
-                b.Property<int>("ProductId")
-                    .HasColumnType("int");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                b.Property<int>("Quantity")
-                    .HasColumnType("int");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("OrderDetailsId");
+                    b.HasIndex("OrderDetailsId");
 
-                b.HasIndex("ProductId");
+                    b.HasIndex("ProductId");
 
-                b.ToTable("OrderItems", (string)null);
-            });
+                    b.ToTable("OrderItems");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderStatus", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<int>("Status")
-                    .HasColumnType("int");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("OrderStatuses", (string)null);
-            });
+                    b.ToTable("OrderStatuses");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentCard", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<string>("CardNumber")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("CardholdersName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("CardholdersName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("Cvv")
-                    .HasColumnType("int");
+                    b.Property<int>("Cvv")
+                        .HasColumnType("int");
 
-                b.Property<DateTime>("ExpireDate")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("ExpireDate")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("PaymentCards", (string)null);
-            });
+                    b.ToTable("PaymentCards");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentDetails", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("PaymentCardId")
-                    .HasColumnType("int");
+                    b.Property<int>("PaymentCardId")
+                        .HasColumnType("int");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("PaymentCardId");
+                    b.HasIndex("PaymentCardId");
 
-                b.ToTable("Payments", (string)null);
-            });
+                    b.ToTable("Payments");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Photo", b =>
                 {
@@ -416,34 +367,34 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Product", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<int>("CategoryId")
-                    .HasColumnType("int");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Description")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<int?>("DiscountId")
-                    .HasColumnType("int");
+                    b.Property<int?>("DiscountId")
+                        .HasColumnType("int");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PhotoId")
                         .HasColumnType("int");
@@ -451,17 +402,17 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                b.Property<int>("Stock")
-                    .HasColumnType("int");
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
 
-                b.Property<int>("Weight")
-                    .HasColumnType("int");
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryId");
 
-                b.HasIndex("DiscountId");
+                    b.HasIndex("DiscountId");
 
                     b.HasIndex("PhotoId");
 
@@ -469,429 +420,432 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Review", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Email")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("Name")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<int>("ProductId")
-                    .HasColumnType("int");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                b.Property<double>("Rating")
-                    .HasColumnType("float");
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
 
-                b.Property<string>("Text")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("ProductId");
+                    b.HasIndex("ProductId");
 
-                b.ToTable("Reviews", (string)null);
-            });
+                    b.ToTable("Reviews");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Role", b =>
-            {
-                b.Property<string>("Id")
-                    .HasColumnType("nvarchar(450)");
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("Name")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.Property<string>("NormalizedName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("NormalizedName")
-                    .IsUnique()
-                    .HasDatabaseName("RoleNameIndex")
-                    .HasFilter("[NormalizedName] IS NOT NULL");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
-                b.ToTable("AspNetRoles", (string)null);
-            });
+                    b.ToTable("AspNetRoles", (string)null);
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.User", b =>
-            {
-                b.Property<string>("Id")
-                    .HasColumnType("nvarchar(450)");
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<int>("AccessFailedCount")
-                    .HasColumnType("int");
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
-                b.Property<DateTime?>("Birthdate")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("Birthdate")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("Email")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.Property<bool>("EmailConfirmed")
-                    .HasColumnType("bit");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
-                b.Property<bool>("FirstLogin")
-                    .HasColumnType("bit");
+                    b.Property<bool>("FirstLogin")
+                        .HasColumnType("bit");
 
-                b.Property<string>("FirstName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("LastName")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<bool>("LockoutEnabled")
-                    .HasColumnType("bit");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-                b.Property<DateTimeOffset?>("LockoutEnd")
-                    .HasColumnType("datetimeoffset");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
-                b.Property<string>("NormalizedEmail")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.Property<string>("NormalizedUserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.Property<string>("PasswordHash")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("PhoneNumber")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<bool>("PhoneNumberConfirmed")
-                    .HasColumnType("bit");
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
 
-                b.Property<string>("SecurityStamp")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("PhotoId")
+                        .HasColumnType("int");
 
-                b.Property<bool>("TwoFactorEnabled")
-                    .HasColumnType("bit");
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("UserName")
-                    .HasMaxLength(256)
-                    .HasColumnType("nvarchar(256)");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
 
-                b.HasKey("Id");
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                b.HasIndex("Email")
-                    .IsUnique()
-                    .HasFilter("[Email] IS NOT NULL");
+                    b.HasKey("Id");
 
-                b.HasIndex("NormalizedEmail")
-                    .HasDatabaseName("EmailIndex");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
-                b.HasIndex("NormalizedUserName")
-                    .IsUnique()
-                    .HasDatabaseName("UserNameIndex")
-                    .HasFilter("[NormalizedUserName] IS NOT NULL");
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
 
-                b.ToTable("AspNetUsers", (string)null);
-            });
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("PhotoId");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserAddress", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<int>("AddressId")
-                    .HasColumnType("int");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("bit")
-                    .HasDefaultValue(false);
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("AddressId");
+                    b.HasIndex("AddressId");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("UserAddresses", (string)null);
-            });
+                    b.ToTable("UserAddresses");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserRole", b =>
-            {
-                b.Property<string>("UserId")
-                    .HasColumnType("nvarchar(450)");
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("RoleId")
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("UserId", "RoleId");
+                    b.HasKey("UserId", "RoleId");
 
-                b.HasIndex("RoleId");
+                    b.HasIndex("RoleId");
 
-                b.ToTable("AspNetUserRoles", (string)null);
-            });
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.WishItem", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<DateTime>("CreatedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<bool>("IsDeleted")
-                    .HasColumnType("bit");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
-                b.Property<DateTime?>("ModifiedAt")
-                    .HasColumnType("datetime2");
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
-                b.Property<int>("ProductId")
-                    .HasColumnType("int");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("ProductId");
+                    b.HasIndex("ProductId");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("WishItems", (string)null);
-            });
+                    b.ToTable("WishItems");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<string>("ClaimType")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("ClaimValue")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("RoleId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("RoleId");
+                    b.HasIndex("RoleId");
 
-                b.ToTable("AspNetRoleClaims", (string)null);
-            });
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int");
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                b.Property<string>("ClaimType")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("ClaimValue")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("AspNetUserClaims", (string)null);
-            });
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-            {
-                b.Property<string>("LoginProvider")
-                    .HasColumnType("nvarchar(450)");
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("ProviderKey")
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("ProviderDisplayName")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
 
-                b.Property<string>("UserId")
-                    .IsRequired()
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                b.HasKey("LoginProvider", "ProviderKey");
+                    b.HasKey("LoginProvider", "ProviderKey");
 
-                b.HasIndex("UserId");
+                    b.HasIndex("UserId");
 
-                b.ToTable("AspNetUserLogins", (string)null);
-            });
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-            {
-                b.Property<string>("UserId")
-                    .HasColumnType("nvarchar(450)");
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("LoginProvider")
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("Name")
-                    .HasColumnType("nvarchar(450)");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
 
-                b.Property<string>("Value")
-                    .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
 
-                b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId", "LoginProvider", "Name");
 
-                b.ToTable("AspNetUserTokens", (string)null);
-            });
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Address", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Country", "Country")
-                    .WithMany()
-                    .HasForeignKey("CountryId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
 
-                b.Navigation("Country");
-            });
+                    b.Navigation("Country");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.CartItem", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
-                    .WithMany("CartItems")
-                    .HasForeignKey("ProductId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
-                    .WithMany("CartItems")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
+                        .WithMany("CartItems")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("Product");
+                    b.Navigation("Product");
 
-                b.Navigation("User");
-            });
+                    b.Navigation("User");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderDetails", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.OrderStatus", "OrderStatus")
-                    .WithMany("OrderDetails")
-                    .HasForeignKey("OrderStatusId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.OrderStatus", "OrderStatus")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.HasOne("CoffeeHouse_App.Domain.Entities.PaymentDetails", "PaymentDetails")
-                    .WithOne("OrderDetails")
-                    .HasForeignKey("CoffeeHouse_App.Domain.Entities.OrderDetails", "PaymentDetailsId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.PaymentDetails", "PaymentDetails")
+                        .WithOne("OrderDetails")
+                        .HasForeignKey("CoffeeHouse_App.Domain.Entities.OrderDetails", "PaymentDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
-                    .WithMany("Orders")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("OrderStatus");
+                    b.Navigation("OrderStatus");
 
-                b.Navigation("PaymentDetails");
+                    b.Navigation("PaymentDetails");
 
-                b.Navigation("User");
-            });
+                    b.Navigation("User");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderItem", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.OrderDetails", "OrderDetails")
-                    .WithMany("OrderItems")
-                    .HasForeignKey("OrderDetailsId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.OrderDetails", "OrderDetails")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
-                    .WithMany("OrderItems")
-                    .HasForeignKey("ProductId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("OrderDetails");
+                    b.Navigation("OrderDetails");
 
-                b.Navigation("Product");
-            });
+                    b.Navigation("Product");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentDetails", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.PaymentCard", "PaymentCard")
-                    .WithMany("Payments")
-                    .HasForeignKey("PaymentCardId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.PaymentCard", "PaymentCard")
+                        .WithMany("Payments")
+                        .HasForeignKey("PaymentCardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("PaymentCard");
-            });
+                    b.Navigation("PaymentCard");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Product", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Category", "Category")
-                    .WithMany("CategoryProducts")
-                    .HasForeignKey("CategoryId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Category", "Category")
+                        .WithMany("CategoryProducts")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Discount", "Discount")
-                    .WithMany("DiscountProducts")
-                    .HasForeignKey("DiscountId");
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Discount", "Discount")
+                        .WithMany("DiscountProducts")
+                        .HasForeignKey("DiscountId");
 
                     b.HasOne("CoffeeHouse_App.Domain.Entities.Photo", "Photo")
                         .WithMany()
@@ -907,173 +861,183 @@ namespace CoffeeHouse_App.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Review", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
-                    .WithMany("Reviews")
-                    .HasForeignKey("ProductId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("Product");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserAddress", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Address", "Address")
-                    .WithMany("UserAddresses")
-                    .HasForeignKey("AddressId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
-                    .WithMany("UserAddresses")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("Address");
-
-                b.Navigation("User");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserRole", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Role", "Role")
-                    .WithMany("UserRoles")
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
-                    .WithMany("UserRoles")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("Role");
-
-                b.Navigation("User");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.WishItem", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
-                    .WithMany("WishItems")
-                    .HasForeignKey("ProductId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
-                    .WithMany("WishItems")
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-
-                b.Navigation("Product");
-
-                b.Navigation("User");
-            });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.Role", null)
-                    .WithMany()
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-            {
-                b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
-                    .WithMany()
-                    .HasForeignKey("UserId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Address", b =>
-            {
-                b.Navigation("UserAddresses");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Category", b =>
-            {
-                b.Navigation("CategoryProducts");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Discount", b =>
-            {
-                b.Navigation("DiscountProducts");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderDetails", b =>
-            {
-                b.Navigation("OrderItems");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderStatus", b =>
-            {
-                b.Navigation("OrderDetails");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentCard", b =>
-            {
-                b.Navigation("Payments");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentDetails", b =>
-            {
-                b.Navigation("OrderDetails")
-                    .IsRequired();
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Product", b =>
-            {
-                b.Navigation("CartItems");
-
-                b.Navigation("OrderItems");
-
-                b.Navigation("Reviews");
-
-                b.Navigation("WishItems");
-            });
-
-            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Role", b =>
-            {
-                b.Navigation("UserRoles");
-            });
+                    b.Navigation("Product");
+                });
 
             modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.User", b =>
-            {
-                b.Navigation("CartItems");
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Photo", "Photo")
+                        .WithMany()
+                        .HasForeignKey("PhotoId");
 
-                b.Navigation("Orders");
+                    b.Navigation("Photo");
+                });
 
-                b.Navigation("UserAddresses");
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserAddress", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Address", "Address")
+                        .WithMany("UserAddresses")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("UserRoles");
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
+                        .WithMany("UserAddresses")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                b.Navigation("WishItems");
-            });
+                    b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.UserRole", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.WishItem", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Product", "Product")
+                        .WithMany("WishItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", "User")
+                        .WithMany("WishItems")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("CoffeeHouse_App.Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Address", b =>
+                {
+                    b.Navigation("UserAddresses");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("CategoryProducts");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Discount", b =>
+                {
+                    b.Navigation("DiscountProducts");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderDetails", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.OrderStatus", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentCard", b =>
+                {
+                    b.Navigation("Payments");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.PaymentDetails", b =>
+                {
+                    b.Navigation("OrderDetails")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("CartItems");
+
+                    b.Navigation("OrderItems");
+
+                    b.Navigation("Reviews");
+
+                    b.Navigation("WishItems");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("CoffeeHouse_App.Domain.Entities.User", b =>
+                {
+                    b.Navigation("CartItems");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("UserAddresses");
+
+                    b.Navigation("UserRoles");
+
+                    b.Navigation("WishItems");
+                });
+#pragma warning restore 612, 618
         }
     }
 }

@@ -334,3 +334,19 @@ button#save-changes-btn:active
 {
     background:#DD592D;
 }
+
+#validation-alert{
+    display: none;
+  }
+
+  #change-pass-successfully-created-alert{
+    display: none;
+  }
+
+  #change-user-successfully-created-alert{
+    display: none;
+  }
+
+  #delete-user-successfully-alert{
+    display: none;
+  }

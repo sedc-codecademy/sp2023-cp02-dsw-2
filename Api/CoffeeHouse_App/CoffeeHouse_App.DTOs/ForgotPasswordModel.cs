@@ -11,5 +11,10 @@ namespace CoffeeHouse_App.DTOs
     {
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
+        public string Password { get; set; } = null!;
+        [Compare("Password", ErrorMessage = "The password and confirmation password does not match.")]
+        public string ConfirmPassword { get; set; } = null!;
+        public string Token { get; set; } = null!;
     }
 }

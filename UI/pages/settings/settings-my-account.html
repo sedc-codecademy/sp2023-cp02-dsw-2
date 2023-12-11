@@ -97,21 +97,32 @@
                                                 Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, and one number.W
                                             </small>
                                         </div>
-                                        
                                         <!--* New password -->
                                         <div id="password-change-form">
+
+                                            <!--* Confirm new password -->
+                                            <span class="password-show-toggle js-password-show-toggle-1"><span class="eye"></span></span>
+                                            <input type="password" class="form-control mt-2" id="current-password" placeholder="Current Password" required>
+
                                             <span class="password-show-toggle js-password-show-toggle"><span class="eye"></span></span>
-                                            <input type="password" class="form-control" id="new-password" placeholder="New Password" required>
+                                            <input type="password" class="form-control mt-2" id="new-password" placeholder="New Password" required>
                                             
                                             <div class="alert alert-info mt-3" id="password-info-alert" role="alert">
                                                 <small id="password-info-alert-text">
                                                     Your password must be 8-20 characters long, including a letters, numbers and special characters.
                                                 </small>
                                             </div>
-                                          
-                                            <!--* Confirm new password -->
-                                            <span class="password-show-toggle js-password-show-toggle-1"><span class="eye"></span></span>
-                                            <input type="password" class="form-control mt-2" id="new-password-confirm" placeholder="Confirm New Password" required>
+
+                                            <div class="mt-2 alert alert-success" role="alert" id="change-pass-successfully-created-alert">
+                                                <small id="change-pass-successfully-created-alert-text">
+                                                </small>
+                                            </div>
+
+                                            <div class="mt-2 alert alert-danger" role="alert" id="validation-alert">
+                                                <small id="validation-alert-text">
+                                                    
+                                                </small>
+                                            </div>
 
                                             <div class="mt-4 pb-3">
                                                 <button class="btn border button" id="cancel-password-changes-btn">Cancel</button>

@@ -21,6 +21,10 @@ namespace CoffeeHouse_App.DataAccess
                 {
                     SeedRoles.Seed(dbContext);
                     SeedCountries.Seed(dbContext);
+                    SeedCategory.Seed(dbContext);
+                    SeedDiscount.Seed(dbContext);
+                    SeedPhotos.Seed(dbContext);
+                    SeedProducts.Seed(dbContext);
 
                     transaction.Commit();
                 }

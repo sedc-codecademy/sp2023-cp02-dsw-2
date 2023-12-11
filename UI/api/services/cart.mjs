@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 async function fetchCartProductData() {
     try{
         //GET THE TOKEN FROM LOCAL STORAGE
-        // const userToken = localStorage.getItem("Token");
+        const userToken = localStorage.getItem("token");
         let totalPrice = 0;
         cartContainer.innerHTML = '';
         const response = await fetch('http://localhost:5116/api/Product/CartProducts',{ headers: {Authorization: `Bearer ${userToken}`}});
@@ -62,7 +62,7 @@ async function fetchCartProductData() {
 async function fetchRemoveCartItem(productId) {
     try{
         //GET THE TOKEN FROM LOCAL STORAGE
-        // const userToken = localStorage.getItem("Token");
+        const userToken = localStorage.getItem("token");
         const response = await fetch(`http://localhost:5116/api/Product/RemoveFromCart${productId}`,{method: 'DELETE', headers: {Authorization: `Bearer ${userToken}`}});
         const message = await response;
         if(response.ok){

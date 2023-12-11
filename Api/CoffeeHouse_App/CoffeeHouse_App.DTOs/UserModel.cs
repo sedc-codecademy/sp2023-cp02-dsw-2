@@ -17,5 +17,7 @@ namespace CoffeeHouse_App.DTOs
 
         public DateTime? Birthdate { get; set; }
         public AddressModel Address { get; set; }
+
+        public string ProfileImage { get; set; }
     }
 }

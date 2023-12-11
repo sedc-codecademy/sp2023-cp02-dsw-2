@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.Domain.Entities
 {
@@ -16,6 +11,8 @@ namespace CoffeeHouse_App.Domain.Entities
         public List<WishItem> WishItems { get; set; } = new List<WishItem>();
         public bool FirstLogin { get; set; }
         public DateTime? Birthdate { get; set; }
+        public int? PhotoId { get; set; }
+        public virtual Photo Photo { get; set; }
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
         public virtual ICollection<UserAddress> UserAddresses { get; set; }

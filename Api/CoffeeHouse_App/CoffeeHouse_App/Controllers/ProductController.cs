@@ -1,10 +1,7 @@
-﻿using CoffeeHouse_App.DataAccess.Repositories.Abstractions;
-using CoffeeHouse_App.Domain.Entities;
-using CoffeeHouse_App.DTOs.ProductDtos;
+﻿using CoffeeHouse_App.DTOs.ProductDtos;
 using CoffeeHouse_App.Services.Abstractions;
 using CoffeeHouse_App.Shared.CustomExceptions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 

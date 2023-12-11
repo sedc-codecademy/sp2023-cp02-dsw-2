@@ -15,6 +15,12 @@ const passwordValidationAlert = document.getElementById('password-validation-ale
 const passwordChangeAlert = document.getElementById('password-changed-alert');
 const passwordDoesntMatch = document.getElementById('password-doesnt-match');
 
+const forgotPassAllert = document.getElementById('forgot-pass-successfully-created-alert');
+const forgotPassAlertText = document.getElementById('forgot-pass-successfully-created-alert-text');
+
+const validationAllert = document.getElementById('validation-alert');
+const validationAlertText = document.getElementById('validation-alert-text');
+
 
 // //? Example starter JavaScript for disabling form submissions if there are invalid fields
 // //* function isFormEmpty
@@ -24,27 +30,63 @@ function clearInputField() {
     newPasswordConfirm.value = '';
 }
 
-function passwordResetUserExists(event){
+async function passwordResetUserExists(event){
     const email = document.getElementById('email').value;
-    const data = localStorage.getItem("usersData");
-	const users = data ? JSON.parse(data) : [];
+    try{
+		event.preventDefault();
+        const response = await fetch(`http://localhost:5116/api/User/ForgotPassword?email=${encodeURIComponent(email)}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
 
-    const userExists = users.find(u => u.email === email)
-    
-    if(userExists){
-        event.preventDefault();
-        hideEmailInput.style.display = 'none';
-        newPasswordDiv.style.display = 'block';
-        incorectEmailAddress.style.display = 'none';
-        return false;
-    } else {
-        event.preventDefault();
-        incorectEmailAddress.style.display = 'block';
-        return false;
+		if (!response.ok) {
+            
+			const errorData = await response.json();
+            console.error('Error:', errorData);
+			validationAllert.style.display = "block";
+			if(errorData.errors){
+				validationAlertText.innerText =  errorData.errors.join('\n');
+				return;
+			}
+			validationAlertText.innerText = errorData.errorMessage;
+			return;
+        }else{
+            const msg = await response.json();
+            forgotPassAllert.style.display = "block";
+            forgotPassAlertText.innerText = msg;
+			return false;
+		}
+    }catch(error) {
+        forgotPassAllert.style.display = "none";
+        validationAllert.style.display = "block";
+        validationAlertText.innerText = "Network Error!"
     }
 
+    // const data = localStorage.getItem("usersData");
+	// const users = data ? JSON.parse(data) : [];
+
+    // const userExists = users.find(u => u.email === email)
+    
+    // if(userExists){
+    //     event.preventDefault();
+    //     hideEmailInput.style.display = 'none';
+    //     newPasswordDiv.style.display = 'block';
+    //     incorectEmailAddress.style.display = 'none';
+    //     return false;
+    // } else {
+    //     event.preventDefault();
+    //     incorectEmailAddress.style.display = 'block';
+    //     return false;
+    // }
+
 }
-resetButtonBtn.addEventListener('click', passwordResetUserExists, false);
+if(resetButtonBtn !== null){
+    resetButtonBtn.addEventListener('click', passwordResetUserExists, false);
+}
+
 
 
 function validatePassword (password, event) {
@@ -59,59 +101,123 @@ function validatePassword (password, event) {
 	}
 }
 
-function changeNewPassword(email, event) {
+// function changeNewPassword(email, event) {
+//     const newPassword = document.getElementById('new-password').value;
+//     const newPasswordConfirm = document.getElementById('new-password-confirm').value;
+
+//     const data = localStorage.getItem("usersData");
+//     const users = data ? JSON.parse(data) : [];
+//     const selectedUser = users.find(u => u.email === email);
+    
+//     const passwordChangeAlert = document.getElementById('password-changed-alert');
+//     const samePassword = document.getElementById('password-same');
+//     const passwordDoesntMatchAlert = document.getElementById('password-doesnt-match');
+
+//     if (validatePassword(newPassword, event) && newPassword !== selectedUser.password && newPasswordConfirm !== selectedUser.password && newPassword === newPasswordConfirm && selectedUser) {
+        
+//         selectedUser.password = newPassword;
+        
+//         localStorage.setItem("usersData", JSON.stringify(users));
+//         clearInputField();
+//         //event.preventDefault();
+//         passwordChangeAlert.style.display = 'block';
+//         samePassword.style.display = 'none';
+//         passwordDoesntMatchAlert.style.display = 'none';
+        
+//         return true;
+//     } 
+//     else if(newPassword != newPasswordConfirm){
+//         // event.preventDefault();
+//         passwordDoesntMatchAlert.style.display = 'block';
+//         passwordChangeAlert.style.display = 'none';
+//         samePassword.style.display = 'none';
+//         return false;
+//     } 
+//     else if (newPassword === selectedUser.password) {
+//         samePassword.style.display = 'block';
+//         passwordChangeAlert.style.display = 'none';
+//         passwordDoesntMatchAlert.style.display = 'none';
+//         return false;
+//     }
+    
+// }
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2]);
+}
+
+async function handlePasswordChange(event) {
+    event.preventDefault();
+debugger;
+    const token = getParameterByName('token');
+    const email = getParameterByName('email');
     const newPassword = document.getElementById('new-password').value;
     const newPasswordConfirm = document.getElementById('new-password-confirm').value;
 
-    const data = localStorage.getItem("usersData");
-    const users = data ? JSON.parse(data) : [];
-    const selectedUser = users.find(u => u.email === email);
-    
-    const passwordChangeAlert = document.getElementById('password-changed-alert');
-    const samePassword = document.getElementById('password-same');
-    const passwordDoesntMatchAlert = document.getElementById('password-doesnt-match');
+    const forgotPassword = {
+		email: email,
+		password: newPassword,
+		confirmPassword: newPasswordConfirm,
+		token: token,
+	  };
 
-    if (validatePassword(newPassword, event) && newPassword !== selectedUser.password && newPasswordConfirm !== selectedUser.password && newPassword === newPasswordConfirm && selectedUser) {
-        
-        selectedUser.password = newPassword;
-        
-        localStorage.setItem("usersData", JSON.stringify(users));
-        clearInputField();
-        //event.preventDefault();
-        passwordChangeAlert.style.display = 'block';
-        samePassword.style.display = 'none';
-        passwordDoesntMatchAlert.style.display = 'none';
-        
-        return true;
-    } 
-    else if(newPassword != newPasswordConfirm){
-        // event.preventDefault();
-        passwordDoesntMatchAlert.style.display = 'block';
-        passwordChangeAlert.style.display = 'none';
-        samePassword.style.display = 'none';
-        return false;
-    } 
-    else if (newPassword === selectedUser.password) {
-        samePassword.style.display = 'block';
-        passwordChangeAlert.style.display = 'none';
-        passwordDoesntMatchAlert.style.display = 'none';
-        return false;
+      try{
+		event.preventDefault();
+		const response = await fetch("http://localhost:5116/api/User/ResetPassword", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+			body: JSON.stringify(forgotPassword)
+        });
+
+		if (!response.ok) {
+            
+			const errorData = await response.json();
+            console.error('Error:', errorData);
+			validationAllert.style.display = "block";
+			if(errorData.errors){
+                if(errorData.errors.ConfirmPassword){
+                    validationAlertText.innerText =  errorData.errors.ConfirmPassword.join('\n');
+                }
+                else{
+                    validationAlertText.innerText =  errorData.errors.join('\n');
+                }
+				
+				return;
+			}
+			validationAlertText.innerText = errorData.errorMessage;
+			return;
+        }else{
+			event.preventDefault();
+			clearInputField();
+            validationAllert.style.display = "none";
+            const msg = await response.json();
+            forgotPassAllert.style.display = "block";
+            forgotPassAlertText.innerText = msg;
+			return false;
+		}
+    }catch(error) {
+        changeUserAllert.style.display = "none";
+        validationAllert.style.display = "block";
+        validationAlertText.innerText = "Network Error!"
     }
-    
-}
 
-
-function handlePasswordChange(event) {
-    event.preventDefault();
   
-    const email = document.getElementById('email').value;
-    changeNewPassword(email, event);
+    //const email = document.getElementById('email').value;
+    //changeNewPassword(email, event);
 }
-confirmNewPasswordBtn.addEventListener('click', handlePasswordChange, false);
+if(confirmNewPasswordBtn !== null){
+    confirmNewPasswordBtn.addEventListener('click', handlePasswordChange, false);
 
-
-
-//? Toggle Password - Change Password
+    //? Toggle Password - Change Password
 (function() {
     'use strict'
     const eyeToggleNewPassword = document.querySelector('.js-password-show-toggle');
@@ -140,7 +246,7 @@ confirmNewPasswordBtn.addEventListener('click', handlePasswordChange, false);
         }
     })
 })();
-
+}
 
 //? Event Listener to password input field with callback function
 function showPasswordInfoField() {
@@ -153,4 +259,6 @@ document.addEventListener('click', function(event) {
         passwordInfoAlert.style.display = 'none';
     }
 });
-newPassword.addEventListener("focus", showPasswordInfoField);
+if(newPassword !== null){
+    newPassword.addEventListener("focus", showPasswordInfoField);
+}

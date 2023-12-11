@@ -2,12 +2,8 @@
 using CoffeeHouse_App.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CoffeeHouse_App.DataAccess.Seed
 {
@@ -52,7 +48,13 @@ namespace CoffeeHouse_App.DataAccess.Seed
 
         private static void DeleteData(List<Product> products, CoffeeHouseDbContext dbContext)
         {
-            var data = dbContext.Products.Where(x => !products.Any(y => y.Id == x.Id)).ToList();
+            //var data = dbContext.Products.Where(x => !products.Any(y => y.Id == x.Id)).ToList();
+
+            var excludedIds = products.Select(y => y.Id).ToList();
+            // Use the list of excluded IDs in the main query
+            var data = dbContext.Products
+                .Where(x => !excludedIds.Contains(x.Id))
+                .ToList();
 
             if (data.Any())
             {

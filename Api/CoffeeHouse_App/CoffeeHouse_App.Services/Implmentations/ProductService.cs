@@ -74,7 +74,7 @@ namespace CoffeeHouse_App.Services.Implmentations
 
             if(pictureDb == null)
             {
-                throw new ProductDataException("Picture not found or error while attaching to dataabase!");
+                throw new ProductDataException("Picture not found or error while attaching to database!");
             }
 
             var category = await _categoryRepository.GetByIdInt(product.CategoryId);

@@ -14,6 +14,6 @@ namespace CoffeeHouse_App.DTOs
         public DateTime? Birthdate { get; set; }
         public string PhoneNumber { get; set; }
 
-        public AddressModel Address { get; set; }
+        public AddressModel? Address { get; set; }
     }
 }

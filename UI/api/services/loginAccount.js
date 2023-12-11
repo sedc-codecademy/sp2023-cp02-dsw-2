@@ -31,63 +31,53 @@ function triggerFormValidation(event) {
 	});
 }
 
+async function loginAccount(event) {
+    debugger;
+    const loginEmail = document.getElementById('login-email').value;
+    const loginPassword = document.getElementById('login-password').value;
 
-function loginAccount(event){
-	const loginEmail = document.getElementById('login-email').value;
-	const loginPassword = document.getElementById('login-password').value;
-
-    if(isFormEmpty()){
+    if (isFormEmpty()) {
         event.preventDefault();
         triggerFormValidation(event);
         return;
     }
 
-	// const data = localStorage.getItem("usersData");
-	// const users = data ? JSON.parse(data) : [];
-debugger;
-    fetch("http://localhost:5116/api/User/Login", {
-		method: 'POST',
-		headers: {
-		  'Accept': 'application/json',
-		  'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-            email: loginEmail,
-            password: loginPassword,
-          }),
-	  })
-      .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-		.then(data => {
-            console.log(data);
+    try {
+        event.preventDefault();
+        const response = await fetch("http://localhost:5116/api/User/Login", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: loginEmail,
+                password: loginPassword,
+            }),
+        });
 
-            const token = data.token;
-            const loggedUser = data.loggedUser;
-            localStorage.setItem('token', token);
-            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-            window.location.href = "/pages/home-page/home-page.html";
-		})
-		.catch(error => console.error('Unable to add item.', error));
+        if (!response.ok) {
+            const errorData = await response.json();
+            incorectDangerAllert.style.display = "block";
+            incorectDangerAlertText.innerText = errorData.errorMessage;
+            return false;
+        }
+        else{
+            incorectDangerAllert.style.display = "none";
+        }
 
-	// const userExists = users.find(u => u.email === loginEmail && u.password === loginPassword);
+        const data = await response.json();
+        console.log(data);
 
-  	// if (userExists) {
-    //     event.preventDefault();
-    //     window.location.href = "/pages/home-page/home-page.html";
-    //     const loggedUser = localStorage.getItem("loggedUser")
-    //     const logUser = loggedUser ? JSON.parse(loggedUser) : [];
-    //     logUser.push(userExists);
-    //     localStorage.setItem('loggedUser', JSON.stringify(logUser));
-    //     return false;
-  	// } else {
-    //     event.preventDefault();
-    // 	incorectDangerAllert.style.display = "block";
-    //     return false;
- 	// }
+        const token = data.token;
+        const loggedUser = data.loggedUser;
+        localStorage.setItem('token', token);
+        localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+        window.location.href = "/pages/home-page/home-page.html";
+    } catch (error) {
+        incorectDangerAllert.style.display = "block";
+        incorectDangerAlertText.innerText = "Network Error";
+    }
 }
 loginBtn.addEventListener('click', loginAccount);
 

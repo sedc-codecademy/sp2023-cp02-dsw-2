@@ -231,6 +231,10 @@ input[type=checkbox]:checked + label {
   display: none;
 }
 
+#forgot-pass-successfully-created-alert{
+  display: none;
+}
+
 #email-exists-alert {
   display: none;
 }
@@ -244,9 +248,6 @@ input[type=checkbox]:checked + label {
 #hide-email-input{
   display: block;
 }
-#new-password-div {
-  display: none;
-}
 #password-changed-alert{
   display: none;
 }
@@ -257,3 +258,6 @@ input[type=checkbox]:checked + label {
   display:none;
 }
 
+#create-user-successfully-alert {
+  display: none;
+}

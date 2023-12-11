@@ -48,7 +48,8 @@ async function fetchProductData() {
 }
 
 //GET THE TOKEN FROM LOCAL STORAGE
-// const userToken = localStorage.getItem("Token");
+const userToken = localStorage.getItem("token");
+
 async function fetchAddToCartItem(productId) {
     try{
         

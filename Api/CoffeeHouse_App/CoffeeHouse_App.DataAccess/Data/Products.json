@@ -1,0 +1,96 @@
+[
+  {
+    "id": 1,
+    "name": "Lavazza Gusto Forte Intenso",
+    "description": "Intenziven vkus i aroma so poteklo od egzotichni lokacii niz celiot svet",
+    "categoryId": 1,
+    "price": 900,
+    "weight": 1000,
+    "stock": 7,
+    "discountId": 1,
+    "photoId": 1
+  },
+  {
+    "id": 2,
+    "name": "ILLY Decaf",
+    "description": "Dekafinirano i spremno so CO2 metodot za vrven kvalitet",
+    "categoryId": 1,
+    "price": 517,
+    "weight": 250,
+    "stock": 15,
+    "discountId": 1,
+    "photoId": 2
+  },
+  {
+    "id": 3,
+    "name": "Gimoka Miscela Bar",
+    "description": "Sovrsheno izbalansirana meshavina od zrna Arabika (20%) i Robusta (80%)",
+    "categoryId": 2,
+    "price": 550,
+    "weight": 500,
+    "stock": 15,
+    "discountId": 1,
+    "photoId": 3,
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "name": "DolceVita Intenso",
+    "description": "Osobeno rafinirana za ljubitelite na silnoto espreso",
+    "categoryId": 2,
+    "price": 160,
+    "weight": 250,
+    "stock": 28,
+    "discountId": 2,
+    "photoId": 4,
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "name": "Lavazza Delicato | Nespresso",
+    "description": "Slatka meshavina od delikatni noti i miris na planinski cvekinja",
+    "categoryId": 3,
+    "price": 220,
+    "weight": 250,
+    "stock": 12,
+    "discountId": null,
+    "photoId": 5,
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "name": "Toffee Nut Latte | Tassimo",
+    "description": "Krem od mleko so vkus na jatkasti plodovi",
+    "categoryId": 3,
+    "price": 400,
+    "weight": 300,
+    "stock": 2,
+    "discountId": 2,
+    "photoId": 6,
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "name": "TASSIMO HAPPY Black",
+    "description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo",
+    "categoryId": 4,
+    "price": 7200,
+    "weight": 2200,
+    "stock": 4,
+    "discountId": null,
+    "photoId": 7,
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "name": "TASSIMO HAPPY Red",
+    "description": "Samo so eden dopir mozhe da podgotvite pijaloci za sebe i vasheto semejstvo. Sega vo crvena boja",
+    "categoryId": 4,
+    "price": 7200,
+    "weight": 2200,
+    "stock": 2,
+    "discountId": 1,
+    "photoId": 8,
+    "reviews": []
+  }
+]

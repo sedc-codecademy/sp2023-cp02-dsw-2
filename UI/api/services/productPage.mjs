@@ -1,0 +1,295 @@
+
+import {createProductCard} from './createProductCard.mjs'
+import { showNotification } from './showNotification.mjs';
+import {addToCart} from './addToCart.mjs';
+import { addToWishlist } from './addToWishlist.mjs';
+import { removeFromWishlist } from './removeFromWishlist.mjs';
+
+
+
+const elements = {
+    cardContainer: document.getElementById("card-contaier"),
+    sortButton: document.getElementById("sort-Button"),
+    sortDefault: document.getElementById("sort-Default"),
+    sortAlphabetically: document.getElementById("sort-Alphabetically"),
+    sortPriceLowToHigh: document.getElementById("sort-PriceLowToHigh"),
+    sortPriceHighToLow: document.getElementById("sort-PriceHighToLow"),
+    filterButton : document.getElementById("filter-button"),
+    filterCoffeeCategory : document.getElementById("coffee-category"),
+    filterAccessoriesCategory : document.getElementById("Accessories-category"),
+    filterCoffeeMachinesCategory : document.getElementById("coffeeMachines-category"),
+    closeButton: document.getElementById("closebtn")
+
+    
+}
+
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    fetchProductData();
+})
+
+let products = null;
+let displayedProducts = null;
+
+async function fetchProductData() {
+    try{
+        const response = await fetch('http://localhost:5116/api/Product');
+        const productsData = await response.json();
+        console.log(productsData);
+        productsData.forEach(product => {
+            elements.cardContainer.innerHTML += createProductCard(product)
+        });
+        products = productsData;
+        displayedProducts = productsData;
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+    }
+}
+
+//GET THE TOKEN FROM LOCAL STORAGE
+const userToken = localStorage.getItem("token");
+
+async function fetchAddToCartItem(productId) {
+    try{
+        
+        const response = await fetch(`http://localhost:5116/api/Product/addToCart${productId}`,{method: 'POST', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Added To Cart")
+        }
+        if(response.status == 404){
+            showNotification("Product Already Added To Cart")
+        }
+
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
+
+  async function fetchAddToWishListItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/addToWishlist${productId}`,{method: 'POST', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Added To Wishlist")
+        }
+        if(response.status == 404){
+            showNotification("Product Already Added To Wishlist")
+        }
+
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
+
+  async function fetchRemoveFromWishListItem(productId) {
+    try{
+        //GET THE TOKEN FROM LOCAL STORAGE
+        // const userToken = localStorage.getItem("Token");
+        const response = await fetch(`http://localhost:5116/api/Product/RemoveFromWishlist${productId}`,{method: 'DELETE', headers: {Authorization: `Bearer ${userToken}`}});
+        const message = await response;
+        if(response.ok){
+            showNotification("Product Removed From Wishlist")
+        }
+        if(response.status == 404){
+            showNotification("Product is not found in Wishlist")
+        }
+
+        
+    }
+    catch(error){
+        console.error('Error fetching product details:', error);
+        
+    }
+  }
+
+
+
+  
+
+
+elements.sortDefault.addEventListener('click', ()=>{
+    let defaultSortedProducts = displayedProducts.sort(dynamicSort("id"))
+    elements.cardContainer.innerHTML ='';
+    
+    defaultSortedProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+})
+
+
+elements.sortAlphabetically.addEventListener('click', ()=>{
+    let alphabeticallySortedProducts = displayedProducts.sort(dynamicSort("name"))
+    elements.cardContainer.innerHTML ='';
+    
+    alphabeticallySortedProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+})
+
+elements.sortPriceLowToHigh.addEventListener('click', ()=>{
+    let priceLowToHighSortedProducts = displayedProducts.sort(dynamicSort("price"))
+    elements.cardContainer.innerHTML ='';
+    
+    priceLowToHighSortedProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+})
+
+elements.sortPriceHighToLow.addEventListener('click', ()=>{
+    let priceHighToLowSortedProducts = displayedProducts.sort(dynamicSort("-price"))
+    elements.cardContainer.innerHTML ='';
+    
+    priceHighToLowSortedProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+})
+
+
+elements.filterCoffeeCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let coffeeProducts = products.filter(x=>x.category.name ==='Kafe vo zrno' || x.category.name ==='Meleno kafe' || x.category.name === 'Kafe kapsuli');
+    elements.cardContainer.innerHTML ='';
+    coffeeProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = coffeeProducts;
+})
+
+elements.filterAccessoriesCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let accessoriesProducts = products.filter(x=>x.category.name ==='casi i fildzani');
+    elements.cardContainer.innerHTML ='';
+    accessoriesProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = accessoriesProducts;
+})
+
+elements.filterCoffeeMachinesCategory.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    let coffeeMachineProducts = products.filter(x=>x.category.name ==='Kafemat');
+    elements.cardContainer.innerHTML ='';
+    coffeeMachineProducts.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    })
+    displayedProducts = coffeeMachineProducts;
+})
+
+elements.closeButton.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    elements.cardContainer.innerHTML ='';
+    products.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    });
+    displayedProducts = products;
+
+})
+
+elements.filterButton.addEventListener('click', ()=>{
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' Sort'
+    elements.cardContainer.innerHTML ='';
+    products.forEach(product => {
+        elements.cardContainer.innerHTML += createProductCard(product)
+    });
+    displayedProducts = products;
+
+})
+
+
+// let addedToWishlist = false;
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches('.wish-icon i')) {
+        return;
+    } 
+    let productId = el.id.slice(8);
+    
+
+    if (el.classList.contains('fa-heart-o')){
+        console.log("im here")
+        fetchAddToWishListItem(productId)
+    }
+    else{
+        console.log("you are here")
+        fetchRemoveFromWishListItem(productId);
+    }
+    
+    el.classList.toggle("fa-heart");
+    el.classList.toggle("fa-heart-o");
+    
+    
+
+});
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches("#sortDropdown .dropdown-item")) {
+    return;
+}   
+
+    elements.sortButton.innerHTML = '<img src="../../images/icons/sort-icon.png" class="sort-icon" alt="">'+' '+ el.innerHTML
+});
+
+
+
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches('.redirect-to-productCard')) {
+        return;
+    }   
+
+    document.location.href = `../product-card/productCard.html?id=${el.id}`
+});
+
+
+
+
+document.addEventListener('click', function(e) {
+    
+    var el = e.target; 
+    
+    if (!el.matches('.addToCardBtn')) {
+        return;
+    }   
+
+    let productId = el.id.slice(9);
+    console.log(productId);
+    fetchAddToCartItem(productId);
+    // addToCart(productId,displayedProducts);
+
+});
+
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+
+

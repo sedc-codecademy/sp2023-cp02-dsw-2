@@ -32,7 +32,7 @@ function triggerFormValidation(event) {
 }
 
 async function loginAccount(event) {
-    debugger;
+    
     const loginEmail = document.getElementById('login-email').value;
     const loginPassword = document.getElementById('login-password').value;
 

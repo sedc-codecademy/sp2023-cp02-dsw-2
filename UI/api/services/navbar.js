@@ -60,7 +60,8 @@ async function displayLoggedUser() {
             let loggedUsername = `${loggedUser.user.firstName} ${loggedUser.user.lastName}`;
         
             displayLoggedUsername.innerHTML = loggedUsername;
-            if(loggedUser.profileImage == "" || loggedUser.user.profileImage == undefined) navbarImage.src = defaultImage;
+            
+            if(loggedUser.user.profileImage == "" || loggedUser.user.profileImage == undefined) navbarImage.src = defaultImage;
             else navbarImage.src = loggedUser.user.profileImage;
 		}
     }

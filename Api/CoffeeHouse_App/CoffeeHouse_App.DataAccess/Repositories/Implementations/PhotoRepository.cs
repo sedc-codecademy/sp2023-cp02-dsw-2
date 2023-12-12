@@ -35,7 +35,6 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -51,7 +50,6 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -67,7 +65,6 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -82,7 +79,6 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -97,7 +93,6 @@ namespace CoffeeHouse_App.DataAccess.Repositories.Implementations
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

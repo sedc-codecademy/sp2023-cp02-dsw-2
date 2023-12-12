@@ -109,7 +109,7 @@ const uploadImageFunc = async (event) => {
 			}
 			validationAlertText.innerText = errorData.errorMessage;
 			return;
-        }else{
+        } else{
             const userImage = await response.json();
             let defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXlZntj19KqLp6PixOo-THMk5SHclqG-eHg5Ubds1lk2kbfKth5o4QYZixHdOjeT9fnJ4&usqp=CAU";
           
@@ -187,9 +187,10 @@ async function setInputsValue() {
             address.value = loggedUser.user.address.street;
             city.value = loggedUser.user.address.city;
             postalCode.value = loggedUser.user.address.zip;
+            
             if(loggedUser.user.profileImage == "" || loggedUser.user.profileImage == undefined) profileImage.src = defaultImage;
             else profileImage.src = loggedUser.user.profileImage;
-            console.log(loggedUser.user.profileImage);
+
             var countrySelect = document.body.querySelector('select');
             countrySelect.value = loggedUser.user.address.country;
 			return loggedUser.user;
@@ -285,7 +286,7 @@ async function saveProfileChanges(event) {
 			}
 			validationAlertText.innerText = errorData.errorMessage;
 			return;
-        }else{
+        } else{
 			event.preventDefault();
             validationAllert.style.display = "none";
             const msg = await response.json();

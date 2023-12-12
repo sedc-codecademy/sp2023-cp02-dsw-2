@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 async function fetchWishListProductData() {
     try{
         //GET THE TOKEN FROM LOCAL STORAGE
-        // const userToken = localStorage.getItem("Token");
+        const userToken = localStorage.getItem("token");
         wishListContainer.innerHTML = '';
         const response = await fetch('http://localhost:5116/api/Product/Wishlist',{ headers: {Authorization: `Bearer ${userToken}`}});
         console.log(response)

@@ -119,7 +119,7 @@ function validateFirstLastName(firstName, lastName, event) {
 
 //* ----- Create User -----
 async function createUser(event) {
-	debugger;
+	
 	const firstName = document.getElementById('firstName').value;
 	const lastName = document.getElementById('lastName').value;
 	const signupEmail = document.getElementById('signup-email').value;

@@ -154,7 +154,7 @@ function getParameterByName(name, url) {
 
 async function handlePasswordChange(event) {
     event.preventDefault();
-debugger;
+
     const token = getParameterByName('token');
     const email = getParameterByName('email');
     const newPassword = document.getElementById('new-password').value;
